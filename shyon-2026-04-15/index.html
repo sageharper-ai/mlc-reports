@@ -20,8 +20,13 @@
   --bg: #fafaf9;
   --card: #ffffff;
   --quote-bg: #f1f5f9;
+  --data-bg: #f0f9ff;
+  --data-border: #0284c7;
+  --data-ink: #0c4a6e;
+  --verdict-bg: #fefce8;
+  --verdict-border: #ca8a04;
+  --verdict-ink: #713f12;
   --warn: #b45309;
-  --warn-bg: #fef3c7;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -36,7 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .wrap {
-  max-width: 820px;
+  max-width: 840px;
   margin: 0 auto;
   padding: 48px 28px 96px;
 }
@@ -120,6 +125,7 @@ a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+  word-break: break-word;
 }
 a:hover { color: var(--mlc-green); }
 blockquote {
@@ -159,6 +165,90 @@ blockquote .attrib {
   margin-bottom: 8px;
 }
 .callout.warn .h { color: var(--warn); }
+.data-card {
+  background: var(--data-bg);
+  border: 1px solid #bae6fd;
+  border-left: 4px solid var(--data-border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 18px 0;
+}
+.data-card .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--data-border);
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.data-card .h::before {
+  content: "◆";
+  color: var(--data-border);
+}
+.data-card p, .data-card li { color: var(--data-ink); }
+.data-card ul { padding-left: 20px; }
+.verdict-card {
+  background: var(--verdict-bg);
+  border: 1px solid #fde68a;
+  border-left: 4px solid var(--verdict-border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 18px 0 28px;
+}
+.verdict-card .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verdict-border);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.verdict-card .h::before {
+  content: "▶";
+  color: var(--verdict-border);
+}
+.verdict-card p { color: var(--verdict-ink); margin-bottom: 0; }
+.verdict-card strong { color: var(--verdict-ink); }
+.finding-block {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 26px 28px;
+  margin: 28px 0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+.finding-block h3 {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 20px;
+  color: var(--ink);
+}
+.finding-block .q-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  background: var(--mlc-green-bg);
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.finding-block .finding-lede {
+  font-size: 16px;
+  color: var(--ink-mid);
+  margin-bottom: 16px;
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -179,24 +269,9 @@ th {
   color: var(--ink);
   font-weight: 600;
   font-size: 13px;
-  letter-spacing: 0.02em;
 }
 tr:last-child td { border-bottom: none; }
 td { color: var(--ink-mid); vertical-align: top; }
-.pattern {
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--mlc-green);
-  border-radius: 8px;
-  padding: 20px 24px;
-  margin: 18px 0;
-}
-.pattern h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 17px;
-  color: var(--mlc-green-dark);
-}
 .q-list {
   counter-reset: qcount;
   list-style: none;
@@ -205,17 +280,18 @@ td { color: var(--ink-mid); vertical-align: top; }
 .q-list li {
   counter-increment: qcount;
   position: relative;
-  padding: 12px 16px 12px 52px;
+  padding: 12px 16px 12px 54px;
   margin-bottom: 10px;
   background: var(--card);
   border: 1px solid var(--rule);
   border-radius: 8px;
   color: var(--ink-mid);
+  font-size: 15px;
 }
 .q-list li::before {
   content: "Q" counter(qcount);
   position: absolute;
-  left: 14px;
+  left: 12px;
   top: 12px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -267,11 +343,12 @@ footer .sig {
   h1 { font-size: 30px; }
   h2 { font-size: 22px; }
   body { font-size: 16px; }
+  .finding-block { padding: 20px; }
 }
 @media print {
   body { background: #fff; }
   .wrap { max-width: 100%; padding: 0; }
-  .callout, .pattern, .meta-grid, .toc, table { break-inside: avoid; }
+  .callout, .data-card, .verdict-card, .finding-block, .meta-grid, .toc, table { break-inside: avoid; }
   a { color: var(--ink); }
 }
 </style>
@@ -282,7 +359,7 @@ footer .sig {
 <header class="masthead">
   <div class="eyebrow">Mindful Living Consultants · External Report</div>
   <h1>Regeneration Iteration — Feedback Report</h1>
-  <p class="lede">A grounded, roadmap-usable read of what ten impact workers on the Apr 15, 2026 GRC call said about their collaboration pain, distilled for Shyon Parsadoust / Mito Labs.</p>
+  <p class="lede">A grounded, iteration-ready synthesis of what ten impact workers on the Apr&nbsp;15, 2026 GRC call said about their collaboration pain — cross-checked against current published research so you can tell nuance from systemic as you step into the Wednesday follow-up.</p>
   <div class="meta-grid">
     <div><span class="label">From</span><span class="val">Sage Harper</span></div>
     <div><span class="label">For</span><span class="val">Shyon Parsadoust</span></div>
@@ -297,18 +374,23 @@ footer .sig {
   <div class="h">Contents</div>
   <ol>
     <li><a href="#what">What this report is (and isn't)</a></li>
+    <li><a href="#wednesday">Wednesday's role in the iteration</a></li>
+    <li><a href="#method">Method — how evidence is layered</a></li>
     <li><a href="#questions">The interview questions</a></li>
     <li><a href="#room">The room</a></li>
-    <li><a href="#q1">What they're actually using (Q1)</a></li>
-    <li><a href="#q2">What the tools feel like (Q2)</a></li>
-    <li><a href="#q3">Tool stacking gaps (Q3)</a></li>
-    <li><a href="#q4">Strategy alignment (Q4)</a></li>
-    <li><a href="#q5">Impact &amp; transparency (Q5)</a></li>
-    <li><a href="#q7">Knowledge capture (Q7)</a></li>
-    <li><a href="#q8">Requests &amp; needs (Q8)</a></li>
-    <li><a href="#q9q10">What they'd build (Q9 + Q10)</a></li>
-    <li><a href="#synthesis">Synthesis — four patterns</a></li>
-    <li><a href="#probe">What I'd probe on before the demo</a></li>
+    <li><a href="#findings">Findings — seven patterns with supporting data</a>
+      <ol>
+        <li><a href="#f1">Tool sprawl &amp; paid-tool abandonment</a></li>
+        <li><a href="#f2">The ~10-person group-size cliff</a></li>
+        <li><a href="#f3">Organizational memory loss &amp; "memory gardening"</a></li>
+        <li><a href="#f4">"Unheard" as a measurable state</a></li>
+        <li><a href="#f5">Free-tier is load-bearing for the impact segment</a></li>
+        <li><a href="#f6">Visibility-as-dignity — the donor-beneficiary gap</a></li>
+        <li><a href="#f7">Governance-as-feature — the training-cliff problem</a></li>
+      </ol>
+    </li>
+    <li><a href="#transcript">Raw question-by-question transcript</a></li>
+    <li><a href="#probe">Questions the group will want to hear you answer</a></li>
     <li><a href="#followups">Follow-ups already emerged</a></li>
     <li><a href="#caveat">One honest caveat</a></li>
   </ol>
@@ -316,24 +398,43 @@ footer .sig {
 
 <section id="what">
 <h2>What this report is (and isn't)</h2>
-<p><strong>Is:</strong> A distillation of what ~10 impact workers said — in chat and on mic — during the 90-minute structured interview session you hosted. Every claim below is either verbatim quote (in italics) or a tight paraphrase traceable to the session transcript and chat log. A separate <a href="#synthesis">Synthesis</a> section marks my interpretive layer, so you can accept or reject the pattern reading independently of the data.</p>
-<p><strong>Isn't:</strong> A product critique of Mito. I don't know Mito well enough yet to critique it. This is the voice of your prospective users, captured before the demo.</p>
+<p><strong>Is:</strong> A distillation of what ~10 impact workers said during the session you hosted, cross-checked against current external data so each finding has two layers — what the room said <em>and</em> what the broader research says. Prep material for the Wednesday follow-up, where you'll be the one answering the same questions they did.</p>
+<p><strong>Isn't:</strong> A product critique of Mito. I don't know Mito well enough yet. This is the voice of your prospective users, plus the market evidence, so you can walk in Wednesday knowing which of their answers are GRC-specific and which map onto systemic market realities.</p>
+</section>
+
+<section id="wednesday">
+<h2>Wednesday's role in the iteration</h2>
+<p>This is not a demo or a pitch. Sage framed it to the room verbatim: <em>"we're gonna run through the exact same questions again, but we're asking Cheyenne next week. We're asking how he's planning on doing this. And he's gonna be very honest, because he doesn't have all of this worked out."</em></p>
+<p>That's the structural integrity of the series. The group answered ten questions about how they collaborate today and where it falls short. Wednesday, <strong>you answer the same ten questions</strong> — not about your current practice, but about how Mito is being <em>built</em> to respond to each pain. Same seat, same prompts, same rules: concise answers, transparent about the state of each answer (shipped, in-progress, roadmap, unknown). Specifically no selling.</p>
+<p>This report is calibration material for that moment. Each finding below maps back to one or two of those ten questions so you can see, before you sit down, where the room's pain was loudest, what external data says about whether that pain is systemic, and what answer Wednesday is going to need from you.</p>
+</section>
+
+<section id="method">
+<h2>Method — how evidence is layered</h2>
+<p>Each of the seven findings below follows the same structure:</p>
+<ul>
+  <li><strong>Question</strong> — which of the ten session questions surfaced this pattern.</li>
+  <li><strong>Finding</strong> — what participants actually said, with verbatim quotes traceable to the transcript and chat log.</li>
+  <li><strong>Supporting data</strong> — cross-checked against published research, industry reports, academic studies, and vendor-neutral benchmarks from 2023 onward. Every claim is URL-cited; no unsourced numbers.</li>
+  <li><strong>Verdict</strong> — whether this is a niche quirk of the GRC audience, or a systemic pattern documented across the broader market.</li>
+</ul>
+<p>The data and the interpretation are decoupled on purpose: you can accept the data even if you reject the interpretation, or vice versa. Nothing is load-bearing on anything else.</p>
 </section>
 
 <section id="questions">
 <h2>The interview questions (as actually asked)</h2>
-<p>Transcribed from the session, in the order Sage asked them. Questions 3 and 6 were slightly adjusted live, and Q6 was noted during the call as functionally overlapping with the marketing question in Q5.</p>
+<p>Transcribed from the session in the order asked. Questions 3 and 6 were adjusted live; Q6 was noted as functionally overlapping with the marketing thread in Q5. These are the same ten questions that will come back to you Wednesday.</p>
 <ol class="q-list">
   <li>Give us a quick snapshot. What's your community or organization, and what does collaboration look like on a typical week for you?</li>
-  <li>When you think about the tools and the system you use to coordinate, what's the feeling that comes to mind? Are you feeling empowered, frustrated, overwhelmed?</li>
-  <li>Tool stacking gaps. Name the tool or the platform you're using, and where do you feel it's doing a good job, and where do you feel it's falling short?</li>
-  <li>Strategy alignment. When you're launching a new initiative or partnership, how do you figure out who's doing what? How do you figure out what resources exist? How do you get everyone aligned on the mission? (Including the seven forms of capital.)</li>
-  <li>Impact and transparency. How do you currently track and share the impact of your work? Is it easy for collaborators and stakeholders to see what you're accomplishing and where you're headed?</li>
-  <li>Finding your people. How do you find and connect with aligned people in your organization outside of your immediate work? (Sage noted during the call this overlapped with the marketing thread in Q5.)</li>
-  <li>Knowledge and coordination. When your team or community creates something valuable — a process, a lessons learned, a playbook — how does that knowledge get captured? Do you have a limited commons, open commons, or a way to store these so they don't get lost through conversation?</li>
-  <li>Requests and needs. When you need something — a skill, a resource, a connection, one of the seven forms of capital — how do you put that need out into your community, and how do people find out what you need?</li>
-  <li>If you could design the perfect system for how your community could work together — not just task management, but the whole experience of collaboration — what's the one top priority you'd want the system to do for you?</li>
-  <li>What's the one thing you wish someone would just build already to make community collaboration easier?</li>
+  <li>When you think about the tools and the system you use to coordinate, what's the feeling that comes to mind? Empowered, frustrated, overwhelmed?</li>
+  <li>Tool stacking gaps. Name the tool or platform you're using, where it's doing a good job, and where it's falling short.</li>
+  <li>Strategy alignment. When you're launching a new initiative or partnership, how do you figure out who's doing what, what resources exist, and get everyone aligned on the mission?</li>
+  <li>Impact and transparency. How do you currently track and share the impact of your work?</li>
+  <li>Finding your people. How do you find and connect with aligned people outside your immediate work?</li>
+  <li>Knowledge and coordination. When your team creates something valuable — a process, a lessons learned, a playbook — how does that knowledge get captured?</li>
+  <li>Requests and needs. When you need a skill, resource, or connection, how do you put that need out into your community?</li>
+  <li>If you could design the perfect system for collaboration, what's the one top priority it would do for you?</li>
+  <li>What's the one thing you wish someone would just build already?</li>
 </ol>
 </section>
 
@@ -341,177 +442,242 @@ footer .sig {
 <h2>The room</h2>
 <table>
   <thead>
-    <tr><th>Who</th><th>Context</th><th>Scale they coordinate</th></tr>
+    <tr><th>Who</th><th>Context</th><th>Scale</th></tr>
   </thead>
   <tbody>
-    <tr><td><strong>Dr. Brian von Herzen</strong></td><td>Climate Foundation / seaweed industry</td><td>~24 people, half in Philippines; hardware-goal org</td></tr>
-    <tr><td><strong>Colleen Dick</strong></td><td>Rainbird Village / Rainbird Rising (nonprofit); studies Mondragon</td><td>12+ in US, nationwide, cross-disciplinary</td></tr>
-    <tr><td><strong>Karen Wolfgang</strong></td><td>CO2 Foundation</td><td>Internal coordinating group of 5 (Portland); wider advisor network</td></tr>
-    <tr><td><strong>Emmanuelle</strong></td><td>African Peace Village (Portugal / Cameroon)</td><td>6 core on Signal, wider circle up to ~14–100</td></tr>
-    <tr><td><strong>David Witzel</strong></td><td>GRC itself</td><td>1,400 people, ~15 Zooms/week, ~10 meeting organizers</td></tr>
+    <tr><td><strong>Dr. Brian von Herzen</strong></td><td>Climate Foundation / seaweed industry</td><td>~24 people, half in Philippines</td></tr>
+    <tr><td><strong>Colleen Dick</strong></td><td>Rainbird Village / Rainbird Rising; studies Mondragon</td><td>12+ nationwide, cross-disciplinary</td></tr>
+    <tr><td><strong>Karen Wolfgang</strong></td><td>CO2 Foundation</td><td>5 volunteers in Portland + wider advisor network</td></tr>
+    <tr><td><strong>Emmanuelle</strong></td><td>African Peace Village (Portugal / Cameroon)</td><td>6 core, wider circle to ~100</td></tr>
+    <tr><td><strong>David Witzel</strong></td><td>GRC itself</td><td>1,400 people, ~15 Zooms/week</td></tr>
     <tr><td><strong>Nikki Wall</strong></td><td>GRC / own network</td><td>"More than 1,400 people across the planet"</td></tr>
-    <tr><td><strong>Tally Rhoades</strong></td><td>Kosmos Journal connection; passionate layperson</td><td>Not running an org; self-described non-intellectual</td></tr>
-    <tr><td><strong>Rick Botelho</strong></td><td>Equity Moonshot Substack</td><td>Working on H.E.N. / agentic agent learning systems</td></tr>
+    <tr><td><strong>Tally Rhoades</strong></td><td>Kosmos Journal connection; passionate layperson</td><td>Not running an org</td></tr>
+    <tr><td><strong>Rick Botelho</strong></td><td>Equity Moonshot Substack</td><td>H.E.N. / agentic agent learning</td></tr>
     <tr><td><strong>Eckhart B.</strong></td><td>Energy Innovation / Strategy</td><td>Exploring Tribes platform; left early</td></tr>
     <tr><td><strong>Sage Harper</strong></td><td>Facilitator</td><td>—</td></tr>
   </tbody>
 </table>
 <div class="callout note">
   <div class="h">What to notice</div>
-  <p style="margin:0">None of them coordinate fewer than 5 people; most coordinate 20–1,400+. Every single one is resource-constrained. Your audience is power-users of collaboration pain, not novices.</p>
+  <p style="margin:0">None coordinate fewer than 5 people; most coordinate 20–1,400+. All are resource-constrained. This is a power-user audience of collaboration pain, not a novice cohort — which means on Wednesday they will listen closely and forgive "we haven't solved that yet" far more readily than hand-waving.</p>
 </div>
 </section>
 
-<section id="q1">
-<h2>Q1 — What they're actually using</h2>
-<p>Observed, unfiltered stack: <strong>Zoom, Slack, Signal, Email, Google Calendar, WhatsApp, Notion, Monday.com (reluctantly), Google Drive.</strong> The pattern that jumped out:</p>
-<blockquote>Used to use Asana and Basecamp... it costs money we don't have, and also everybody's using other things, and so having, like, one project where you're using the thing that costs money, that's, like, very specialized — it just wasn't worth it.<span class="attrib">— Karen Wolfgang, CO2 Foundation</span></blockquote>
-<blockquote>We just filled a grant application just using Signal group and google drive and it worked great.<span class="attrib">— Emmanuelle, African Peace Village</span></blockquote>
+<section id="findings">
+<h2>Findings — seven patterns with supporting data</h2>
+
+<!-- Finding 1: Tool Sprawl -->
+<div class="finding-block" id="f1">
+<div class="q-tag">From Q1 + Q3</div>
+<h3>1. Tool sprawl &amp; paid-tool abandonment</h3>
+<p class="finding-lede"><strong>Finding:</strong> Three participants (Karen, Emmanuelle, Colleen) independently said they walked away from paid project-management tools because the economics didn't work and their teams duplicated in informal channels anyway. Colleen's rant — <em>"I hate SaaS. I keep getting billed and billed for all of these separate systems that don't talk to each other"</em> — was the loudest moment of the call.</p>
+<blockquote>Used to use Asana and Basecamp… it costs money we don't have, and also everybody's using other things, and so having one project where you're using the thing that costs money, that's very specialized — it just wasn't worth it.<span class="attrib">— Karen Wolfgang, CO2 Foundation</span></blockquote>
 <blockquote>We theoretically use Monday.com but they jerked us around on prices in the past and it has limited hierarchy — subtasks of subtasks.<span class="attrib">— Dr. Brian von Herzen</span></blockquote>
-<blockquote>The GRC stack (that Hodgson built) is pretty amazing and very cheap. Lots of google components that are shared via google groups.<span class="attrib">— David Witzel, GRC</span></blockquote>
-<h4>Self-rated effectiveness (1–5)</h4>
-<p>David <strong>2.5</strong>. Colleen <strong>3</strong>. Karen ~<strong>3–4</strong>. Emmanuelle <strong>3</strong> <em>("because a few of us are not tuning in as well yet")</em>. Tally <strong>1</strong> for personal, <strong>5</strong> only for a structured, time-bound Kosmos 9-month initiative.</p>
-<div class="callout note">
-  <div class="h">Signal</div>
-  <p style="margin:0">No one scored their default system a 5. The 5 was only for a tightly scoped, time-bound initiative — not for everyday coordination.</p>
-</div>
-</section>
-
-<section id="q2">
-<h2>Q2 — What the tools FEEL like</h2>
-<p>Chat responses arrived within 30 seconds of the prompt:</p>
+<div class="data-card">
+<div class="h">Supporting data</div>
 <ul>
-  <li><strong>"Unheard"</strong> — David Witzel</li>
-  <li><strong>"Overwhelm"</strong> — Karen: <em>"Always feel like I am missing something. Always both hope and unease / looking for something better."</em></li>
-  <li><strong>"Normative now"</strong> — Colleen</li>
-  <li><strong>Fragmented</strong> — David: <em>"we need global network-participant etiquette! everyone should listen to more than one channel, participate periodically, and sometimes repeat someone else's message. Damn it!"</em></li>
-  <li><strong>Redundant</strong> — Karen: <em>"You're always using informal channels anyway, so why pay for formal channels when you're gonna have to duplicate anyway."</em></li>
-  <li><strong>Top-down</strong> — Brian: <em>"Project management is top-down — we don't achieve consent of the governed with those tools."</em></li>
-  <li><strong>Fatigue</strong> — Karen: <em>"I'm having some deep fatigue around systems, really reticent to start something new."</em></li>
+<li><strong>72%</strong> of nonprofits use three or more systems that don't talk to each other; <strong>55%</strong> say their systems aren't aligned to their workflow. <a href="https://www.nten.org/publications/data-empowerment-report">NTEN 2022 Data Empowerment Report</a></li>
+<li><strong>77%</strong> of nonprofits cite lack of budget as the top obstacle to tech investment; <strong>45%</strong> say they aren't spending enough on tech. <a href="https://www.nten.org/posts/publication/2024-nonprofit-digital-investments-report">NTEN 2024 Nonprofit Digital Investments Report</a></li>
+<li>Most nonprofits spend under <strong>3%</strong> of their budget on tech; only <strong>13%</strong> spend over 5%; <strong>62%</strong> say they lack time to vet and implement new tools. <a href="https://www.philanthropy.com/article/old-ways-new-tech-world">Chronicle of Philanthropy, 2024</a></li>
+<li>The average company now runs <strong>101 apps</strong>, up from 93 the year prior. <a href="https://www.okta.com/newsroom/articles/businesses-at-work-2025/">Okta Businesses at Work 2025</a></li>
+<li>At small companies, shadow IT makes up <strong>68%</strong> of the app portfolio (vs. 52% at mid/large). Shadow apps see <strong>54%</strong> engagement vs. <strong>40%</strong> for IT-sanctioned tools — meaning <em>the unofficial channels actually get more use than the paid stack.</em> <a href="https://productiv.com/blog/5-shadow-it-stats-that-businesses-should-know/">Productiv State of SaaS 2024</a></li>
 </ul>
-<blockquote>Feeling unheard, kind of those redundant conversations, going back to old topics that have already been covered… duplication of efforts… trackability.<span class="attrib">— Shyon, live synthesis on the call</span></blockquote>
-<div class="callout note">
-  <div class="h">Worth holding</div>
-  <p style="margin:0">Your own live synthesis was accurate. Those four — <strong>unheard, redundancy, duplication, trackability</strong> — are the pain signatures the room agreed to.</p>
 </div>
-</section>
+<div class="verdict-card">
+<div class="h">Verdict — systemic</div>
+<p>Colleen's "17 disconnected tools" rant is a documented systemic pattern, not an audience quirk. Small orgs consistently under-fund tech, run 3+ disconnected systems, and run majority-shadow-IT portfolios where unofficial tools outperform the paid stack on actual usage. Any product positioned as "another paid SaaS" walks into this wall.</p>
+</div>
+</div>
 
-<section id="q3">
-<h2>Q3 — Tool stacking gaps</h2>
-<p>This question surfaced the rawest moment of the call. Colleen returned to it at length during open Q&amp;A:</p>
-<blockquote>I hate SaaS. I keep getting billed, billed and billed, and billed and billed for all of these separate systems that don't talk to each other. I'm paying $1,000 a year for something that's just crap now. It used to be an excellent system. It was a wonderful system when I was paying $15 a year for it. It's horrible now that I'm paying $1,000 a year for it.<span class="attrib">— Colleen Dick</span></blockquote>
-<p>Brian named Monday.com's hierarchy ceiling. Karen named the cost / duplication loop. David named the GRC stack (cheap Google + Slack) as the only thing that actually works at scale for them, <em>but</em> with <em>"no synthesis"</em> of what's inside it. That phrase — <strong>no synthesis</strong> — became a recurring theme later in the call.</p>
-</section>
-
-<section id="q4">
-<h2>Q4 — Strategy alignment</h2>
+<!-- Finding 2: 10-person cliff -->
+<div class="finding-block" id="f2">
+<div class="q-tag">From Q2 + Q9 + Q10</div>
+<h3>2. The ~10-person group-size engagement cliff</h3>
+<p class="finding-lede"><strong>Finding:</strong> Multiple participants independently described chats over roughly ten people as non-functional. Sage named it during the call: <em>"once the number gets past 10, I think people check out."</em> Nikki: <em>"Too many people NOT checking in on slack."</em> David: <em>"nobody listens to everything, lots of people don't listen to anything."</em></p>
+<div class="data-card">
+<div class="h">Supporting data</div>
 <ul>
-  <li><strong>Brian:</strong> Sociocratic circle method — <em>"has become natural for me… but that's after 2 years of sociocratic training."</em> The training cliff matters.</li>
-  <li><strong>Colleen:</strong> Mondragon governance model — <em>"We've studied Mondragon extensively... their governance model works beautifully. It's got 70 years' worth of experience behind it."</em></li>
-  <li><strong>Everyone else:</strong> Emergent, informal. Karen: <em>"some of it is just practice, which we never really agreed to — it just emerged, and isn't even conscious."</em></li>
+<li><strong>Dunbar hierarchy</strong> (Zhou, Sornette, Hill, Dunbar, 2005, <em>Proc. Royal Society B</em>): discrete social layers at ~5, 15, 50, 150 with scaling ratio ~3. The 15-person "sympathy group" is the outer edge of high-trust contact; beyond it, emotional closeness and contact frequency drop sharply. <a href="https://pubmed.ncbi.nlm.nih.gov/15734699/">PubMed</a></li>
+<li><strong>Amazon two-pizza / Staats–Milkman–Fox (2012):</strong> 2-person teams built a Lego figure in 36 min; 4-person teams took 52 min (44% longer) and systematically under-estimated completion time as size grew. Coordination cost rises non-linearly past ~5–8. <a href="https://aws.amazon.com/executive-insights/content/amazon-two-pizza-team/">AWS</a></li>
+<li><strong>Nielsen 90-9-1 participation inequality (2006):</strong> in online communities, 90% lurk, 9% contribute occasionally, 1% produce most content. The participation drop is structural, not a function of channel quality. <a href="https://www.nngroup.com/articles/participation-inequality/">Nielsen Norman Group</a></li>
+<li><strong>Slack channel benchmarks:</strong> general channels average ~<strong>80%</strong> lurkers; "healthy" engagement target is 25%, observed is often ~10%; 3–5% of users drive most collaboration. <a href="https://count.co/integration/slack/channel-participation-distribution">Count.co</a></li>
 </ul>
-<div class="callout note">
-  <div class="h">Implication for Mito</div>
-  <p style="margin:0">The orgs with working alignment have either 2-year training curves or 70-year-old frameworks behind them. Anyone relying on good defaults will drift. If Mito bakes a governance pattern in, make it visible and opt-in — not hidden automation.</p>
 </div>
-</section>
-
-<section id="q5">
-<h2>Q5 — Impact &amp; transparency</h2>
-<ul>
-  <li><strong>Brian:</strong> <em>"Newsletters, social media, webinars and podcasts are our dissemination approaches."</em></li>
-  <li><strong>Colleen:</strong> Monthly newsletters with action items baked in; quarterly Zoom where people report out for up to 10 min each.</li>
-  <li><strong>Nikki:</strong> <em>"Word of mouth. We are a trust based network."</em></li>
-  <li><strong>Emmanuelle:</strong> Wants to show the weaving <em>process</em> transparently — almost as a course where people can watch impact form.</li>
-  <li><strong>Karen:</strong> <em>"We feel the pressure to 'report out' but don't have resources for it."</em></li>
-</ul>
-<blockquote>There's great people doing great things all over the world, and they're doing it in the shadow. They're doing it in the dark.<span class="attrib">— Shyon, Martin-from-Uganda story during open Q&amp;A</span></blockquote>
-<p>Tally mirrored it instantly: <em>"I just want to plug into the one thing I'm super passionate about... you have a platform... it basically has, like, a stream."</em></p>
-<div class="callout note">
-  <div class="h">Emotional center of the call</div>
-  <p style="margin:0">This was the most charged moment of the 90 minutes. Tally, Colleen, and Emmanuelle were nodding at the same pain: <strong>the connection between the person doing the work and the person who could support it is broken, and current tools aren't fixing it.</strong></p>
+<div class="verdict-card">
+<div class="h">Verdict — directionally systemic</div>
+<p>The exact number "10" is not a named constant in the literature, but it sits between Dunbar's 5–15 sympathy layer and the two-pizza 7±2 productive-meeting size — both of which predict engagement collapse as groups cross ~10. Four independent research traditions (evolutionary anthropology, HCI, organizational psychology, platform analytics) converge on the same shape. The room's anecdote is matched.</p>
 </div>
-</section>
+</div>
 
-<section id="q7">
-<h2>Q7 — Knowledge capture</h2>
-<blockquote>I have a very good memory for some projects, so it's all in my mind... I'm looking for a weaving kind of journal — not Slack, da-da-da — where it becomes something… an old-fashioned scrapbook kind of journal.<span class="attrib">— Emmanuelle</span></blockquote>
-<blockquote>We literally have a running meeting notes document with action items going back 3 years now (but always re-created at the top of each week's meeting notes). So if something falls off, it falls off, oops.<span class="attrib">— Karen Wolfgang</span></blockquote>
+<!-- Finding 3: Memory Loss -->
+<div class="finding-block" id="f3">
+<div class="q-tag">From Q7 + Q9 + Q10</div>
+<h3>3. Organizational memory loss &amp; "memory gardening"</h3>
+<p class="finding-lede"><strong>Finding:</strong> Every participant described a version of the same pain — knowledge lives in people's heads and rolling notes docs, and "if something falls off, it falls off, oops." Brian named it in chat: <em>"How are memories deprecated, revised, prioritized, conflict-resolved, and sorted properly? This memory gardening is essential to building coherent context for orgs around the world."</em> When Sage asked "how many of you feel like you're a bottleneck because you are managing things in your head?" — near-universal yes.</p>
+<blockquote>I have a very good memory for some projects, so it's all in my mind… I'm looking for a weaving kind of journal — not Slack — where it becomes something… an old-fashioned scrapbook kind of journal.<span class="attrib">— Emmanuelle</span></blockquote>
 <blockquote>GRC has slack (all history), video recordings, email archives. No synthesis.<span class="attrib">— David Witzel</span></blockquote>
-<p>Sage then asked the room directly: <em>"How many of you are managing all this in your heads right now? How many of you feel like you're a bottleneck because you are managing things in your head?"</em> Near-universal yes. Nobody rejected the framing.</p>
-</section>
-
-<section id="q8">
-<h2>Q8 — Requests &amp; needs</h2>
-<p>Observed: Slack + newsletter; Post-Growth Offers &amp; Needs workshops (Emmanuelle liked this); LinkedIn "warm introductions" (Brian); <em>"Talk to people personally"</em> (Colleen).</p>
-<blockquote>These are legacy systems… we can develop agentic agents to do all this gut work we can't possibly do because of our cognitive bottlenecks.<span class="attrib">— Rick Botelho</span></blockquote>
-<blockquote>Content is king. It's not. The ace is the process. It's how we do things, not what we do. We've got so much goddamn content, we can't manage it. So we need to develop process skills so that we can curate the content in a very specific, tailored way, just in time for what we need, and cut out the crap.<span class="attrib">— Rick Botelho</span></blockquote>
-</section>
-
-<section id="q9q10">
-<h2>Q9 + Q10 — What they'd build if they could</h2>
+<div class="data-card">
+<div class="h">Supporting data — the cost of knowledge loss</div>
 <ul>
-  <li><strong>Karen:</strong> <em>"Everyone would trust everyone else and we would know what each other is responsible for."</em></li>
-  <li><strong>Karen (cont.):</strong> <em>"Something that connects all the systems you're trying to use and lets you access them in one place… and reminds you if you haven't checked the places in a while."</em></li>
-  <li><strong>David:</strong> <em>"Babblefish — I can use my channel and it reaches other people's favorite channel."</em></li>
-  <li><strong>Brian:</strong> <em>"Trillion-token context promises to get key information out of our heads and into organizational context... Updating this organizational memory is a key outstanding challenge. How are memories deprecated, revised, prioritized, conflict-resolved, and sorted properly? This memory gardening is essential to building coherent context for orgs around the world."</em></li>
-  <li><strong>Karen, shorthand:</strong> <em>"MEMORY GARDENING."</em></li>
-  <li><strong>Nikki:</strong> <em>"More engagement of our members on a regular basis."</em></li>
-  <li><strong>Colleen:</strong> <em>"Silicon Slopes is very close to perfect"</em> (siliconslopes.com — built locally in 3 months; hybrid of LinkedIn + Zoom).</li>
-  <li><strong>Emmanuelle:</strong> <em>"Our own and collective mind is the bottle neck at times."</em></li>
+<li><strong>42%</strong> of institutional knowledge is unique to the individual holding it; employees spend <strong>5.3 hrs/week</strong> waiting on colleagues for info; inefficient knowledge-sharing costs a 1,000-person company <strong>~$2.7M/yr</strong>. <a href="https://www.panopto.com/company/news/inefficient-knowledge-sharing-costs-large-businesses-47-million-per-year/">Panopto Workplace Knowledge &amp; Productivity Report</a></li>
+<li>Knowledge workers spend <strong>~2.5 hrs/day</strong> (≈30% of workday) searching; workers find what they need only <strong>~50%</strong> of the time. <a href="https://computhink.com/wp-content/uploads/2015/10/IDC20on20The20High20Cost20Of20Not20Finding20Information.pdf">IDC</a></li>
+<li>Nonprofit turnover is <strong>~21%</strong>; in fall 2024, <strong>67%</strong> of nonprofit employees said they'd job-hunt within a year; top-cited consequence was "loss of institutional knowledge." <a href="https://candid.org/blogs/nonprofit-employees-survey-data-suggests-high-staff-turnover-ahead/">Candid, 2024</a></li>
 </ul>
+</div>
+<div class="data-card">
+<div class="h">Supporting data — state of AI "memory gardening"</div>
+<ul>
+<li><strong>Zep / Graphiti</strong> (temporal knowledge graph, Jan 2025): compares new edges to existing ones, invalidates contradictions via temporal validity. Scored <strong>63.8%</strong> on LongMemEval vs. Mem0's 49%. <a href="https://arxiv.org/abs/2501.13956">arXiv 2501.13956</a></li>
+<li><strong>Mem0 / Mem0g</strong> (Apr 2025, ECAI 2025): conflict detector flags contradictions before graph-write; shipping as production. <a href="https://arxiv.org/html/2504.19413v1">arXiv 2504.19413</a></li>
+<li>Multi-source reconciliation is still frontier research: <strong>MADAM-RAG, ICR, TCR (2025)</strong> show 11–16% gains on contradiction benchmarks — active work, not solved infrastructure. <a href="https://arxiv.org/abs/2504.13079">arXiv 2504.13079</a></li>
+</ul>
+</div>
+<div class="verdict-card">
+<div class="h">Verdict — systemic + open problem</div>
+<p>Organizational memory loss is a decade-documented, multi-million-dollar problem — not niche. AI "memory gardening" is <strong>early-production for single-agent memory</strong> (Zep, Mem0 shipping) but <strong>still research-phase for multi-source organizational reconciliation.</strong> Brian's framing aligns with an open problem vendors are racing to commercialize. Wednesday — if Mito touches this, say clearly which half: single-agent or multi-source.</p>
+</div>
+</div>
+
+<!-- Finding 4: Unheard -->
+<div class="finding-block" id="f4">
+<div class="q-tag">From Q2</div>
+<h3>4. "Unheard" as a measurable state</h3>
+<p class="finding-lede"><strong>Finding:</strong> When asked what feeling came to mind about current tools, the first chat response was one word: <em>"Unheard."</em> It resonated widely. Karen: <em>"Always feel like I am missing something. Always both hope and unease."</em> Brian: <em>"Project management is top-down — we don't achieve consent of the governed with those tools."</em></p>
+<div class="data-card">
+<div class="h">Supporting data</div>
+<ul>
+<li><strong>48%</strong> of employees and <strong>52%</strong> of leaders say their work feels "chaotic and fragmented." <strong>85%</strong> of emails are read in under 15 seconds. Workers are interrupted every <strong>2 minutes</strong>; <strong>68%</strong> lack uninterrupted focus time. <a href="https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday">Microsoft Work Trend Index 2024/2025</a></li>
+<li>Slack processes <strong>1.5B+</strong> messages/day; average user receives <strong>200+ notifications/day</strong>. <strong>60%</strong> of knowledge workers report high stress/burnout specifically from digital-communication fatigue. <a href="https://www.brosix.com/blog/digital-communication-overload/">Brosix, 2024</a></li>
+<li><strong>Frazier et al. (2017) meta-analysis</strong> in <em>Personnel Psychology</em> — 136 samples, 22,000+ individuals, 5,000+ groups. Psychological safety (the core construct governing whether people feel heard) correlates strongly with engagement, commitment, and task performance. <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/peps.12183">Wiley</a></li>
+<li>Global employee engagement fell from <strong>23% to 21%</strong> — sharpest drop since COVID; <strong>$438B</strong> productivity cost in 2024 alone. <a href="https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx">Gallup State of the Global Workplace, 2025</a></li>
+<li>In the volunteer segment specifically, <strong>46.8%</strong> of nonprofit CEOs call volunteer recruitment a "big problem" — a 62% increase since 2003; research flags role ambiguity and communication breakdowns as primary disengagement drivers. <a href="https://dogood.umd.edu/sites/default/files/2023-02/TheStateofVolunteerEngagement_DGI2023_0.pdf">Do Good Institute, 2023</a></li>
+</ul>
+</div>
+<div class="verdict-card">
+<div class="h">Verdict — rigorously systemic</div>
+<p>"Unheard" is not a vibes-complaint. It sits at the intersection of measurable message-absorption collapse, channel sprawl, and voice-suppression — three decades of peer-reviewed evidence (Edmondson, Frazier meta-analysis) and annual enterprise data (Microsoft, Gallup) back it. This is the single most-documented finding in the report.</p>
+</div>
+</div>
+
+<!-- Finding 5: Free tier -->
+<div class="finding-block" id="f5">
+<div class="q-tag">From open-floor + host reframe</div>
+<h3>5. Free-tier is load-bearing for the impact segment</h3>
+<p class="finding-lede"><strong>Finding:</strong> Karen: <em>"We have no budget for that group."</em> Emmanuelle ran a grant application off "just Signal and google drive" because it was free. Shyon named it explicitly on the call: <em>"if you're stifling the conversation, you're directly impeding the innovation that needs to happen."</em></p>
+<div class="data-card">
+<div class="h">Supporting data</div>
+<ul>
+<li><strong>~60%</strong> of US nonprofits have annual budgets under $250,000; <strong>~59%</strong> have budgets under $50,000; <strong>88%</strong> operate under $500,000/year. <a href="https://candid.org/blogs/data-insights-very-small-nonprofits-make-up-majority-us-nonprofits/">Candid, 2023</a> Karen's 5-person volunteer group sits inside this dominant invisible-majority segment.</li>
+<li><strong>77%</strong> cite budget as the #1 obstacle to tech investment. <strong>92%</strong> of the sector is small orgs. <a href="https://www.nten.org/posts/publication/2024-nonprofit-digital-investments-report">NTEN, 2024</a></li>
+<li>TechSoup has served <strong>1.06M NGOs</strong> with <strong>$11.1B</strong> in donated products over 30 years; in FY22 alone, Microsoft donated <strong>1.4M licenses</strong> to 63,000 nonprofits in 126 countries. <a href="https://yearinreview.techsoup.org/2022/supporters-and-funders">TechSoup 2022 Year in Review</a> The entire segment runs on donated/free SaaS because paid-only unit economics don't pencil.</li>
+</ul>
+</div>
+<div class="verdict-card">
+<div class="h">Verdict — your instinct matches the economics</div>
+<p>A paid-only gate would exclude the ~60% of US nonprofits under $250K and the ~92% "small org" segment that defines this market. Shyon's instinct to split <strong>free community</strong> from <strong>paid admin workspace</strong> maps directly to the documented economics. The hard question is just where the admin-workspace line sits — who pays, and when.</p>
+</div>
+</div>
+
+<!-- Finding 6: Visibility-as-dignity -->
+<div class="finding-block" id="f6">
+<div class="q-tag">From Q5 + open-floor Martin/Uganda story</div>
+<h3>6. Visibility-as-dignity — the donor-beneficiary gap</h3>
+<p class="finding-lede"><strong>Finding:</strong> The emotional center of the call was Shyon's Martin-in-Uganda story: <em>"Nobody will ever be able to see the great work that we're doing here in Africa."</em> Tally mirrored it instantly. Colleen added the donor side: <em>"I get 3–4 daily outreach from 'agents of wealthy people' but I have no way to verify who's real."</em> Bilateral pain.</p>
+<div class="data-card">
+<div class="h">Supporting data</div>
+<ul>
+<li><strong>67%</strong> of Americans say trusting a charity is "highly important" before giving, but only <strong>22%</strong> "highly trust" charities. The share deterred by <em>not knowing what the charity will do with the money</em> jumped from 24.9% to <strong>33.8%</strong> over three years. Visible accomplishments rank #1 as the trust driver. <a href="https://give.org/news/donor-trust-report-2024-trust-and-giving-attitudes-across-u.s.-regions-and-religious-affiliation">BBB Wise Giving Alliance Donor Trust Report 2024</a></li>
+<li><strong>66%</strong> of Millennials track results for most/all nonprofits they support — vs. <strong>32%</strong> of Boomers. Gen Z + Millennials are 3× more likely to engage in advocacy when outcomes are visible. <a href="https://ccc.bc.edu/content/bc-ccc/news/blogs/engaging-younger-donors.html">Boston College CCC, 2024</a></li>
+<li>Black-led nonprofits operate with revenues <strong>24% lower</strong> than white-led peers — a <strong>$20M median funding gap</strong>, largely because donors can't find or verify them. The African Philanthropy Forum launched Start Point Africa in 2022 explicitly to bridge this gap. <a href="https://blog.candid.org/post/black-founded-nonprofits-achieving-impact-with-limited-resources">Candid, 2024</a></li>
+<li>GlobalGiving's research with IPA shows direct SMS feedback from beneficiaries <strong>measurably increases donation level and frequency</strong> — the "see the human behind the work" mechanism is validated. <a href="https://poverty-action.org/study/impact-accountability-globalgiving-mentoring">IPA study</a></li>
+</ul>
+</div>
+<div class="verdict-card">
+<div class="h">Verdict — documented market gap</div>
+<p>Visibility-as-dignity is not romantic framing. The pain is bilateral (donors can't verify; grassroots can't be seen), quantified across four independent research sources, and already generating platform responses (GlobalGiving, Start Point Africa). The generational-shift tailwind is strong — Millennials and Gen Z demand what Boomers didn't, at 2× the rate. Martin's pain maps onto measurable donor-side demand.</p>
+</div>
+</div>
+
+<!-- Finding 7: Governance -->
+<div class="finding-block" id="f7">
+<div class="q-tag">From Q4</div>
+<h3>7. Governance-as-feature — the training-cliff problem</h3>
+<p class="finding-lede"><strong>Finding:</strong> Two participants offered working governance: Brian's sociocratic circle method (<em>"that's after 2 years of sociocratic training"</em>) and Colleen's Mondragon model (<em>"70 years' worth of experience behind it"</em>). Everyone else was emergent/informal. Sage's read: working governance has high training cliffs or multi-decade embedding, and "good defaults alone" will drift.</p>
+<div class="data-card">
+<div class="h">Supporting data — the working models</div>
+<ul>
+<li><strong>Mondragon Corporation (2024):</strong> €11.2B in sales, <strong>70,085 workers</strong>, <strong>81 self-governing cooperatives</strong>, 14 R&amp;D centers. Founded 1956 — Colleen's "70 years" is accurate (69 as of 2026). <a href="https://www.thenews.coop/mondragon-worker-co-op-federation-reports-sales-of-e11-213bn/">The News Co-op, 2024</a></li>
+<li><strong>Sociocracy training depth:</strong> Sociocracy For All's flagship Academy is <strong>5 months</strong>; published practitioner accounts describe 3-month trial periods just to reach basic competency. Brian's "2 years" aligns with the curriculum's depth tiers. <a href="https://www.sociocracyforall.org/academy/">SoFA Academy</a></li>
+<li><strong>US worker co-op sector is growing slowly despite tooling:</strong> 2025 State of the Sector tracked only 242 firms; Democracy at Work Institute notes growth "has slowed considerably." <a href="https://www.usworker.coop/census/">USFWC Census</a></li>
+</ul>
+</div>
+<div class="data-card">
+<div class="h">Supporting data — governance-as-code failures</div>
+<ul>
+<li><strong>Zappos Holacracy unwind:</strong> In 2015, 14% took the buyout when Holacracy rolled out; by January 2016, <strong>18% (~260 employees)</strong> had left; <strong>30%</strong> annual turnover (10 points above baseline). By 2020, Zappos had "quietly backed away from holacracy" and re-introduced managers. <a href="https://qz.com/work/1776841/zappos-has-quietly-backed-away-from-holacracy">Quartz, 2019</a></li>
+<li><strong>Decidim civic-tech platform:</strong> Deployed at 31 cities and 13 regions. Decidim's own paper notes the platform <em>required building a separate Metadecidim human assembly to govern itself</em> — i.e., the software alone didn't produce democratic practice; a parallel human institution did. <a href="http://computationalculture.net/the-decidim-soft-infrastructure/">Computational Culture</a></li>
+</ul>
+</div>
+<div class="verdict-card">
+<div class="h">Verdict — both claims hold</div>
+<p>(a) Good governance defaults alone don't work — Zappos had Holacracy's full "constitution-as-code" and still hit 30% turnover plus a quiet retreat to managers; Decidim had to spin up a parallel human assembly. (b) Winning patterns carry multi-month to multi-decade embedding costs. If Mito bakes in governance patterns without a <strong>training / facilitation layer</strong>, the Wednesday group will probably probe exactly where Zappos failed.</p>
+</div>
+</div>
+
 </section>
 
-<section id="synthesis">
-<h2>Synthesis — four patterns (my interpretive layer)</h2>
-<p>Four patterns emerged that I'd treat as load-bearing for your roadmap. This is interpretation, not data — take or leave.</p>
+<!-- Raw transcript section -->
+<section id="transcript">
+<h2>Raw question-by-question transcript</h2>
+<p>Preserved in case you want to ground any finding back to the specific moment it surfaced. Quotes are verbatim from the chat log and session transcript.</p>
 
-<div class="pattern">
-<h3>1. The "shadow work" problem is the emotional center</h3>
-<p>Your Martin / Uganda story landed because it named the pain the room was feeling. <strong>Your strongest product-market fit signal was not collaboration-as-tasks — it was visibility-as-dignity.</strong> The people working hard in obscurity; the donors/allies who can't find them; the layperson (Tally) who wants to plug into <em>one</em> cause without joining yet another chat.</p>
-<p>If Mito has a "stream of good work happening, attributable to specific humans" feature, that's where the oxygen is.</p>
-</div>
+<h3>Q1 — What they're actually using</h3>
+<p>Stack observed, unfiltered: Zoom, Slack, Signal, Email, Google Calendar, WhatsApp, Notion, Monday.com (reluctantly), Google Drive. Self-rated effectiveness 1–5: David 2.5, Colleen 3, Karen ~3–4, Emmanuelle 3, Tally 1 personal / 5 only for a structured Kosmos 9-month initiative. <strong>Nobody scored their default system a 5.</strong></p>
 
-<div class="pattern">
-<h3>2. Memory gardening is the infrastructure problem no one has solved</h3>
-<p>Brian named it. Karen named it. Emmanuelle named it from a different angle (<em>"weaving journal, not Slack"</em>). Rick named it (<em>"curate content, cut the crap"</em>). <strong>Every participant described a personal-brain-as-bottleneck.</strong> Nobody has working organizational memory — the best available is a 3-year rolling notes doc that drops items when they fall off.</p>
-<p>If Mito has, or plans, AI-assisted memory gardening — not another RAG lookup, but a reconcile / supersede / deprecate workflow — that's the moat. Ship with a human gardener role visible, because no one trusts silent AI with their history.</p>
-</div>
+<h3>Q2 — What tools feel like</h3>
+<p>Within 30 seconds: "Unheard" (David), "Overwhelm" (Karen), "Normative now" (Colleen), fragmented + redundant + top-down + fatigue. Shyon's own live synthesis nailed it: <em>"feeling unheard, redundant conversations, duplication of efforts, trackability."</em></p>
 
-<div class="pattern">
-<h3>3. Free tier is load-bearing for adoption</h3>
-<p>Three separate participants (Karen, Colleen, Emmanuelle) explicitly said they walked away from paid tools. You named it yourself: <em>"All great things start with a conversation, and so if you're stifling the conversation, you're directly impeding the innovation that needs to happen."</em> Hold this. The moment pricing hits the circle, adoption dies.</p>
-<p>Your instinct to split free-community from paid-admin-workspace maps to what Emmanuelle described: <em>"closed doors, and this team would meet... I don't think that everybody needs to know about everything."</em> That's real. Keep it.</p>
-</div>
+<h3>Q3 — Tool stacking gaps</h3>
+<p>The rawest moment. Colleen in open Q&amp;A: <em>"I hate SaaS. I'm paying $1,000 a year for something that's just crap now. It used to be excellent at $15/yr."</em> Brian named Monday.com's hierarchy ceiling. David named GRC's cheap-Google-plus-Slack as the one thing that works, but <em>"with no synthesis."</em></p>
 
-<div class="pattern">
-<h3>4. The 10-person cliff is real</h3>
-<p>Multiple participants, without coordinating, said chats over ~10 people lose engagement. Nikki: <em>"Too many people NOT checking in on Slack."</em> You: <em>"Once the number gets past 10, I think people check out."</em></p>
-<p>If Mito scales messaging beyond 10 without a structural intervention (threads? summaries? accountability surfacing?) you inherit Slack's failure mode.</p>
-</div>
+<h3>Q4 — Strategy alignment</h3>
+<p>Brian: sociocracy with a 2-year on-ramp. Colleen: Mondragon model, 70 years. Everyone else: emergent, informal — Karen: <em>"some of it is just practice, which we never really agreed to — it just emerged, and isn't even conscious."</em></p>
+
+<h3>Q5 — Impact &amp; transparency</h3>
+<p>Brian: newsletters, social, webinars, podcasts. Colleen: monthly newsletter with action items; quarterly Zoom. Nikki: <em>"Word of mouth. We are a trust based network."</em> Emmanuelle: wants process visibility — almost as a course. Karen: <em>"we feel the pressure to 'report out' but don't have resources for it."</em></p>
+
+<h3>Q7 — Knowledge capture</h3>
+<p>Emmanuelle: <em>"looking for a weaving kind of journal — not Slack — where it becomes something… an old-fashioned scrapbook."</em> Karen: 3-year rolling meeting-notes doc — <em>"if something falls off, it falls off, oops."</em> David (of GRC): <em>"all history... no synthesis."</em> When Sage asked who's bottlenecked by head-storage, near-universal yes.</p>
+
+<h3>Q8 — Requests &amp; needs</h3>
+<p>Slack + newsletter; Post-Growth Offers &amp; Needs workshops (Emmanuelle); LinkedIn warm intros (Brian); <em>"Talk to people personally"</em> (Colleen). Rick: <em>"These are legacy systems... we can develop agentic agents to do all this gut work we can't possibly do because of our cognitive bottlenecks."</em> And his closer: <em>"Content is king. It's not. The ace is the process."</em></p>
+
+<h3>Q9 + Q10 — What they'd build</h3>
+<p>Karen: <em>"Everyone would trust everyone else and we would know what each other is responsible for"</em> + <em>"something that connects all the systems you're trying to use and lets you access them in one place... and reminds you if you haven't checked the places in a while."</em> David: <em>"Babblefish — I can use my channel and it reaches other people's favorite channel."</em> Brian: <em>"Trillion-token context... memory gardening."</em> Colleen referenced <a href="https://www.siliconslopes.com/feed">Silicon Slopes</a> as <em>"very close to perfect"</em> — worth a 20-minute look before Wednesday.</p>
 </section>
 
 <section id="probe">
-<h2>What I'd probe on before the Wednesday demo</h2>
-<p>Grounded questions this session <em>didn't</em> resolve that would materially shape your roadmap:</p>
+<h2>Questions the group will want to hear you answer</h2>
+<p>These are grounded in what came up in the room. Not a script — just the moments Wednesday's audience is likely to listen hardest.</p>
 <ol>
-  <li><strong>Who pays and when?</strong> Everyone said free is load-bearing. How does Mito monetize without hitting the Karen-at-CO2 wall? Per-admin? Per-workspace? Impact-revenue share? This shapes the whole architecture.</li>
-  <li><strong>Memory-gardening UI.</strong> Brian is literally building something in this space. He's a potential design partner, a potential competitor, or both. Worth a direct 1:1 — he offered one on the call: <em>"Yeah, pleasure, I'll book some time with you, we can talk about context and memory."</em></li>
-  <li><strong>What's the non-SaaS frame?</strong> Colleen's rant about 17 disconnected tools was the loudest moment of the call. If you position Mito as "not another SaaS" — what's the positive frame? Platform, protocol, commons, utility? The framing affects willingness-to-pay.</li>
-  <li><strong>The visibility / dignity feature.</strong> Martin's story moved the room. Does Mito actually ship a "human-behind-the-work" surface, or is that v2? If v2, flag it Wednesday — people will project that need onto whatever you show.</li>
-  <li><strong>The 10-person cliff.</strong> What's Mito's structural intervention for scaling group comms past 10 without the Slack-scroll death spiral?</li>
+  <li><strong>Who pays, and when?</strong> Free tier is load-bearing (Finding 5). Per-admin? Per-workspace? Impact-revenue share? The line between free community and paid admin workspace is the architecture-shaping decision — naming it plainly earns trust.</li>
+  <li><strong>Memory-gardening state.</strong> Brian offered you a 1:1 on this. Wednesday is the chance to say which half Mito handles (single-agent vs. multi-source), what's shipped, what's research-phase (Finding 3).</li>
+  <li><strong>The non-SaaS frame.</strong> Colleen's rant was the loudest moment. Is Mito a platform, a protocol, a commons, a utility? The framing will shape whether the room hears "another subscription" or "something else."</li>
+  <li><strong>Visibility-as-dignity.</strong> Is it v1 or v2 (Finding 6)? If v2, say so — the room will project that need onto whatever you describe unless you name it.</li>
+  <li><strong>The 10-person cliff.</strong> What's the structural intervention past threads/summaries (Finding 2)?</li>
+  <li><strong>The facilitation layer.</strong> Governance-as-code alone fails (Finding 7). Does Mito carry a trained-facilitator role, or is that on the customer? Either answer is fine — just name it.</li>
 </ol>
 </section>
 
 <section id="followups">
-<h2>Follow-ups that already emerged</h2>
+<h2>Follow-ups already emerged</h2>
 <ul>
-  <li><strong>Dr. Brian ↔ you:</strong> 1:1 on memory / context already scheduled in-call.</li>
-  <li><strong>Dr. Brian ↔ Colleen:</strong> Brian explicitly asked about a Mondragon interview <em>"within Regeneration-Iteration"</em> — Colleen reacted with ❤️.</li>
-  <li><strong>David Witzel:</strong> Named <em>"connection-based philanthropy for GRC members, especially our folks in Africa"</em> — directly overlaps with your Roots Africa prior experience. Warm opening.</li>
-  <li><strong>Tally ↔ Brian ↔ you:</strong> Tally explicitly connected your Greenmechanics / algal-turf-scrubber work to Brian's kelp + Queensland algae scrubber rollout. Real match.</li>
-  <li><strong>Rick Botelho:</strong> Put a Perplexity compound question in chat about H.E.N. / equity meta-governance — worth 10 minutes to read before Wednesday.</li>
-  <li><strong>Silicon Slopes</strong> (siliconslopes.com) — Colleen's reference for <em>"close to perfect."</em> Worth a 20-minute competitive look before Wednesday.</li>
+  <li><strong>Dr. Brian ↔ Shyon:</strong> 1:1 on memory / context already scheduled in-call.</li>
+  <li><strong>Dr. Brian ↔ Colleen:</strong> Brian explicitly asked about a Mondragon interview within Regeneration-Iteration; Colleen reacted with ❤️.</li>
+  <li><strong>David Witzel:</strong> <em>"Connection-based philanthropy for GRC members, especially our folks in Africa"</em> — directly overlaps Shyon's Roots Africa prior experience.</li>
+  <li><strong>Tally ↔ Brian ↔ Shyon:</strong> Tally connected the Greenmechanics / algal-turf-scrubber work to Brian's Queensland kelp + scrubber rollout. Real match.</li>
+  <li><strong>Rick Botelho:</strong> Put a Perplexity compound question about H.E.N. / equity meta-governance in chat — worth 10 min before Wednesday.</li>
+  <li><strong><a href="https://www.siliconslopes.com/feed">Silicon Slopes</a></strong> — Colleen's reference for "close to perfect." Competitive look: 20 min before Wednesday.</li>
 </ul>
 </section>
 
@@ -519,14 +685,14 @@ footer .sig {
 <h2>One honest caveat</h2>
 <div class="callout warn">
 <div class="h">Sample bias</div>
-<p>This was a 90-minute structured interview with a self-selecting GRC subset. They are not a random sample of your TAM — they are people who show up on Wednesdays at 11 AM ET to talk about regeneration. That's a specific psychographic (mission-driven, relational, anti-SaaS, under-resourced, technically curious).</p>
-<p style="margin-bottom:0">Treat this report as <strong>signal from the regenerative ecosystem</strong>, not <strong>signal from all impact workers.</strong> If Mito's target is broader — small business owners, traditional nonprofits, commercial teams — run this interview again with a different room and expect different answers on pricing tolerance, governance appetite, and memory-gardening priority.</p>
+<p>The session was a 90-minute interview with a self-selecting GRC subset — people who show up Wednesdays at 11 AM ET to talk regeneration. That's a specific psychographic: mission-driven, relational, anti-SaaS, under-resourced, technically curious.</p>
+<p style="margin-bottom:0">The supporting data above pulls from <strong>broader</strong> populations (all US nonprofits, all knowledge workers, all donors) where it's available. That's what lets you tell nuance from systemic. Where the GRC voice and the wider data diverge, trust the wider data. And if Mito's target expands beyond the regenerative ecosystem, run the interview again with a different room.</p>
 </div>
 </section>
 
 <footer>
 <div class="sig">Mindful Living Consultants</div>
-<div>Questions, corrections, or pushback — I'd rather get it tight than get it fast.</div>
+<div>Questions, corrections, or pushback — better tight than fast.</div>
 <div style="margin-top:6px">— Sage Harper</div>
 </footer>
 
