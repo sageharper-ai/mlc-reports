@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Regeneration Iteration — Feedback Report for Shyon Parsadoust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mlc-green: #10b981;
+  --mlc-green-dark: #047857;
+  --mlc-green-bg: #ecfdf5;
+  --ink: #0f172a;
+  --ink-mid: #334155;
+  --ink-soft: #64748b;
+  --rule: #e2e8f0;
+  --bg: #fafaf9;
+  --card: #ffffff;
+  --quote-bg: #f1f5f9;
+  --warn: #b45309;
+  --warn-bg: #fef3c7;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 28px 96px;
+}
+header.masthead {
+  border-top: 4px solid var(--mlc-green);
+  padding-top: 32px;
+  margin-bottom: 48px;
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+h1 {
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+  color: var(--ink);
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  margin-top: 28px;
+  font-size: 14px;
+}
+.meta-grid div { line-height: 1.4; }
+.meta-grid .label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.meta-grid .val { color: var(--ink); font-weight: 500; }
+h2 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 56px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+}
+h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 36px 0 12px;
+  color: var(--ink);
+}
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 24px 0 8px;
+  color: var(--ink-mid);
+}
+p { margin: 0 0 16px; color: var(--ink-mid); }
+p.lede {
+  font-size: 18px;
+  color: var(--ink);
+}
+ul, ol { margin: 0 0 18px; padding-left: 22px; color: var(--ink-mid); }
+li { margin-bottom: 8px; }
+li > strong { color: var(--ink); }
+strong { color: var(--ink); font-weight: 600; }
+em { font-style: italic; }
+a {
+  color: var(--mlc-green-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--mlc-green); }
+blockquote {
+  margin: 16px 0;
+  padding: 14px 20px;
+  background: var(--quote-bg);
+  border-left: 3px solid var(--mlc-green);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: var(--ink-mid);
+  font-size: 16px;
+}
+blockquote .attrib {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-family: 'JetBrains Mono', monospace;
+}
+.callout {
+  border: 1px solid var(--rule);
+  background: var(--card);
+  border-radius: 10px;
+  padding: 22px 24px;
+  margin: 24px 0;
+}
+.callout.note { border-left: 4px solid var(--mlc-green); }
+.callout.warn { border-left: 4px solid var(--warn); background: #fffcf3; }
+.callout .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.callout.warn .h { color: var(--warn); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  background: var(--card);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+th, td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+}
+th {
+  background: var(--mlc-green-bg);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+tr:last-child td { border-bottom: none; }
+td { color: var(--ink-mid); vertical-align: top; }
+.pattern {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--mlc-green);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 18px 0;
+}
+.pattern h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 17px;
+  color: var(--mlc-green-dark);
+}
+.q-list {
+  counter-reset: qcount;
+  list-style: none;
+  padding-left: 0;
+}
+.q-list li {
+  counter-increment: qcount;
+  position: relative;
+  padding: 12px 16px 12px 52px;
+  margin-bottom: 10px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  color: var(--ink-mid);
+}
+.q-list li::before {
+  content: "Q" counter(qcount);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mlc-green-dark);
+  background: var(--mlc-green-bg);
+  padding: 4px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+footer {
+  margin-top: 80px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+footer .sig {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  margin-bottom: 6px;
+}
+.toc {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 20px 26px;
+  margin: 0 0 48px;
+}
+.toc .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.toc ol { padding-left: 20px; margin: 0; color: var(--ink-mid); font-size: 15px; }
+.toc ol li { margin-bottom: 5px; }
+.toc a { text-decoration: none; color: var(--ink-mid); }
+.toc a:hover { color: var(--mlc-green-dark); text-decoration: underline; }
+@media (max-width: 640px) {
+  .wrap { padding: 32px 20px 72px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 22px; }
+  body { font-size: 16px; }
+}
+@media print {
+  body { background: #fff; }
+  .wrap { max-width: 100%; padding: 0; }
+  .callout, .pattern, .meta-grid, .toc, table { break-inside: avoid; }
+  a { color: var(--ink); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">Mindful Living Consultants · External Report</div>
+  <h1>Regeneration Iteration — Feedback Report</h1>
+  <p class="lede">A grounded, roadmap-usable read of what ten impact workers on the Apr 15, 2026 GRC call said about their collaboration pain, distilled for Shyon Parsadoust / Mito Labs.</p>
+  <div class="meta-grid">
+    <div><span class="label">From</span><span class="val">Sage Harper</span></div>
+    <div><span class="label">For</span><span class="val">Shyon Parsadoust</span></div>
+    <div><span class="label">Session</span><span class="val">GRC Regeneration Iteration</span></div>
+    <div><span class="label">Date</span><span class="val">Apr 15, 2026</span></div>
+    <div><span class="label">Participants</span><span class="val">~10 impact workers</span></div>
+    <div><span class="label">Duration</span><span class="val">~90 min</span></div>
+  </div>
+</header>
+
+<div class="toc">
+  <div class="h">Contents</div>
+  <ol>
+    <li><a href="#what">What this report is (and isn't)</a></li>
+    <li><a href="#questions">The interview questions</a></li>
+    <li><a href="#room">The room</a></li>
+    <li><a href="#q1">What they're actually using (Q1)</a></li>
+    <li><a href="#q2">What the tools feel like (Q2)</a></li>
+    <li><a href="#q3">Tool stacking gaps (Q3)</a></li>
+    <li><a href="#q4">Strategy alignment (Q4)</a></li>
+    <li><a href="#q5">Impact &amp; transparency (Q5)</a></li>
+    <li><a href="#q7">Knowledge capture (Q7)</a></li>
+    <li><a href="#q8">Requests &amp; needs (Q8)</a></li>
+    <li><a href="#q9q10">What they'd build (Q9 + Q10)</a></li>
+    <li><a href="#synthesis">Synthesis — four patterns</a></li>
+    <li><a href="#probe">What I'd probe on before the demo</a></li>
+    <li><a href="#followups">Follow-ups already emerged</a></li>
+    <li><a href="#caveat">One honest caveat</a></li>
+  </ol>
+</div>
+
+<section id="what">
+<h2>What this report is (and isn't)</h2>
+<p><strong>Is:</strong> A distillation of what ~10 impact workers said — in chat and on mic — during the 90-minute structured interview session you hosted. Every claim below is either verbatim quote (in italics) or a tight paraphrase traceable to the session transcript and chat log. A separate <a href="#synthesis">Synthesis</a> section marks my interpretive layer, so you can accept or reject the pattern reading independently of the data.</p>
+<p><strong>Isn't:</strong> A product critique of Mito. I don't know Mito well enough yet to critique it. This is the voice of your prospective users, captured before the demo.</p>
+</section>
+
+<section id="questions">
+<h2>The interview questions (as actually asked)</h2>
+<p>Transcribed from the session, in the order Sage asked them. Questions 3 and 6 were slightly adjusted live, and Q6 was noted during the call as functionally overlapping with the marketing question in Q5.</p>
+<ol class="q-list">
+  <li>Give us a quick snapshot. What's your community or organization, and what does collaboration look like on a typical week for you?</li>
+  <li>When you think about the tools and the system you use to coordinate, what's the feeling that comes to mind? Are you feeling empowered, frustrated, overwhelmed?</li>
+  <li>Tool stacking gaps. Name the tool or the platform you're using, and where do you feel it's doing a good job, and where do you feel it's falling short?</li>
+  <li>Strategy alignment. When you're launching a new initiative or partnership, how do you figure out who's doing what? How do you figure out what resources exist? How do you get everyone aligned on the mission? (Including the seven forms of capital.)</li>
+  <li>Impact and transparency. How do you currently track and share the impact of your work? Is it easy for collaborators and stakeholders to see what you're accomplishing and where you're headed?</li>
+  <li>Finding your people. How do you find and connect with aligned people in your organization outside of your immediate work? (Sage noted during the call this overlapped with the marketing thread in Q5.)</li>
+  <li>Knowledge and coordination. When your team or community creates something valuable — a process, a lessons learned, a playbook — how does that knowledge get captured? Do you have a limited commons, open commons, or a way to store these so they don't get lost through conversation?</li>
+  <li>Requests and needs. When you need something — a skill, a resource, a connection, one of the seven forms of capital — how do you put that need out into your community, and how do people find out what you need?</li>
+  <li>If you could design the perfect system for how your community could work together — not just task management, but the whole experience of collaboration — what's the one top priority you'd want the system to do for you?</li>
+  <li>What's the one thing you wish someone would just build already to make community collaboration easier?</li>
+</ol>
+</section>
+
+<section id="room">
+<h2>The room</h2>
+<table>
+  <thead>
+    <tr><th>Who</th><th>Context</th><th>Scale they coordinate</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Dr. Brian von Herzen</strong></td><td>Climate Foundation / seaweed industry</td><td>~24 people, half in Philippines; hardware-goal org</td></tr>
+    <tr><td><strong>Colleen Dick</strong></td><td>Rainbird Village / Rainbird Rising (nonprofit); studies Mondragon</td><td>12+ in US, nationwide, cross-disciplinary</td></tr>
+    <tr><td><strong>Karen Wolfgang</strong></td><td>CO2 Foundation</td><td>Internal coordinating group of 5 (Portland); wider advisor network</td></tr>
+    <tr><td><strong>Emmanuelle</strong></td><td>African Peace Village (Portugal / Cameroon)</td><td>6 core on Signal, wider circle up to ~14–100</td></tr>
+    <tr><td><strong>David Witzel</strong></td><td>GRC itself</td><td>1,400 people, ~15 Zooms/week, ~10 meeting organizers</td></tr>
+    <tr><td><strong>Nikki Wall</strong></td><td>GRC / own network</td><td>"More than 1,400 people across the planet"</td></tr>
+    <tr><td><strong>Tally Rhoades</strong></td><td>Kosmos Journal connection; passionate layperson</td><td>Not running an org; self-described non-intellectual</td></tr>
+    <tr><td><strong>Rick Botelho</strong></td><td>Equity Moonshot Substack</td><td>Working on H.E.N. / agentic agent learning systems</td></tr>
+    <tr><td><strong>Eckhart B.</strong></td><td>Energy Innovation / Strategy</td><td>Exploring Tribes platform; left early</td></tr>
+    <tr><td><strong>Sage Harper</strong></td><td>Facilitator</td><td>—</td></tr>
+  </tbody>
+</table>
+<div class="callout note">
+  <div class="h">What to notice</div>
+  <p style="margin:0">None of them coordinate fewer than 5 people; most coordinate 20–1,400+. Every single one is resource-constrained. Your audience is power-users of collaboration pain, not novices.</p>
+</div>
+</section>
+
+<section id="q1">
+<h2>Q1 — What they're actually using</h2>
+<p>Observed, unfiltered stack: <strong>Zoom, Slack, Signal, Email, Google Calendar, WhatsApp, Notion, Monday.com (reluctantly), Google Drive.</strong> The pattern that jumped out:</p>
+<blockquote>Used to use Asana and Basecamp... it costs money we don't have, and also everybody's using other things, and so having, like, one project where you're using the thing that costs money, that's, like, very specialized — it just wasn't worth it.<span class="attrib">— Karen Wolfgang, CO2 Foundation</span></blockquote>
+<blockquote>We just filled a grant application just using Signal group and google drive and it worked great.<span class="attrib">— Emmanuelle, African Peace Village</span></blockquote>
+<blockquote>We theoretically use Monday.com but they jerked us around on prices in the past and it has limited hierarchy — subtasks of subtasks.<span class="attrib">— Dr. Brian von Herzen</span></blockquote>
+<blockquote>The GRC stack (that Hodgson built) is pretty amazing and very cheap. Lots of google components that are shared via google groups.<span class="attrib">— David Witzel, GRC</span></blockquote>
+<h4>Self-rated effectiveness (1–5)</h4>
+<p>David <strong>2.5</strong>. Colleen <strong>3</strong>. Karen ~<strong>3–4</strong>. Emmanuelle <strong>3</strong> <em>("because a few of us are not tuning in as well yet")</em>. Tally <strong>1</strong> for personal, <strong>5</strong> only for a structured, time-bound Kosmos 9-month initiative.</p>
+<div class="callout note">
+  <div class="h">Signal</div>
+  <p style="margin:0">No one scored their default system a 5. The 5 was only for a tightly scoped, time-bound initiative — not for everyday coordination.</p>
+</div>
+</section>
+
+<section id="q2">
+<h2>Q2 — What the tools FEEL like</h2>
+<p>Chat responses arrived within 30 seconds of the prompt:</p>
+<ul>
+  <li><strong>"Unheard"</strong> — David Witzel</li>
+  <li><strong>"Overwhelm"</strong> — Karen: <em>"Always feel like I am missing something. Always both hope and unease / looking for something better."</em></li>
+  <li><strong>"Normative now"</strong> — Colleen</li>
+  <li><strong>Fragmented</strong> — David: <em>"we need global network-participant etiquette! everyone should listen to more than one channel, participate periodically, and sometimes repeat someone else's message. Damn it!"</em></li>
+  <li><strong>Redundant</strong> — Karen: <em>"You're always using informal channels anyway, so why pay for formal channels when you're gonna have to duplicate anyway."</em></li>
+  <li><strong>Top-down</strong> — Brian: <em>"Project management is top-down — we don't achieve consent of the governed with those tools."</em></li>
+  <li><strong>Fatigue</strong> — Karen: <em>"I'm having some deep fatigue around systems, really reticent to start something new."</em></li>
+</ul>
+<blockquote>Feeling unheard, kind of those redundant conversations, going back to old topics that have already been covered… duplication of efforts… trackability.<span class="attrib">— Shyon, live synthesis on the call</span></blockquote>
+<div class="callout note">
+  <div class="h">Worth holding</div>
+  <p style="margin:0">Your own live synthesis was accurate. Those four — <strong>unheard, redundancy, duplication, trackability</strong> — are the pain signatures the room agreed to.</p>
+</div>
+</section>
+
+<section id="q3">
+<h2>Q3 — Tool stacking gaps</h2>
+<p>This question surfaced the rawest moment of the call. Colleen returned to it at length during open Q&amp;A:</p>
+<blockquote>I hate SaaS. I keep getting billed, billed and billed, and billed and billed for all of these separate systems that don't talk to each other. I'm paying $1,000 a year for something that's just crap now. It used to be an excellent system. It was a wonderful system when I was paying $15 a year for it. It's horrible now that I'm paying $1,000 a year for it.<span class="attrib">— Colleen Dick</span></blockquote>
+<p>Brian named Monday.com's hierarchy ceiling. Karen named the cost / duplication loop. David named the GRC stack (cheap Google + Slack) as the only thing that actually works at scale for them, <em>but</em> with <em>"no synthesis"</em> of what's inside it. That phrase — <strong>no synthesis</strong> — became a recurring theme later in the call.</p>
+</section>
+
+<section id="q4">
+<h2>Q4 — Strategy alignment</h2>
+<ul>
+  <li><strong>Brian:</strong> Sociocratic circle method — <em>"has become natural for me… but that's after 2 years of sociocratic training."</em> The training cliff matters.</li>
+  <li><strong>Colleen:</strong> Mondragon governance model — <em>"We've studied Mondragon extensively... their governance model works beautifully. It's got 70 years' worth of experience behind it."</em></li>
+  <li><strong>Everyone else:</strong> Emergent, informal. Karen: <em>"some of it is just practice, which we never really agreed to — it just emerged, and isn't even conscious."</em></li>
+</ul>
+<div class="callout note">
+  <div class="h">Implication for Mito</div>
+  <p style="margin:0">The orgs with working alignment have either 2-year training curves or 70-year-old frameworks behind them. Anyone relying on good defaults will drift. If Mito bakes a governance pattern in, make it visible and opt-in — not hidden automation.</p>
+</div>
+</section>
+
+<section id="q5">
+<h2>Q5 — Impact &amp; transparency</h2>
+<ul>
+  <li><strong>Brian:</strong> <em>"Newsletters, social media, webinars and podcasts are our dissemination approaches."</em></li>
+  <li><strong>Colleen:</strong> Monthly newsletters with action items baked in; quarterly Zoom where people report out for up to 10 min each.</li>
+  <li><strong>Nikki:</strong> <em>"Word of mouth. We are a trust based network."</em></li>
+  <li><strong>Emmanuelle:</strong> Wants to show the weaving <em>process</em> transparently — almost as a course where people can watch impact form.</li>
+  <li><strong>Karen:</strong> <em>"We feel the pressure to 'report out' but don't have resources for it."</em></li>
+</ul>
+<blockquote>There's great people doing great things all over the world, and they're doing it in the shadow. They're doing it in the dark.<span class="attrib">— Shyon, Martin-from-Uganda story during open Q&amp;A</span></blockquote>
+<p>Tally mirrored it instantly: <em>"I just want to plug into the one thing I'm super passionate about... you have a platform... it basically has, like, a stream."</em></p>
+<div class="callout note">
+  <div class="h">Emotional center of the call</div>
+  <p style="margin:0">This was the most charged moment of the 90 minutes. Tally, Colleen, and Emmanuelle were nodding at the same pain: <strong>the connection between the person doing the work and the person who could support it is broken, and current tools aren't fixing it.</strong></p>
+</div>
+</section>
+
+<section id="q7">
+<h2>Q7 — Knowledge capture</h2>
+<blockquote>I have a very good memory for some projects, so it's all in my mind... I'm looking for a weaving kind of journal — not Slack, da-da-da — where it becomes something… an old-fashioned scrapbook kind of journal.<span class="attrib">— Emmanuelle</span></blockquote>
+<blockquote>We literally have a running meeting notes document with action items going back 3 years now (but always re-created at the top of each week's meeting notes). So if something falls off, it falls off, oops.<span class="attrib">— Karen Wolfgang</span></blockquote>
+<blockquote>GRC has slack (all history), video recordings, email archives. No synthesis.<span class="attrib">— David Witzel</span></blockquote>
+<p>Sage then asked the room directly: <em>"How many of you are managing all this in your heads right now? How many of you feel like you're a bottleneck because you are managing things in your head?"</em> Near-universal yes. Nobody rejected the framing.</p>
+</section>
+
+<section id="q8">
+<h2>Q8 — Requests &amp; needs</h2>
+<p>Observed: Slack + newsletter; Post-Growth Offers &amp; Needs workshops (Emmanuelle liked this); LinkedIn "warm introductions" (Brian); <em>"Talk to people personally"</em> (Colleen).</p>
+<blockquote>These are legacy systems… we can develop agentic agents to do all this gut work we can't possibly do because of our cognitive bottlenecks.<span class="attrib">— Rick Botelho</span></blockquote>
+<blockquote>Content is king. It's not. The ace is the process. It's how we do things, not what we do. We've got so much goddamn content, we can't manage it. So we need to develop process skills so that we can curate the content in a very specific, tailored way, just in time for what we need, and cut out the crap.<span class="attrib">— Rick Botelho</span></blockquote>
+</section>
+
+<section id="q9q10">
+<h2>Q9 + Q10 — What they'd build if they could</h2>
+<ul>
+  <li><strong>Karen:</strong> <em>"Everyone would trust everyone else and we would know what each other is responsible for."</em></li>
+  <li><strong>Karen (cont.):</strong> <em>"Something that connects all the systems you're trying to use and lets you access them in one place… and reminds you if you haven't checked the places in a while."</em></li>
+  <li><strong>David:</strong> <em>"Babblefish — I can use my channel and it reaches other people's favorite channel."</em></li>
+  <li><strong>Brian:</strong> <em>"Trillion-token context promises to get key information out of our heads and into organizational context... Updating this organizational memory is a key outstanding challenge. How are memories deprecated, revised, prioritized, conflict-resolved, and sorted properly? This memory gardening is essential to building coherent context for orgs around the world."</em></li>
+  <li><strong>Karen, shorthand:</strong> <em>"MEMORY GARDENING."</em></li>
+  <li><strong>Nikki:</strong> <em>"More engagement of our members on a regular basis."</em></li>
+  <li><strong>Colleen:</strong> <em>"Silicon Slopes is very close to perfect"</em> (siliconslopes.com — built locally in 3 months; hybrid of LinkedIn + Zoom).</li>
+  <li><strong>Emmanuelle:</strong> <em>"Our own and collective mind is the bottle neck at times."</em></li>
+</ul>
+</section>
+
+<section id="synthesis">
+<h2>Synthesis — four patterns (my interpretive layer)</h2>
+<p>Four patterns emerged that I'd treat as load-bearing for your roadmap. This is interpretation, not data — take or leave.</p>
+
+<div class="pattern">
+<h3>1. The "shadow work" problem is the emotional center</h3>
+<p>Your Martin / Uganda story landed because it named the pain the room was feeling. <strong>Your strongest product-market fit signal was not collaboration-as-tasks — it was visibility-as-dignity.</strong> The people working hard in obscurity; the donors/allies who can't find them; the layperson (Tally) who wants to plug into <em>one</em> cause without joining yet another chat.</p>
+<p>If Mito has a "stream of good work happening, attributable to specific humans" feature, that's where the oxygen is.</p>
+</div>
+
+<div class="pattern">
+<h3>2. Memory gardening is the infrastructure problem no one has solved</h3>
+<p>Brian named it. Karen named it. Emmanuelle named it from a different angle (<em>"weaving journal, not Slack"</em>). Rick named it (<em>"curate content, cut the crap"</em>). <strong>Every participant described a personal-brain-as-bottleneck.</strong> Nobody has working organizational memory — the best available is a 3-year rolling notes doc that drops items when they fall off.</p>
+<p>If Mito has, or plans, AI-assisted memory gardening — not another RAG lookup, but a reconcile / supersede / deprecate workflow — that's the moat. Ship with a human gardener role visible, because no one trusts silent AI with their history.</p>
+</div>
+
+<div class="pattern">
+<h3>3. Free tier is load-bearing for adoption</h3>
+<p>Three separate participants (Karen, Colleen, Emmanuelle) explicitly said they walked away from paid tools. You named it yourself: <em>"All great things start with a conversation, and so if you're stifling the conversation, you're directly impeding the innovation that needs to happen."</em> Hold this. The moment pricing hits the circle, adoption dies.</p>
+<p>Your instinct to split free-community from paid-admin-workspace maps to what Emmanuelle described: <em>"closed doors, and this team would meet... I don't think that everybody needs to know about everything."</em> That's real. Keep it.</p>
+</div>
+
+<div class="pattern">
+<h3>4. The 10-person cliff is real</h3>
+<p>Multiple participants, without coordinating, said chats over ~10 people lose engagement. Nikki: <em>"Too many people NOT checking in on Slack."</em> You: <em>"Once the number gets past 10, I think people check out."</em></p>
+<p>If Mito scales messaging beyond 10 without a structural intervention (threads? summaries? accountability surfacing?) you inherit Slack's failure mode.</p>
+</div>
+</section>
+
+<section id="probe">
+<h2>What I'd probe on before the Wednesday demo</h2>
+<p>Grounded questions this session <em>didn't</em> resolve that would materially shape your roadmap:</p>
+<ol>
+  <li><strong>Who pays and when?</strong> Everyone said free is load-bearing. How does Mito monetize without hitting the Karen-at-CO2 wall? Per-admin? Per-workspace? Impact-revenue share? This shapes the whole architecture.</li>
+  <li><strong>Memory-gardening UI.</strong> Brian is literally building something in this space. He's a potential design partner, a potential competitor, or both. Worth a direct 1:1 — he offered one on the call: <em>"Yeah, pleasure, I'll book some time with you, we can talk about context and memory."</em></li>
+  <li><strong>What's the non-SaaS frame?</strong> Colleen's rant about 17 disconnected tools was the loudest moment of the call. If you position Mito as "not another SaaS" — what's the positive frame? Platform, protocol, commons, utility? The framing affects willingness-to-pay.</li>
+  <li><strong>The visibility / dignity feature.</strong> Martin's story moved the room. Does Mito actually ship a "human-behind-the-work" surface, or is that v2? If v2, flag it Wednesday — people will project that need onto whatever you show.</li>
+  <li><strong>The 10-person cliff.</strong> What's Mito's structural intervention for scaling group comms past 10 without the Slack-scroll death spiral?</li>
+</ol>
+</section>
+
+<section id="followups">
+<h2>Follow-ups that already emerged</h2>
+<ul>
+  <li><strong>Dr. Brian ↔ you:</strong> 1:1 on memory / context already scheduled in-call.</li>
+  <li><strong>Dr. Brian ↔ Colleen:</strong> Brian explicitly asked about a Mondragon interview <em>"within Regeneration-Iteration"</em> — Colleen reacted with ❤️.</li>
+  <li><strong>David Witzel:</strong> Named <em>"connection-based philanthropy for GRC members, especially our folks in Africa"</em> — directly overlaps with your Roots Africa prior experience. Warm opening.</li>
+  <li><strong>Tally ↔ Brian ↔ you:</strong> Tally explicitly connected your Greenmechanics / algal-turf-scrubber work to Brian's kelp + Queensland algae scrubber rollout. Real match.</li>
+  <li><strong>Rick Botelho:</strong> Put a Perplexity compound question in chat about H.E.N. / equity meta-governance — worth 10 minutes to read before Wednesday.</li>
+  <li><strong>Silicon Slopes</strong> (siliconslopes.com) — Colleen's reference for <em>"close to perfect."</em> Worth a 20-minute competitive look before Wednesday.</li>
+</ul>
+</section>
+
+<section id="caveat">
+<h2>One honest caveat</h2>
+<div class="callout warn">
+<div class="h">Sample bias</div>
+<p>This was a 90-minute structured interview with a self-selecting GRC subset. They are not a random sample of your TAM — they are people who show up on Wednesdays at 11 AM ET to talk about regeneration. That's a specific psychographic (mission-driven, relational, anti-SaaS, under-resourced, technically curious).</p>
+<p style="margin-bottom:0">Treat this report as <strong>signal from the regenerative ecosystem</strong>, not <strong>signal from all impact workers.</strong> If Mito's target is broader — small business owners, traditional nonprofits, commercial teams — run this interview again with a different room and expect different answers on pricing tolerance, governance appetite, and memory-gardening priority.</p>
+</div>
+</section>
+
+<footer>
+<div class="sig">Mindful Living Consultants</div>
+<div>Questions, corrections, or pushback — I'd rather get it tight than get it fast.</div>
+<div style="margin-top:6px">— Sage Harper</div>
+</footer>
+
+</div>
+</body>
+</html>
