@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Regeneration Iteration Part 2 — Debrief Report for Shyon Parsadoust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mlc-green: #10b981;
+  --mlc-green-dark: #047857;
+  --mlc-green-bg: #ecfdf5;
+  --ink: #0f172a;
+  --ink-mid: #334155;
+  --ink-soft: #64748b;
+  --rule: #e2e8f0;
+  --bg: #fafaf9;
+  --card: #ffffff;
+  --quote-bg: #f1f5f9;
+  --data-bg: #f0f9ff;
+  --data-border: #0284c7;
+  --data-ink: #0c4a6e;
+  --verdict-bg: #fefce8;
+  --verdict-border: #ca8a04;
+  --verdict-ink: #713f12;
+  --warn: #b45309;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 48px 28px 96px;
+}
+header.masthead {
+  border-top: 4px solid var(--mlc-green);
+  padding-top: 32px;
+  margin-bottom: 48px;
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+h1 {
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+  color: var(--ink);
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  margin-top: 28px;
+  font-size: 14px;
+}
+.meta-grid div { line-height: 1.4; }
+.meta-grid .label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.meta-grid .val { color: var(--ink); font-weight: 500; }
+h2 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 56px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+}
+h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 36px 0 12px;
+  color: var(--ink);
+}
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 24px 0 8px;
+  color: var(--ink-mid);
+}
+p { margin: 0 0 16px; color: var(--ink-mid); }
+p.lede {
+  font-size: 18px;
+  color: var(--ink);
+}
+ul, ol { margin: 0 0 18px; padding-left: 22px; color: var(--ink-mid); }
+li { margin-bottom: 8px; }
+li > strong { color: var(--ink); }
+strong { color: var(--ink); font-weight: 600; }
+em { font-style: italic; }
+a {
+  color: var(--mlc-green-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  word-break: break-word;
+}
+a:hover { color: var(--mlc-green); }
+blockquote {
+  margin: 16px 0;
+  padding: 14px 20px;
+  background: var(--quote-bg);
+  border-left: 3px solid var(--mlc-green);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: var(--ink-mid);
+  font-size: 16px;
+}
+blockquote .attrib {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-family: 'JetBrains Mono', monospace;
+}
+.callout {
+  border: 1px solid var(--rule);
+  background: var(--card);
+  border-radius: 10px;
+  padding: 22px 24px;
+  margin: 24px 0;
+}
+.callout.note { border-left: 4px solid var(--mlc-green); }
+.callout.warn { border-left: 4px solid var(--warn); background: #fffcf3; }
+.callout .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.callout.warn .h { color: var(--warn); }
+.data-card {
+  background: var(--data-bg);
+  border: 1px solid #bae6fd;
+  border-left: 4px solid var(--data-border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 18px 0;
+}
+.data-card .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--data-border);
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.data-card .h::before {
+  content: "\25C6";
+  color: var(--data-border);
+}
+.data-card p, .data-card li { color: var(--data-ink); }
+.data-card ul { padding-left: 20px; }
+.verdict-card {
+  background: var(--verdict-bg);
+  border: 1px solid #fde68a;
+  border-left: 4px solid var(--verdict-border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 18px 0 28px;
+}
+.verdict-card .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verdict-border);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.verdict-card .h::before {
+  content: "\25B6";
+  color: var(--verdict-border);
+}
+.verdict-card p { color: var(--verdict-ink); margin-bottom: 0; }
+.verdict-card strong { color: var(--verdict-ink); }
+.finding-block {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 26px 28px;
+  margin: 28px 0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+.finding-block h3 {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 20px;
+  color: var(--ink);
+}
+.finding-block .q-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  background: var(--mlc-green-bg);
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.finding-block .finding-lede {
+  font-size: 16px;
+  color: var(--ink-mid);
+  margin-bottom: 16px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  background: var(--card);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+th, td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+}
+th {
+  background: var(--mlc-green-bg);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 13px;
+}
+tr:last-child td { border-bottom: none; }
+td { color: var(--ink-mid); vertical-align: top; }
+.q-list {
+  counter-reset: qcount;
+  list-style: none;
+  padding-left: 0;
+}
+.q-list li {
+  counter-increment: qcount;
+  position: relative;
+  padding: 12px 16px 12px 54px;
+  margin-bottom: 10px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  color: var(--ink-mid);
+  font-size: 15px;
+}
+.q-list li::before {
+  content: "Q" counter(qcount);
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mlc-green-dark);
+  background: var(--mlc-green-bg);
+  padding: 4px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+footer {
+  margin-top: 80px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+footer .sig {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mlc-green-dark);
+  margin-bottom: 6px;
+}
+.toc {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 20px 26px;
+  margin: 0 0 48px;
+}
+.toc .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.toc ol { padding-left: 20px; margin: 0; color: var(--ink-mid); font-size: 15px; }
+.toc ol li { margin-bottom: 5px; }
+.toc a { text-decoration: none; color: var(--ink-mid); }
+.toc a:hover { color: var(--mlc-green-dark); text-decoration: underline; }
+@media (max-width: 640px) {
+  .wrap { padding: 32px 20px 72px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 22px; }
+  body { font-size: 16px; }
+  .finding-block { padding: 20px; }
+}
+@media print {
+  body { background: #fff; }
+  .wrap { max-width: 100%; padding: 0; }
+  .callout, .data-card, .verdict-card, .finding-block, .meta-grid, .toc, table { break-inside: avoid; }
+  a { color: var(--ink); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">Mindful Living Consultants &middot; External Report</div>
+  <h1>Regeneration Iteration Part 2 &mdash; Debrief Report</h1>
+  <p class="lede">A plain read of how the same room received you on the second pass &mdash; what your answers opened, what the group pushed back on, and the follow-ups you now owe. Read before the 1:1s start stacking up.</p>
+  <div class="meta-grid">
+    <div><span class="label">From</span><span class="val">Sage Harper</span></div>
+    <div><span class="label">For</span><span class="val">Shyon Parsadoust</span></div>
+    <div><span class="label">Session</span><span class="val">GRC Regeneration Iteration</span></div>
+    <div><span class="label">Date</span><span class="val">Apr 22, 2026</span></div>
+    <div><span class="label">Participants</span><span class="val">18 attendees</span></div>
+    <div><span class="label">Duration</span><span class="val">~1 hr 57 min</span></div>
+  </div>
+</header>
+
+<div class="toc">
+  <div class="h">Contents</div>
+  <ol>
+    <li><a href="#what">What this report is (and isn't)</a></li>
+    <li><a href="#wednesday">Wednesday's role in the iteration</a></li>
+    <li><a href="#method">Method &mdash; how this was scored</a></li>
+    <li><a href="#questions">The questions as actually asked</a></li>
+    <li><a href="#room">The room</a></li>
+    <li><a href="#findings">Findings &mdash; seven patterns from Part 2</a>
+      <ol>
+        <li><a href="#f1">The SaaS critique was the right doorway</a></li>
+        <li><a href="#f2">Missions + workspace architecture landed</a></li>
+        <li><a href="#f3">Brian's context correction is the sharpest open loop</a></li>
+        <li><a href="#f4">"Merit-based only" moderation got a pass &mdash; for now</a></li>
+        <li><a href="#f5">Tristan's sign-up-mid-call was your best and worst moment</a></li>
+        <li><a href="#f6">Multi-business = multi-account is your first hard "no"</a></li>
+        <li><a href="#f7">The learning-community pivot is the wedge</a></li>
+      </ol>
+    </li>
+    <li><a href="#transcript">Raw question-by-question transcript</a></li>
+    <li><a href="#open">Questions the group wants you to answer</a></li>
+    <li><a href="#followups">Follow-ups you now owe</a></li>
+    <li><a href="#caveat">One honest caveat</a></li>
+  </ol>
+</div>
+
+<section id="what">
+<h2>What this report is (and isn't)</h2>
+<p><strong>Is:</strong> A debrief of how an 18-person room received your answers on Apr 22. Where you landed, where you slid past, where the pushback was sharp, and the specific follow-up obligations you now carry out of the meeting.</p>
+<p><strong>Isn't:</strong> A product review of Mito, a pitch-coaching doc, or a Part 1 redux. Part 1 mapped their pain. Part 2 mapped your response. This report is about how the second touch shifted what they believe about whether Mito fits.</p>
+</section>
+
+<section id="wednesday">
+<h2>Wednesday's role in the iteration</h2>
+<p>Part 1 was the diagnostic &mdash; ten questions to ten people about where collaboration breaks today. Part 2 was the mirror. Sage framed it at the top: <em>"this is not a pitch session. He's not here to pitch you about Mito Labs &hellip; Today is an opportunity to talk to a dev about the system that they're building, that wants to build it in a world that works with you guys."</em> (01:35&ndash;02:53)</p>
+<p>You held that frame for most of the first hour. You opened with the right takeaways &mdash; SaaS sprawl, impact-sharing across borders, knowledge sharing. You answered most of the ten questions in order. You said "no" cleanly when the answer was no. The second hour drifted into demo, into Rick's meta-agenda, and into a 25-minute Garrett tangent that was not yours to steer. That drift is in this report too &mdash; not as a criticism, but because it's where the follow-up obligations stacked up.</p>
+<p>The point of capturing this now is that you leave this session with at least five 1:1s owed, a calendar-integration architectural decision queued, a memory/context conversation Brian has offered twice, and a sign-up of a live user (Tristan) who created a business profile during the call. That's a lot of load to carry forward unaided.</p>
+</section>
+
+<section id="method">
+<h2>Method &mdash; how this was scored</h2>
+<p>Each finding below follows the same structure:</p>
+<ul>
+  <li><strong>Moment</strong> &mdash; a specific place in the transcript with a timestamp, so you can go back and listen if you want to pressure-test the reading.</li>
+  <li><strong>What happened</strong> &mdash; what you said, what the room said back, what the silence after the exchange meant.</li>
+  <li><strong>Read</strong> &mdash; whether this landed, half-landed, or opened a gap you now have to close.</li>
+</ul>
+<p>Where Part 1 layered the room's voice against published research, Part 2 layers your voice against the room's reception. No external data this time &mdash; the evidence is the call itself. If you disagree with a read, the quote is right there.</p>
+</section>
+
+<section id="questions">
+<h2>The questions as actually asked</h2>
+<p>Sage worked the same ten-question spine from Part 1, with adjustments for a "dev in the hot seat" framing. Q6 (impact &amp; transparency) was folded into Q5 mid-session. Q8 (requests &amp; needs) ran short because of the calendar-integration detour. Order below reflects how they actually surfaced.</p>
+<ol class="q-list">
+  <li>Last week you listened to the group share their collaborative realities. What surprised you, and what confirmed what you already believed?</li>
+  <li>The group told us where their current tools fall short. How does Mito address those gaps, and what is fundamentally different about Mito's approach?</li>
+  <li>You've built Mito in a very public way. Why did you go that route, and what have you seen as the benefit?</li>
+  <li>Strategy alignment: when a new team or initiative forms inside Mito, how does the platform help people figure out who's doing what, activate members, and align on the mission?</li>
+  <li>Persistent context: how does Mito preserve context for new users entering an ecosystem of knowledge so the agent doesn't "go delusional" over time?</li>
+  <li>Impact visibility: walk us through how a community's contributions, goals, and progress actually show up on the platform and on their own website.</li>
+  <li>Zero-day emerging priorities (Rick G): how does Mito elevate topics so people can see what's important versus urgent, and to whom?</li>
+  <li>Finding your people: how does Mito help users discover and connect with aligned individuals today?</li>
+  <li>Requests and needs: if I need a skill, a resource, a connection, or capital, how does Mito help me broadcast that and match?</li>
+  <li>Honest gap: where is the widest gap between what this community wants and what Mito can currently deliver? And what does "freely accessible to community organizations" actually mean in practice?</li>
+</ol>
+</section>
+
+<section id="room">
+<h2>The room</h2>
+<p>18 attendees. Bigger and more varied than Part 1, including three newcomers (Garrett, Madhav, Morcire Kouyate) and a live prospective user (Tristan) who signed up mid-call. Core Part 1 voices &mdash; Brian, Tally, Rick &mdash; were back and more pointed.</p>
+<table>
+  <thead>
+    <tr><th>Who</th><th>Role in Part 2</th><th>Relationship to you after</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Dr. Brian von Herzen</strong></td><td>Opened with a biostimulants tangent; later pressed the context-vs-retrieval distinction; introduced Wavecrest + Nematron open-source path</td><td>Second 1:1 on context / persistent memory owed. Also invited to co-think credit pools (Will Ruddock link) into Mito.</td></tr>
+    <tr><td><strong>Rick (Equity Muse)</strong></td><td>Pushed hardest for a use case &mdash; wants to prototype Mito for a learning / faculty-development community; introduced HAAH concept and Kent Lanley / Pete connections</td><td>1:1 owed. Prototype session owed. "For-dummies" intro video owed. Warmest buyer in the room.</td></tr>
+    <tr><td><strong>Tally Rhoades</strong></td><td>Asked the multi-business question and the directory / mapping question; cautioned "people like me are non-technical &mdash; build the foundation first"</td><td>1:1 owed. Conscious Media Consortium + Kosmos Journal + Presencing Institute use-case framing.</td></tr>
+    <tr><td><strong>Tristan M&aring;nsson-Perrone</strong></td><td>Signed up, tried the dashboard live, asked for Google Calendar integration and a "get discovered" flow</td><td>Live user. Owed a calendar-integration architectural answer. Set up business profile on-screen.</td></tr>
+    <tr><td><strong>Rick G</strong></td><td>Asked the "zero-day emerging priorities" question &mdash; prevent fires vs. put them out; put email in chat</td><td>Brainstorming session owed on urgency / surfacing high-priority missions.</td></tr>
+    <tr><td><strong>David Witzel</strong></td><td>Reframed your context answer as "efficiency &mdash; talk is inefficient"; present but less vocal than Part 1</td><td>No direct 1:1 asked for. Still the GRC gatekeeper; wins if you solve for him.</td></tr>
+    <tr><td><strong>Garrett (Concentric)</strong></td><td>New. Waste-to-energy + graphene byproduct systems; took ~25 min of floor in the final third</td><td>Your introduction into the group. Follow-up on pre-show briefing: you may want to coach future invited guests on floor-time.</td></tr>
+    <tr><td><strong>Sage Harper</strong></td><td>Facilitator; also asked for Sage-side deliverables: transcripts of your 1:1s for GRC-wide synthesis; offered to build pre-load templates</td><td>Transcripts owed. Prototype / demo session co-design owed.</td></tr>
+    <tr><td><strong>Greg O'Neill, Nikki Wall, Joscelyn Proctor, David Witzel, Dennis Britton, Morcire Kouyate, Madhav</strong></td><td>Present, mostly chat-side</td><td>No 1:1 owed; watching.</td></tr>
+  </tbody>
+</table>
+<div class="callout note">
+  <div class="h">What to notice vs. Part 1</div>
+  <p style="margin:0">The tone softened and sharpened at the same time. Softer because the room wanted you to succeed &mdash; multiple "I love this" and a hearts-reaction vote on whether to run a GRC prototype. Sharper because Brian moved from framing ("memory gardening is essential") to diagnosis ("you're describing persistent context &mdash; don't confuse context and retrieval"). That shift matters: Part 1 gave you a problem statement; Part 2 started grading your answer.</p>
+</div>
+</section>
+
+<section id="findings">
+<h2>Findings &mdash; seven patterns from Part 2</h2>
+
+<div class="finding-block" id="f1">
+<div class="q-tag">Moment &mdash; 06:56 &amp; 10:58</div>
+<h3>1. The SaaS critique was the right doorway</h3>
+<p class="finding-lede"><strong>Finding:</strong> You opened your Part 1 readout with the SaaS complaint &mdash; the loudest moment from Part 1. That was the right call. It signaled you had listened, and it earned you the benefit of the doubt for the next 40 minutes.</p>
+<blockquote>One of the words that I think was passed around was SaaS, software as a service, and that's kind of the thing that's been plaguing, I think, a lot of people &hellip; like, hey, we don't want to pay for 750 different tools, which we're not utilizing.<span class="attrib">&mdash; Shyon, 06:56</span></blockquote>
+<blockquote>Number one is no more silos &hellip; if we're trying to build a future together, we probably need to be able to see what each other are working on &hellip; your communication, I heavily believe, should be connected to your work.<span class="attrib">&mdash; Shyon, 10:58&ndash;11:41</span></blockquote>
+<div class="verdict-card">
+<div class="h">Read &mdash; landed</div>
+<p>Nobody pushed back. The framing of "no more silos / consolidate the tool stack / save money" is the part of the pitch this specific room is pre-sold on. Hold this frame in every future 1:1 with a Part 1 attendee &mdash; it's your opening handshake.</p>
+</div>
+</div>
+
+<div class="finding-block" id="f2">
+<div class="q-tag">Moment &mdash; 14:23 &amp; 55:03</div>
+<h3>2. The missions + workspace architecture landed cleanly</h3>
+<p class="finding-lede"><strong>Finding:</strong> Your "mission pages are public and free, workspaces are where the real work happens" split is exactly the architecture Part 1's economic data predicted. You described it coherently and without over-claiming. This was the strongest structural moment of the call.</p>
+<blockquote>You can create a mission. A mission would be a standalone page &hellip; this will allow people to just jump into the conversation inside of your workspace &hellip; I want to reduce &mdash; allegedly, there's about 75-80% of time that's wasted in the planning stages &hellip; you can just talk to the Mito AI.<span class="attrib">&mdash; Shyon, 15:08&ndash;17:08</span></blockquote>
+<blockquote>The one thing that I know with the utmost certainty is that the missions pages will be free to everybody at all times.<span class="attrib">&mdash; Shyon, 56:19</span></blockquote>
+<div class="verdict-card">
+<div class="h">Read &mdash; landed, but the pricing line is still blurry</div>
+<p>The <em>shape</em> is right. The <em>line</em> isn't drawn. You said workspaces won't be free-for-all but you also said "I do want to think about how we can pull this off &hellip; without it creating a huge problem on kind of my back end." That's honest &mdash; and also the exact sentence that, repeated at a decision-maker's table three months from now, becomes a stall. Pin a testable version of the pricing split before the Rick / Tally / Brian 1:1s, even if it's "free for registered 501(c)(3)s, $X/seat for everyone else, and here's why."</p>
+</div>
+</div>
+
+<div class="finding-block" id="f3">
+<div class="q-tag">Moment &mdash; 38:39 &amp; Brian follow-on</div>
+<h3>3. Brian's context correction is the sharpest open loop you're leaving the meeting with</h3>
+<p class="finding-lede"><strong>Finding:</strong> Sage asked about persistent context going delusional. You gave the RAG answer. Brian stopped you and corrected it &mdash; on-mic, deliberately, with a follow-up pitch to his own Wavecrest initiative. You acknowledged and deflected offline. The deflection is fine; the open loop is not.</p>
+<blockquote>I think it's more that we're talking about creating organizational persistent context. We shouldn't confuse context and retrieval. Retrieval is just, you know, stimulus response. Filing cabinet. Context is being able to reason across related thoughts &hellip; and I think you're describing the need for large-scale, persistent context on projects, across projects, across enterprises.<span class="attrib">&mdash; Dr. Brian von Herzen, 39:18</span></blockquote>
+<blockquote>There's just one open-source model of NVIDIA Nematron, that is open training, and we can actually do a drop-in replacement and develop this kind of persistent context and help lead the field &hellip; we're hoping to go with Wavecrest.<span class="attrib">&mdash; Dr. Brian von Herzen, 40:42</span></blockquote>
+<blockquote>That will be our next conversation, I guess.<span class="attrib">&mdash; Shyon, 41:00</span></blockquote>
+<div class="verdict-card">
+<div class="h">Read &mdash; did not land. You owe Brian a specific answer, not a follow-up.</div>
+<p>Brian offered you a precise frame &mdash; <em>retrieval vs. context</em> &mdash; and you responded with AI-agnostic generalities. Two things are true: (a) the 1:1 with Brian is real and scheduled-energy, not just politeness &mdash; he has cited the need for "memory gardening" in both Part 1 and Part 2, and he is one of the most technically credible voices in GRC. (b) When you sit down with him, the conversation needs to be at the architecture layer &mdash; what Mito's knowledge-graph or vector-store substrate actually is, how it handles contradiction / temporal invalidation, and whether you're open to a Nematron drop-in. If you can't answer those, say "not yet" directly. Brian will forgive "not yet." He will not forgive a second round of AI-agnostic framing.</p>
+</div>
+</div>
+
+<div class="finding-block" id="f4">
+<div class="q-tag">Moment &mdash; 23:04</div>
+<h3>4. "Merit-based only" moderation got a pass &mdash; for now</h3>
+<p class="finding-lede"><strong>Finding:</strong> Sage asked about bad actors and moderation-flagging. You said cleanly that there's no flagging system &mdash; it's merit-based, Discord-style. Nobody pushed back in the moment. That doesn't mean the answer is durable; it means the room moved on because the call had momentum and the question wasn't anyone's top issue.</p>
+<blockquote>So right now, no. Right now, it's completely a merit-based system, right? So it's hey, it's in good faith, let's come in here, let's do good work &hellip; if you're in Discord, right, it would kind of be the same setup.<span class="attrib">&mdash; Shyon, 24:09&ndash;24:27</span></blockquote>
+<div class="verdict-card">
+<div class="h">Read &mdash; a pass, not an approval</div>
+<p>The Discord comparison works for a casual community but will not survive a 501(c)(3) operations review or any enterprise onboarding. "Merit-based only" is defensible as a v1 answer &mdash; just know it's a v1 answer. When the question comes back harder (and it will, probably from David Witzel or anyone running volunteer-led programs with minors or vulnerable populations in the loop), have a three-tier roadmap ready: manual-kick (today), user-flag + moderator-review (v1.1), policy-configurable moderation (v2). Even "not yet, but on the roadmap" beats "the Discord model."</p>
+</div>
+</div>
+
+<div class="finding-block" id="f5">
+<div class="q-tag">Moment &mdash; 1:07:46</div>
+<h3>5. Tristan's sign-up-mid-call was your best and worst moment</h3>
+<p class="finding-lede"><strong>Finding:</strong> Tristan signed up during the call, logged into the dashboard, and immediately surfaced two gaps: no Google Calendar integration and no "get-discovered" flow for a freelance/solo user. That's the highest-quality product feedback you got all day. It also exposed that your AI agent answered "no" to a feature question in a way that could have been answered "not yet &mdash; here's how." That matters.</p>
+<blockquote>I live in Google Calendar &hellip; I don't see a calendar feature in here that's tied to tasks, I don't see an integration with Google Calendar, so &hellip; and I asked the AI agent if there was one, they said no.<span class="attrib">&mdash; Tristan M&aring;nsson-Perrone, 1:07:46</span></blockquote>
+<blockquote>I have, like, an architectural blueprint on how I'm gonna do this, but I really want to make sure that I have this right, because &hellip; if I don't build the foundation right, later on, it could cause me a lot of problems.<span class="attrib">&mdash; Shyon, 1:09:41</span></blockquote>
+<blockquote>The calendar's difficult, so I need you, Cheyenne, to differentiate between a calendar or a Gantt chart with Critical Path &hellip; those are two completely different use cases.<span class="attrib">&mdash; Sage Harper, 1:11:22</span></blockquote>
+<div class="verdict-card">
+<div class="h">Read &mdash; half-landed; two things to fix</div>
+<p>(a) Tristan's "get discovered" use case &mdash; the solo creator who wants projects to come to them &mdash; is a real persona you hadn't surfaced before. You pivoted to the business-directory + mission-creation answer, which is correct for a business owner but not for a freelance photographer. Worth a real persona decision: is "solo professional seeking gigs" in or out of v1 scope? (b) Your Mito AI agent said "no" to calendar integration instead of "not yet &mdash; here's why and when." That's a training-data / system-prompt fix with a 2-day fix cycle. Do it before your next cohort signs up mid-call.</p>
+</div>
+</div>
+
+<div class="finding-block" id="f6">
+<div class="q-tag">Moment &mdash; 48:07</div>
+<h3>6. Multi-business = multi-account is your first hard "no"</h3>
+<p class="finding-lede"><strong>Finding:</strong> Tally asked a specific operational question &mdash; I have three radically different businesses, do I run multiple accounts or is there a project-layer split? You said multiple accounts, clearly, with a context-management reason behind it. This is a hard "no" and the right "no" &mdash; but it's also a friction point you haven't fully priced.</p>
+<blockquote>You have to have a different account. Right? And the reason for that is because &hellip; it becomes an orchestrational, like, chaos, right? Because making sure that you're getting the right context, you're not getting it mixed up, it has to be user-based.<span class="attrib">&mdash; Shyon, 48:11</span></blockquote>
+<blockquote>Cool. Alright, that &mdash; answers some of the question.<span class="attrib">&mdash; Tally, 48:48 (emphasis added)</span></blockquote>
+<div class="verdict-card">
+<div class="h">Read &mdash; defensible architecture, soft acceptance</div>
+<p>Tally said "answers <em>some</em> of the question." That's not full acceptance. Multi-business founders in this room (Tally, Sage himself, Colleen from Part 1, arguably Brian) are common. If the answer stays "spin up a new account with a new email per entity," expect that to come back as a friction complaint within 30 days of any of them trying it. One thing to decide: is there a thin "org-switcher" layer on the roadmap (Slack model, Notion workspace model) that preserves context isolation while sharing a single login? If no, own that trade-off publicly. If yes, say when.</p>
+</div>
+</div>
+
+<div class="finding-block" id="f7">
+<div class="q-tag">Moment &mdash; 1:19:20 onward</div>
+<h3>7. The learning-community pivot is the wedge into GRC</h3>
+<p class="finding-lede"><strong>Finding:</strong> The most concrete next step the group agreed on wasn't a sale or a 1:1 &mdash; it was a prototype session where GRC itself uses Mito for learning content. Rick seeded it with "training the trainers / professional development," Sage extended it to an onboarding + content-upload template, Tally cautioned "build the basics first," and the heart-react vote came through. This is your wedge.</p>
+<blockquote>Actually what I'm most interested in is learning communities, where there isn't a beginning and end, it's always ongoing, as is a GRC &hellip; Dave Hutchman is developing a mycelium network platform, and I've heard through the grapevine that GRC might do that. The question is &hellip; if I were to compare your system with their system.<span class="attrib">&mdash; Rick (Equity Muse), 1:19:20</span></blockquote>
+<blockquote>What GRC doesn't have, it doesn't have a professional development group &hellip; it's training the trainers.<span class="attrib">&mdash; Rick (Equity Muse), 1:27:01</span></blockquote>
+<blockquote>Would you like to see this within GRC so you can see how a project could get spun up in Mito? &hellip; Put a heart in there if you can &hellip; okay, I see Tally and Rick right there, Tristan wants to see it too.<span class="attrib">&mdash; Sage Harper, 1:23:30</span></blockquote>
+<div class="verdict-card">
+<div class="h">Read &mdash; this is the strongest forward motion you got all day. Don't let it go cold.</div>
+<p>Three things to honor here. (a) Rick named a direct competitor &mdash; Dave Hutchman's mycelium network platform &mdash; that GRC may already be considering. That's competitive intel you now have to act on. A 30-minute look at Dave Hutchman's platform before your next Rick 1:1 is non-optional. (b) Tally is right: the prototype session works only if someone (probably Sage) pre-loads the context before the group walks in. Sage agreed to build the template. Don't let that slip &mdash; the quality of the prototype is capped by the quality of the pre-load. (c) Rick's "professional development / train the trainers" layer is a bigger frame than onboarding. If Mito can demonstrably hold <em>a community of practice that continuously improves its own teaching</em>, you have a wedge into every GRC-adjacent organization, not just GRC itself.</p>
+</div>
+</div>
+
+</section>
+
+<section id="transcript">
+<h2>Raw question-by-question transcript</h2>
+<p>Compressed. Timestamps are mm:ss from recording start unless shown otherwise.</p>
+
+<h3>Q1 &mdash; What surprised / confirmed (06:56)</h3>
+<p>Three clean takeaways: SaaS sprawl, cross-border impact sharing, knowledge sharing. You credited the Part 1 document explicitly. Clean open.</p>
+
+<h3>Q2 &mdash; How Mito addresses the gaps (10:58)</h3>
+<p>"No more silos" + "communication connected to work" + "save money." Clean and correct. You also named the operator / workspace split here (11:54&ndash;12:13), which set up the mission+workspace architecture answer later.</p>
+
+<h3>Q3 &mdash; Why built in public (12:26)</h3>
+<blockquote>I'm not building a solution for me, I'm building a solution for people that are trying to do really cool things &hellip; if there's no collaboration, I'm building inside of a silo, and if the whole point of Mito is to break silos, I wouldn't be doing a good job of actually practicing what I'm preaching.<span class="attrib">&mdash; Shyon, 12:48&ndash;13:39</span></blockquote>
+
+<h3>Q4 &mdash; Strategy alignment / activation (14:23)</h3>
+<p>Missions page &rarr; workspace &rarr; teams &rarr; activation kit. The "do it once and it propagates" framing (15:41) is strong. Sage extended to the micro-influencer use case (20:49); you pivoted to activation kits and team-splitting &mdash; solid answer.</p>
+
+<h3>Q4b &mdash; Moderation / bad actors (23:04)</h3>
+<p>"Merit-based, Discord-style, no flagging" &mdash; see Finding 4. You also named the client-role safeguard for project-level access (24:56) which is a real architectural feature worth pulling forward in future pitches.</p>
+
+<h3>Q5 &mdash; Persistent context (25:31 + 38:39)</h3>
+<p>First pass was "knowledge attached to teams + RAG-style retrieval + chat history." Second pass (Brian) exposed the gap &mdash; see Finding 3. David Witzel chimed in with the "efficiency &mdash; talk is inefficient" reframe (41:08) which you accepted. The sensitive-data question (41:45) you answered cleanly: Mito only sees what the user has access to, shareables only.</p>
+
+<h3>Q6 &mdash; Impact visibility + website embed (27:19)</h3>
+<p>Mission page as public source of truth. You acknowledged embeds aren't built but would be valuable. OKRs = mission statement + goal tracking. Rick G's zero-day emerging priorities question (29:39) produced real-time brainstorming &mdash; news-scanning + community upvotes. Sage flagged this as brainstorming the requirement in real time (33:05).</p>
+
+<h3>Q7 &mdash; Finding your people (33:17)</h3>
+<p>Ask Mito + business directory + mission pages. You made the SBDC credibility flex (50:53). You were also honest about the connectivity effect requiring scale: <em>"as we get more people into the ecosystem, this connectivity capability is gonna become immense."</em> (34:22) &mdash; correct but exposes a cold-start problem.</p>
+
+<h3>Q8 &mdash; Requests and needs / MCP (42:50)</h3>
+<p>MCP integration pitch. You named the upcoming architectural push (44:57&ndash;45:24) where activation kits become MCP-powered. Sage extended to ClickUp-style action-item pipelines. Tally's directory + multi-business question folded in here (46:38).</p>
+
+<h3>Q9 / Q10 &mdash; Honest gap + freely accessible (52:36 + 55:03)</h3>
+<blockquote>I think Rick G, hit it right on the money &hellip; how are we measuring urgency? &hellip; And Tally, what would that map look like? Those are probably my two takeaways in terms of display side.<span class="attrib">&mdash; Shyon, 52:50&ndash;54:14</span></blockquote>
+<p>The free-access answer: mission pages free forever; workspace access for registered orgs is being thought through &mdash; not decided. See Finding 2. You were candid about not having the answer yet.</p>
+
+<h3>Open floor &mdash; Rick's HAAH pitch + Tristan sign-up + learning-community pivot + Garrett's intro (58:02&ndash;end)</h3>
+<p>Rick monologued for ~8 minutes on HAAH (Human-Agent-Agent-Human), Kent Lanley, Pete, and digital peasants' revolt (58:38&ndash;1:02:30). Real follow-up signal, low on-call ROI. Tristan signed up mid-call and produced the most useful feature feedback of the day. Garrett's intro ate ~25 minutes of the final third (1:32:00&ndash;1:47:00) &mdash; not yours to steer, but worth noting that in a 60-min session that ran 117, your question-answer time was ~60 min and the rest was Rick, Garrett, and Sage doing meta-facilitation.</p>
+</section>
+
+<section id="open">
+<h2>Questions the group wants you to answer</h2>
+<p>Questions raised in Part 2 that did not get a durable answer on-call. These are your Part 3 / 1:1 homework.</p>
+<ol>
+  <li><strong>Memory architecture.</strong> Is Mito's persistent-context substrate a graph, a vector store, a temporal knowledge graph, something else? How does it handle contradiction and stale data? (Brian's question; deflected to offline.)</li>
+  <li><strong>Free-access line.</strong> What defines a "community organization" that gets free workspace access? Registered 501(c)(3)? Self-certification? Seat-count cap? (Your own lede; explicitly left open at 56:41.)</li>
+  <li><strong>Moderation v1.1 roadmap.</strong> When does Mito move past merit-based / manual-kick into flag + review? (Sage's question at 24:02; deferred.)</li>
+  <li><strong>Multi-business UX.</strong> Is there a roadmap item for a cross-account org switcher, or is the architecture a permanent "new account per entity"? (Tally's follow-up, 48:07&ndash;48:55.)</li>
+  <li><strong>Google Calendar integration &mdash; native or MCP?</strong> And what's the timeline? (Tristan, 1:07:46. You said "architectural blueprint" but no date.)</li>
+  <li><strong>Calendar vs. Gantt/Critical Path.</strong> Are both on the roadmap, or is one out of scope? (Sage, 1:11:22.)</li>
+  <li><strong>Solo-professional "get discovered" flow.</strong> Is the freelance-seeks-projects persona in scope, or does Mito expect every user to come in as a business owner? (Tristan's second question, 1:08:30.)</li>
+  <li><strong>Competitive diff vs. Dave Hutchman's mycelium network platform.</strong> Rick will ask this before any prototype commits. You need a read.</li>
+  <li><strong>Credit-pool / Will Ruddock integration.</strong> Brian offered this at 1:17:26 as a natural fit. Open question whether you pursue.</li>
+  <li><strong>Zero-day / urgency surfacing.</strong> News-scanning vs. community-upvote &mdash; which becomes real? (Rick G brainstorm; no commit made.)</li>
+</ol>
+</section>
+
+<section id="followups">
+<h2>Follow-ups you now owe</h2>
+<p>Sage flagged this on-call as "a lot of follow-ups he needs to have." Here's what I counted.</p>
+
+<h4>1:1s explicitly promised</h4>
+<ul>
+  <li><strong>Dr. Brian von Herzen</strong> &mdash; persistent-context architecture, Wavecrest / NVIDIA Nematron, possible drop-in. (Confirmed in-call; this is the second 1:1 he's offered across two sessions.)</li>
+  <li><strong>Rick (Equity Muse)</strong> &mdash; prototype session + HAAH discussion + intros to Pete and Kent Lanley (CTO Exponential Organizations). Email dropped in chat.</li>
+  <li><strong>Tally Rhoades</strong> &mdash; directory / mapping feature co-design; learning-community framing. ("Set a time and just kind of brainstorm together.")</li>
+  <li><strong>Rick G</strong> &mdash; zero-day emerging priorities / urgency surfacing brainstorm. Email dropped in chat.</li>
+  <li><strong>Greg O'Neill</strong> &mdash; multi-mission / micro-project architecture. You invited him directly at 54:35.</li>
+  <li><strong>Garrett (Concentric)</strong> &mdash; already a collaborator via you; now also a Sage 1:1 target and a possible co-presenter at GRC.</li>
+</ul>
+
+<h4>Content / demos / decks you offered</h4>
+<ul>
+  <li><strong>New intro / for-dummies video.</strong> Current one is "super outdated" (your words, 1:06:01). Rick requested this explicitly. Probably your highest-ROI content deliverable &mdash; gets used in every future 1:1.</li>
+  <li><strong>GRC-specific prototype demo.</strong> Heart-reaction vote passed in-call. Co-designed with Sage. Sage is building the pre-load template; you're building the demo flow.</li>
+  <li><strong>1:1 transcripts to Sage</strong> for GRC-wide synthesis (1:26:22). Sage will compile a collective walkthrough for GRC membership once the 1:1s run.</li>
+  <li><strong>Larry + Patricia introductions into GRC.</strong> You named them at 1:47:40; Sage welcomed it.</li>
+</ul>
+
+<h4>Architectural decisions you now need to make</h4>
+<ul>
+  <li><strong>Google Calendar integration</strong> &mdash; MCP-only or native? Blueprint exists; decision isn't final. Tristan is waiting.</li>
+  <li><strong>Calendar view vs. Gantt / Critical Path</strong> &mdash; scope decision. Sage made the distinction for you; now it's yours to answer.</li>
+  <li><strong>Multi-account vs. org-switcher</strong> &mdash; Finding 6.</li>
+  <li><strong>Moderation v1.1</strong> &mdash; Finding 4.</li>
+  <li><strong>System-prompt fix on the Mito AI agent</strong> so it never answers "no" to a feature question without context. Tristan hit this live.</li>
+  <li><strong>Embeddable widgets on org websites</strong> &mdash; you said this would be "really cool" (28:07) but no commit. Worth queuing.</li>
+</ul>
+
+<h4>External references to check before your next round of 1:1s</h4>
+<ul>
+  <li><strong>Dave Hutchman's mycelium network platform</strong> (Rick, 1:19:20). Possible GRC-adjacent competitor. 30 minutes, before Rick 1:1.</li>
+  <li><strong>Will Ruddock credit pools / Serafune network</strong> (Brian, 1:17:26 + Sage's context). Possible integration partner.</li>
+  <li><strong>Kent Lanley (CTO, Exponential Organizations) + Pete</strong> (Rick, 1:00:10). Warm intros.</li>
+  <li><strong>"Stellar Communities"</strong> by James R. Beebe &amp; Eric Siva (Rick, 1:35:50). Academic frame for your work; Garrett may also benefit.</li>
+  <li><strong>Michael Smith / Regenatec + Eden Energy Co.</strong> (Sage, 1:46:48). For Garrett, not you directly &mdash; but signals Sage's network depth around waste-to-energy.</li>
+</ul>
+</section>
+
+<section id="caveat">
+<h2>One honest caveat</h2>
+<div class="callout warn">
+<div class="h">Where the synthesis is thinner than the observation</div>
+<p>Three places where I'm naming a pattern without full evidentiary ground:</p>
+<p><strong>(1) "The Garrett tangent ate 25 minutes."</strong> That's observation, not cause. It's possible the group wanted that tangent &mdash; Rick explicitly name-checked Garrett's relevance, and Sage welcomed the intro. I've framed it as drift because in a 60-min slot that ran 117, you got ~60 min of your own interview + demo and the rest was Rick, Garrett, and meta-facilitation. Your call on whether that's a problem.</p>
+<p><strong>(2) "Tristan's 'get discovered' flow exposes a solo-professional persona gap."</strong> One user, one session. It's possible Tristan is an outlier and not a persona. I've flagged it because he was the only live-sign-up in the call and his feedback cost you nothing to collect. Treat the finding as a hypothesis to test, not a confirmed gap.</p>
+<p><strong>(3) "The tone softened."</strong> Measuring tone across 117 minutes with 18 people is necessarily soft. I'm leaning on: the heart-react vote, multiple "this is huge / I love this" exchanges (Rick most obviously), Tristan signing up mid-call, and the total absence of the hostility or edge from Part 1's Colleen moment. Enough signal to name; not enough to prove.</p>
+<p style="margin-bottom:0">Where the evidence is thin, the pattern is still useful as a working hypothesis for your next few 1:1s. Where it's strong &mdash; Brian's context correction, Tristan's calendar ask, the multi-account answer, the prototype-session commitment &mdash; treat it as ground truth until tested otherwise.</p>
+</div>
+</section>
+
+<footer>
+<div class="sig">Mindful Living Consultants</div>
+<div>Questions, corrections, or pushback &mdash; better tight than fast.</div>
+<div style="margin-top:6px">&mdash; Sage Harper</div>
+</footer>
+
+</div>
+</body>
+</html>
