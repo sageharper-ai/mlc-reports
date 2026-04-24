@@ -1,0 +1,4 @@
+# Reports are published for direct review only.
+# Not for crawling or indexing.
+User-agent: *
+Disallow: /
