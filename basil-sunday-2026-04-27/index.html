@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Reading a place — Sunday Teaser v4.0</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --earth: #2d3a2e;
+    --moss: #4a6741;
+    --lichen: #8fae85;
+    --sand: #f5f0e8;
+    --warm-white: #faf8f4;
+    --bark: #5c4a3a;
+    --mycelium: #c4a882;
+    --water: #4a7a8c;
+    --deep-water: #2d5a6b;
+    --text: #2a2a2a;
+    --text-secondary: #5a5a5a;
+    --text-muted: #8a8a8a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 18px;
+  }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 3rem;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .slide-meta {
+    position: absolute;
+    top: 2.5rem;
+    left: 3rem;
+    right: 3rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+  }
+  .slide-meta .num { color: var(--mycelium); font-weight: 600; margin-right: 0.8rem; }
+
+  h1 {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.18;
+    margin-bottom: 1.4rem;
+    max-width: 780px;
+    letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--bark); font-weight: 400; }
+  h1 .accent { color: var(--mycelium); font-style: italic; font-weight: 400; }
+
+  .lead {
+    font-size: 1.28rem;
+    font-weight: 400;
+    color: var(--bark);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 700px;
+    margin-bottom: 2.2rem;
+  }
+
+  .closing {
+    margin-top: 2.4rem;
+    font-size: 1.04rem;
+    font-style: italic;
+    color: var(--deep-water);
+    max-width: 720px;
+    line-height: 1.5;
+  }
+
+  /* Cover */
+  .slide-cover {
+    background: linear-gradient(160deg, var(--earth) 0%, var(--moss) 50%, var(--deep-water) 100%);
+    color: var(--sand);
+  }
+  .slide-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(196,168,130,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 25%, rgba(74,122,140,0.14) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .slide-cover h1 {
+    font-size: clamp(2.6rem, 5.4vw, 4.2rem);
+    color: var(--sand);
+    margin-bottom: 1.8rem;
+    line-height: 1.15;
+  }
+  .slide-cover h1 em { color: var(--mycelium); }
+  .slide-cover .lead { color: rgba(245,240,232,0.86); }
+  .slide-cover .footer {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.5);
+    letter-spacing: 0.08em;
+  }
+
+  /* Closing slide */
+  .slide-closing {
+    background: linear-gradient(160deg, var(--earth) 0%, var(--deep-water) 100%);
+    color: var(--sand);
+  }
+  .slide-closing h1 { color: var(--sand); }
+  .slide-closing h1 .accent { color: var(--mycelium); }
+  .slide-closing .lead { color: rgba(245,240,232,0.88); }
+  .slide-closing .slide-meta { color: var(--lichen); opacity: 0.8; }
+  .slide-closing .slide-meta .num { color: var(--mycelium); }
+
+  /* 6-chip grid for Node slide */
+  .chip-grid-6 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem 1.8rem;
+    max-width: 760px;
+  }
+  .chip {
+    border-left: 2px solid var(--mycelium);
+    padding: 0.2rem 1.1rem;
+  }
+  .chip-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mycelium);
+    margin-bottom: 0.35rem;
+  }
+  .chip-text {
+    font-size: 1.02rem;
+    line-height: 1.45;
+    color: var(--text);
+  }
+
+  /* 5-flow grid for Connection slide */
+  .flow-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.9rem;
+    max-width: 820px;
+  }
+  .flow-cell {
+    background: white;
+    border-top: 3px solid var(--mycelium);
+    padding: 1rem 0.9rem;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .flow-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.5rem;
+  }
+  .flow-desc {
+    font-size: 0.93rem;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .flow-meta {
+    margin-top: 1.3rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    max-width: 720px;
+  }
+
+  /* 7-lens pills for Synthesis slide */
+  .pill-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    max-width: 760px;
+  }
+  .pill {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    background: rgba(143,174,133,0.16);
+    color: var(--moss);
+    padding: 0.5rem 1rem;
+    border-radius: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* 3-step path for Comparison slide */
+  .path-list {
+    max-width: 760px;
+  }
+  .path-step {
+    display: flex;
+    align-items: baseline;
+    gap: 1.4rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px dotted rgba(0,0,0,0.08);
+  }
+  .path-step:last-child { border-bottom: none; }
+  .path-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--mycelium);
+    letter-spacing: 0.1em;
+    min-width: 56px;
+  }
+  .path-text {
+    font-size: 1.08rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .path-text strong { color: var(--earth); font-weight: 600; }
+  .path-text em { color: var(--text-secondary); font-style: italic; }
+  .path-note {
+    margin-top: 1.6rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.03em;
+  }
+
+  /* Invitation asks */
+  .ask-list {
+    max-width: 760px;
+  }
+  .ask-row {
+    margin: 1.05rem 0;
+    border-left: 2px solid var(--mycelium);
+    padding-left: 1.2rem;
+  }
+  .ask-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mycelium);
+    margin-bottom: 0.3rem;
+  }
+  .ask-text {
+    font-size: 1.04rem;
+    line-height: 1.5;
+    color: rgba(245,240,232,0.93);
+  }
+  .ask-cost {
+    margin-top: 0.25rem;
+    font-size: 0.86rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.62);
+  }
+  .keel {
+    margin-top: 2.2rem;
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    font-style: italic;
+    color: var(--mycelium);
+    line-height: 1.35;
+    max-width: 720px;
+  }
+  .reciprocity {
+    margin-top: 1.4rem;
+    font-size: 0.96rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.72);
+    max-width: 700px;
+  }
+  .footer-line {
+    margin-top: 1.8rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.74rem;
+    color: rgba(245,240,232,0.48);
+    letter-spacing: 0.07em;
+  }
+
+  /* Nav dots */
+  .nav-dots {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+  }
+  .nav-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(0,0,0,0.22);
+    cursor: pointer; transition: all 0.25s;
+    border: none; padding: 0;
+  }
+  .nav-dot:hover { background: rgba(0,0,0,0.45); }
+  .nav-dot.active { background: var(--earth); transform: scale(1.55); }
+
+  @media (max-width: 820px) {
+    .slide { padding: 3.5rem 1.4rem; }
+    .slide-meta { top: 1.5rem; left: 1.4rem; right: 1.4rem; }
+    h1 { font-size: 1.95rem; }
+    .lead { font-size: 1.12rem; }
+    .chip-grid-6 { grid-template-columns: 1fr; }
+    .flow-row { grid-template-columns: 1fr 1fr; }
+    .nav-dots { display: none; }
+  }
+
+  @media print {
+    html { scroll-snap-type: none; }
+    .slide { min-height: 0; height: 100vh; page-break-after: always; break-after: page; }
+    .nav-dots { display: none; }
+    .slide-cover, .slide-closing {
+      color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-dots">
+  <button class="nav-dot active" data-target="s0" aria-label="Cover"></button>
+  <button class="nav-dot" data-target="s1" aria-label="Slide 1"></button>
+  <button class="nav-dot" data-target="s2" aria-label="Slide 2"></button>
+  <button class="nav-dot" data-target="s3" aria-label="Slide 3"></button>
+  <button class="nav-dot" data-target="s4" aria-label="Slide 4"></button>
+  <button class="nav-dot" data-target="s5" aria-label="Slide 5"></button>
+  <button class="nav-dot" data-target="s6" aria-label="Close"></button>
+</div>
+
+<!-- ====== COVER ====== -->
+<section class="slide slide-cover" id="s0">
+  <div class="slide-inner">
+    <img src="mlc-logo.png" alt="Mindful Living Community" style="width: 96px; height: 96px; margin-bottom: 2.4rem; opacity: 0.95; display: block;">
+    <h1>Reading a place &mdash;<br>so its connections can <em>return</em>.</h1>
+    <p class="lead">A bioregion mirror, in development. One county tested so far.</p>
+  </div>
+  <div class="footer">Mindful Living Community &middot; Catawba Care Network &middot; v0.3 &middot; Sunday 2026-04-27</div>
+</section>
+
+<!-- ====== S1 — PROBLEM ====== -->
+<section class="slide" id="s1">
+  <div class="slide-meta">
+    <span><span class="num">01</span>The problem</span>
+    <span>~1.5 min</span>
+  </div>
+  <div class="slide-inner">
+    <h1>We can't see what we're losing<br>fast enough to <em>save it</em>.</h1>
+    <p class="lead">A problem cooperative formation, regen practice, and place-based work all share.</p>
+
+    <div class="path-list">
+      <div class="path-step">
+        <div class="path-num">ONE</div>
+        <div class="path-text"><strong>Cooperatives form in places that weren't asking</strong> &mdash; and fold quietly when the imported model doesn't fit.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">TWO</div>
+        <div class="path-text"><strong>Stewards collapse</strong> before anyone notices the load they were carrying.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">THREE</div>
+        <div class="path-text"><strong>Connections fade</strong> in years that look like normal time. By the time we name the loss, the relationships are gone.</div>
+      </div>
+    </div>
+
+    <p class="closing">When the place can't see itself, it can't tend itself.</p>
+  </div>
+</section>
+
+<!-- ====== S2 — WHERE MOST FAIL ====== -->
+<section class="slide" id="s2">
+  <div class="slide-meta">
+    <span><span class="num">02</span>Where most fail</span>
+    <span>~1.5 min</span>
+  </div>
+  <div class="slide-inner">
+    <h1>Three patterns we keep watching <em>miss the mark</em>.</h1>
+    <p class="lead">Existing approaches see something. None see the cascade.</p>
+
+    <div class="path-list">
+      <div class="path-step">
+        <div class="path-num">ONE</div>
+        <div class="path-text"><strong>Inventory over flow.</strong> Directories count entities. They don't measure what moves between them, or where the energy stops moving.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">TWO</div>
+        <div class="path-text"><strong>Single-instance interpretation.</strong> A finding alone is opinion. Without comparison to comparable healthy places, it stays opinion.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">THREE</div>
+        <div class="path-text"><strong>Inspiration over diagnosis.</strong> Regen frameworks teach principles. They don't tell you which specific connection in your specific bioregion is approaching collapse.</div>
+      </div>
+    </div>
+
+    <p class="closing">All three miss because they don't read connections at scale, against reference.</p>
+  </div>
+</section>
+
+<!-- ====== S3 — WHAT WE'RE DOING DIFFERENTLY ====== -->
+<section class="slide" id="s3">
+  <div class="slide-meta">
+    <span><span class="num">03</span>What we do differently</span>
+    <span>~2 min</span>
+  </div>
+  <div class="slide-inner">
+    <h1>We built <em>diagnostic medicine</em> for bioregions.</h1>
+    <p class="lead">Read connections. Compare like-for-like. Catch stress before collapse.</p>
+
+    <div class="path-list">
+      <div class="path-step">
+        <div class="path-num">ONE</div>
+        <div class="path-text"><strong>Per-edge measurement.</strong> Every connection carries what flows, magnitude, direction, pressure on it, reciprocity. The mirror sees the cascade.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">TWO</div>
+        <div class="path-text"><strong>Composite reference ranges.</strong> "Healthy" is built from multiple comparable peer-bioregions, weighted per-lens. No single sister has to mirror whole.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">THREE</div>
+        <div class="path-text"><strong>Early warning before collapse.</strong> Variance and autocorrelation per edge over time. Multi-metric agreement before alarm. The signal arrives early enough to act.</div>
+      </div>
+    </div>
+
+    <p class="closing">When a measurement leaves the band, the methodology surfaces it before the place loses what it didn't know it had.</p>
+  </div>
+</section>
+
+<!-- ====== S4 — WHAT WE DO WITH IT ====== -->
+<section class="slide" id="s4">
+  <div class="slide-meta">
+    <span><span class="num">04</span>What it produces</span>
+    <span>~2 min</span>
+  </div>
+  <div class="slide-inner">
+    <h1>Read &rarr; compare &rarr; <em>match</em>.</h1>
+    <p class="lead">Measurement turns into pathway, not just findings.</p>
+
+    <div class="path-list">
+      <div class="path-step">
+        <div class="path-num">PLACE</div>
+        <div class="path-text"><strong>For the place:</strong> stress patterns surfaced, latent capacity named, opportunities ranked by leverage &mdash; all in the place's own decision-shape.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">PEER</div>
+        <div class="path-text"><strong>For practitioners:</strong> evidence-backed mentorship matches &mdash; people who walked similar threads in similar places, with documented outcomes.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">FIELD</div>
+        <div class="path-text"><strong>For the field:</strong> every closed pathway becomes expressed proof for the next bioregion. The library grows. Diagnostic power scales.</div>
+      </div>
+    </div>
+
+    <p class="path-note">Read &rarr; compare &rarr; diagnose &rarr; opportunity &rarr; expressed proof &rarr; curated mentorship &rarr; connection restored.</p>
+
+    <p class="closing">Reading is the input. Connection restored is the output.</p>
+  </div>
+</section>
+
+<!-- ====== S5 — WHERE WE ARE / WHERE GOING ====== -->
+<section class="slide" id="s5">
+  <div class="slide-meta">
+    <span><span class="num">05</span>Where we are &middot; where we're going</span>
+    <span>~2 min</span>
+  </div>
+  <div class="slide-inner">
+    <h1>One twin in. <em>The library is the work.</em></h1>
+    <p class="lead">Honest about minimum capacity. Honest about the growth surface.</p>
+
+    <div class="path-list">
+      <div class="path-step">
+        <div class="path-num">TODAY</div>
+        <div class="path-text"><strong>One bioregion read.</strong> Catawba County, NC. Methodology v0.3 codified. Reference library at n=1. Diagnostic at minimum capacity.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">NEXT</div>
+        <div class="path-text"><strong>Second twin recruitment.</strong> Per-lens match-percentage formulas. Mentor-curation infrastructure. Time-series data layer for early-warning signals.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">GOAL</div>
+        <div class="path-text"><strong>Library at N.</strong> Diagnostic medicine operational. Mentorship matched in real-time. Federation forming around the practice, not the brand.</div>
+      </div>
+    </div>
+
+    <p class="closing">We're at minimum capacity. The methodology is built to grow into itself &mdash; with the practitioners and places willing to walk it with us.</p>
+  </div>
+</section>
+
+<!-- ====== CLOSE ====== -->
+<section class="slide slide-closing" id="s6">
+  <div class="slide-inner">
+
+    <div style="display: flex; gap: 2.5rem; align-items: flex-start; flex-wrap: wrap; margin-bottom: 2.4rem;">
+
+      <div style="flex: 1 1 380px; min-width: 0;">
+        <p class="lead" style="margin-bottom: 1.3rem;">Thank you for sitting with this.</p>
+
+        <h1 style="font-size: clamp(2.2rem, 4.6vw, 3.3rem); line-height: 1.15; margin-bottom: 1.5rem;">
+          I'm <em>Sage Harper</em>.
+        </h1>
+
+        <p style="font-size: 1.16rem; line-height: 1.55; color: rgba(245,240,232,0.92); margin-bottom: 0;">
+          I'm interested in collaborating on <strong style="color: var(--mycelium); font-weight: 600;">duplicable blueprints</strong> for launching community cooperatives &mdash; to support <strong style="color: var(--mycelium); font-weight: 600;">bioregional acceleration</strong> and <strong style="color: var(--mycelium); font-weight: 600;">restore agency</strong> to the places that hold it.
+        </p>
+      </div>
+
+      <div style="flex: 0 0 220px; text-align: center; align-self: center;">
+        <div style="background: white; padding: 0.9rem; border-radius: 8px; display: inline-block; box-shadow: 0 4px 16px rgba(0,0,0,0.22);">
+          <img src="qr-mlc-calendly-60min.jpg" alt="QR code: book a 60-minute meeting via Mindful Living Calendly" style="display: block; width: 200px; height: 200px;">
+        </div>
+        <p style="font-family: 'Inter', sans-serif; font-size: 0.84rem; color: rgba(245,240,232,0.82); margin-top: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;">Scan to book a 60-min</p>
+      </div>
+
+    </div>
+
+    <p style="font-family: 'Crimson Pro', Georgia, serif; font-size: clamp(1.35rem, 2.3vw, 1.75rem); font-style: italic; color: var(--mycelium); line-height: 1.4; max-width: 720px;">
+      One twin is a case study. Two is a method. <br>The library is the future.
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 0.85rem; margin-top: 1.6rem;">
+      <img src="mlc-logo.png" alt="Mindful Living Community" style="width: 36px; height: 36px; opacity: 0.85;">
+      <p class="footer-line" style="margin-top: 0;">Mindful Living Community &middot; Catawba Care Network &middot; v0.3 &middot; Sunday 2026-04-27</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const dots = document.querySelectorAll('.nav-dot');
+  const slides = document.querySelectorAll('.slide');
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const target = document.getElementById(dot.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(slides).indexOf(entry.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
