@@ -6,44 +6,46 @@
 <meta name="robots" content="noindex, nofollow">
 <title>RMA — Meeting Pack · June 3</title>
 <style>
-  :root{--green:#10b981;--deep:#065f46;--dark:#042f25;--clay:#c97b4a;--bg:#f5f8f6;--card:#fff;--ink:#152019;--muted:#5d6e64;--line:#dfeae3;--done:#9bb3a7;--amber:#b45309}
+  :root{--green:#34d399;--green2:#10b981;--deep:#5eead4;--clay:#e0996a;--bg:#0b0e11;--card:#161b22;--ink:#eef2f0;--muted:#9aa6ad;--line:#2a323b;--done:#6b7d74;--amber:#fbbf24;--note-bg:#d9dde2;--note-ink:#1a1d21}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:0 0 90px}
   .wrap{max-width:860px;margin:0 auto;padding:0 22px}
-  header{background:linear-gradient(120% 120% at 80% 0%,#0a3a2c,var(--dark));color:#eafaf3;padding:28px 0 24px;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px rgba(4,35,26,.18)}
-  header h1{font-size:23px;font-weight:600;margin-bottom:4px}
-  header .sub{color:#bfe9d6;font-size:13.5px}
-  .progresswrap{margin-top:14px;background:rgba(255,255,255,.15);border-radius:99px;height:10px;overflow:hidden}
-  .progressbar{height:100%;width:0;background:var(--green);transition:width .3s ease}
-  .progresstxt{font-size:12px;color:#bfe9d6;margin-top:6px;display:flex;justify-content:space-between}
+  header{background:linear-gradient(120% 120% at 80% 0%,#0c3a2c,#04140f);color:#fff;padding:28px 0 24px;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:1px solid #143027}
+  header h1{font-size:23px;font-weight:600;margin-bottom:4px;color:#fff}
+  header .sub{color:#a9d8c6;font-size:13.5px}
+  .progresswrap{margin-top:14px;background:rgba(255,255,255,.12);border-radius:99px;height:10px;overflow:hidden}
+  .progressbar{height:100%;width:0;background:var(--green2);transition:width .3s ease}
+  .progresstxt{font-size:12px;color:#a9d8c6;margin-top:6px;display:flex;justify-content:space-between}
   .tabs{display:flex;gap:8px;margin:22px 0 4px}
   .tab{flex:1;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:9px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none}
-  .tab.active{background:var(--deep);color:#fff;border-color:var(--deep)}
+  .tab.active{background:var(--green2);color:#06251c;border-color:var(--green2)}
   .secthead{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--clay);font-weight:700;margin:30px 0 4px}
-  .frame{background:#fff7ef;border-left:4px solid var(--clay);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:15px}
+  .frame{background:rgba(224,153,106,.1);border-left:4px solid var(--clay);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:15px;color:var(--ink)}
   .roles{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0}
   .role{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
   .role label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
-  .seg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0;box-shadow:0 2px 10px rgba(4,47,37,.04)}
+  .seg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0}
   .seg h2{font-size:17px;color:var(--deep);display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
-  .seg h2 .time{font-size:12px;font-weight:600;color:#fff;background:var(--green);border-radius:99px;padding:3px 9px;white-space:nowrap}
+  .seg h2 .time{font-size:12px;font-weight:600;color:#06251c;background:var(--green2);border-radius:99px;padding:3px 9px;white-space:nowrap}
   .seg .who{font-size:13px;color:var(--clay);font-weight:600;margin-bottom:10px}
   .seg .lead{font-size:14px;color:var(--muted);margin-bottom:10px}
   ul.checks{list-style:none}
   ul.checks li{display:flex;align-items:flex-start;gap:11px;padding:8px 0;border-top:1px dashed var(--line);font-size:15px}
   ul.checks li:first-child{border-top:none}
-  ul.checks input[type=checkbox]{margin-top:3px;width:19px;height:19px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
+  ul.checks input[type=checkbox]{margin-top:3px;width:19px;height:19px;accent-color:var(--green2);cursor:pointer;flex-shrink:0}
   ul.checks li.done span.txt{color:var(--done);text-decoration:line-through}
-  .fill{border:none;border-bottom:1.5px dotted var(--green);background:transparent;font:inherit;color:var(--deep);font-weight:600;min-width:90px;padding:0 4px}
-  .fill:focus{outline:none;border-bottom-style:solid;background:#eafaf3}
+  .fill{border:none;border-bottom:1.5px dotted var(--green);background:transparent;font:inherit;color:var(--green);font-weight:600;min-width:90px;padding:0 4px}
+  .fill:focus{outline:none;border-bottom-style:solid;background:rgba(52,211,153,.16)}
+  .fill::placeholder{color:#6b7d74}
   .warn{color:var(--amber);font-weight:600}
-  .done-pill{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--done);border-radius:99px;padding:1px 8px;margin-left:4px;vertical-align:middle}
+  .done-pill{display:inline-block;font-size:11px;font-weight:700;color:#06251c;background:var(--done);border-radius:99px;padding:1px 8px;margin-left:4px;vertical-align:middle}
   .notebox{margin-top:10px}
   .notebox label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:4px}
-  textarea.note{width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font:inherit;line-height:1.5;resize:vertical;background:#fbfdfc}
-  textarea.note:focus{outline:none;border-color:var(--green);background:#fff}
+  textarea.note{width:100%;min-height:60px;border:1px solid #aeb6bd;border-radius:8px;padding:9px 11px;font:inherit;line-height:1.5;resize:vertical;background:var(--note-bg);color:var(--note-ink)}
+  textarea.note:focus{outline:none;border-color:var(--green2);background:#fff}
+  textarea.note::placeholder{color:#5d666d}
   /* minutes (read-only recap) */
-  .min{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0;box-shadow:0 2px 10px rgba(4,47,37,.04)}
+  .min{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0}
   .min h3{font-size:16px;color:var(--deep);margin-bottom:8px}
   .min ul{margin:0 0 0 20px;font-size:14.5px}
   .min li{margin:5px 0}
@@ -52,14 +54,14 @@
   table.act th,table.act td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
   table.act th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
   table.act td.o{color:var(--clay);font-weight:600;white-space:nowrap}
-  .notes{background:#0f1c17;color:#bfe9d6;border-radius:14px;padding:20px 22px;margin:24px 0;font-size:14px}
+  .notes{background:#10201a;border:1px solid #1d3a30;color:#cdeede;border-radius:14px;padding:20px 22px;margin:24px 0;font-size:14px}
   .notes h2{color:#fff;font-size:16px;margin-bottom:10px}
   .notes li{margin:7px 0 7px 18px}
-  .bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:10px 0;z-index:20;box-shadow:0 -2px 12px rgba(0,0,0,.06)}
+  .bar{position:fixed;bottom:0;left:0;right:0;background:#10151b;border-top:1px solid var(--line);padding:10px 0;z-index:20;box-shadow:0 -2px 14px rgba(0,0,0,.5)}
   .bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .bar button{font:inherit;font-weight:600;font-size:14px;padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+  .bar button{font:inherit;font-weight:600;font-size:14px;padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
   .bar button.reset:hover{border-color:var(--clay);color:var(--clay)}
-  .bar .stat{font-size:14px;color:var(--deep);font-weight:600}
+  .bar .stat{font-size:14px;color:var(--green);font-weight:600}
   .pre{font-size:13px;color:var(--muted);margin-top:10px}
   a{color:var(--green)}
   .hide{display:none}
@@ -241,7 +243,7 @@
       </ul>
     </div>
 
-    <div style="background:#fff;border:2px solid var(--green);border-radius:12px;padding:16px;margin:18px 0">
+    <div style="background:var(--card);border:1px solid var(--green);border-radius:12px;padding:16px;margin:18px 0">
       <label style="display:block;font-weight:600;color:var(--deep);margin-bottom:8px">📝 Free notes — type freely (auto-saves · included in Export)</label>
       <textarea class="note" data-k="freenotes" placeholder="Jot anything here as the meeting goes — this has all the room you need." style="min-height:180px"></textarea>
     </div>
@@ -268,10 +270,10 @@
 </div></div>
 
 <div id="exportbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:30;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#fff;border-radius:12px;padding:20px;max-width:700px;width:100%;max-height:82vh;overflow:auto">
+  <div style="background:#161b22;color:#eef2f0;border:1px solid #2a323b;border-radius:12px;padding:20px;max-width:700px;width:100%;max-height:82vh;overflow:auto">
     <div style="font-weight:600;margin-bottom:4px">Your notes — copied to clipboard.</div>
-    <div style="font-size:12px;color:#5d6e64;margin-bottom:10px">Paste into Q1, send to the scribe, or keep for your records. (If copy didn't fire, select all below and copy manually.)</div>
-    <textarea id="exporttext" style="width:100%;height:340px;font:13px ui-monospace,monospace;border:1px solid #dfeae3;border-radius:8px;padding:10px"></textarea>
+    <div style="font-size:12px;color:#9aa6ad;margin-bottom:10px">Paste into Q1, send to the scribe, or keep for your records. (If copy didn't fire, select all below and copy manually.)</div>
+    <textarea id="exporttext" style="width:100%;height:340px;font:13px ui-monospace,monospace;border:1px solid #aeb6bd;border-radius:8px;padding:10px;background:#d9dde2;color:#1a1d21"></textarea>
     <div style="margin-top:10px;text-align:right"><button class="reset" onclick="document.getElementById('exportbox').style.display='none'">Close</button></div>
   </div>
 </div>
