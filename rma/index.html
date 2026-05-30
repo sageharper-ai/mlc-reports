@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>RMA — Meeting Pack · June 3</title>
+<style>
+  :root{--green:#10b981;--deep:#065f46;--dark:#042f25;--clay:#c97b4a;--bg:#f5f8f6;--card:#fff;--ink:#152019;--muted:#5d6e64;--line:#dfeae3;--done:#9bb3a7;--amber:#b45309}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:0 0 90px}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(120% 120% at 80% 0%,#0a3a2c,var(--dark));color:#eafaf3;padding:28px 0 24px;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px rgba(4,35,26,.18)}
+  header h1{font-size:23px;font-weight:600;margin-bottom:4px}
+  header .sub{color:#bfe9d6;font-size:13.5px}
+  .progresswrap{margin-top:14px;background:rgba(255,255,255,.15);border-radius:99px;height:10px;overflow:hidden}
+  .progressbar{height:100%;width:0;background:var(--green);transition:width .3s ease}
+  .progresstxt{font-size:12px;color:#bfe9d6;margin-top:6px;display:flex;justify-content:space-between}
+  .tabs{display:flex;gap:8px;margin:22px 0 4px}
+  .tab{flex:1;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:9px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none}
+  .tab.active{background:var(--deep);color:#fff;border-color:var(--deep)}
+  .secthead{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--clay);font-weight:700;margin:30px 0 4px}
+  .frame{background:#fff7ef;border-left:4px solid var(--clay);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:15px}
+  .roles{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0}
+  .role{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+  .role label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+  .seg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0;box-shadow:0 2px 10px rgba(4,47,37,.04)}
+  .seg h2{font-size:17px;color:var(--deep);display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .seg h2 .time{font-size:12px;font-weight:600;color:#fff;background:var(--green);border-radius:99px;padding:3px 9px;white-space:nowrap}
+  .seg .who{font-size:13px;color:var(--clay);font-weight:600;margin-bottom:10px}
+  .seg .lead{font-size:14px;color:var(--muted);margin-bottom:10px}
+  ul.checks{list-style:none}
+  ul.checks li{display:flex;align-items:flex-start;gap:11px;padding:8px 0;border-top:1px dashed var(--line);font-size:15px}
+  ul.checks li:first-child{border-top:none}
+  ul.checks input[type=checkbox]{margin-top:3px;width:19px;height:19px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
+  ul.checks li.done span.txt{color:var(--done);text-decoration:line-through}
+  .fill{border:none;border-bottom:1.5px dotted var(--green);background:transparent;font:inherit;color:var(--deep);font-weight:600;min-width:90px;padding:0 4px}
+  .fill:focus{outline:none;border-bottom-style:solid;background:#eafaf3}
+  .warn{color:var(--amber);font-weight:600}
+  .done-pill{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--done);border-radius:99px;padding:1px 8px;margin-left:4px;vertical-align:middle}
+  .notebox{margin-top:10px}
+  .notebox label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:4px}
+  textarea.note{width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font:inherit;line-height:1.5;resize:vertical;background:#fbfdfc}
+  textarea.note:focus{outline:none;border-color:var(--green);background:#fff}
+  /* minutes (read-only recap) */
+  .min{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0;box-shadow:0 2px 10px rgba(4,47,37,.04)}
+  .min h3{font-size:16px;color:var(--deep);margin-bottom:8px}
+  .min ul{margin:0 0 0 20px;font-size:14.5px}
+  .min li{margin:5px 0}
+  .min .meta{font-size:13px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  table.act{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  table.act th,table.act td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.act th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+  table.act td.o{color:var(--clay);font-weight:600;white-space:nowrap}
+  .notes{background:#0f1c17;color:#bfe9d6;border-radius:14px;padding:20px 22px;margin:24px 0;font-size:14px}
+  .notes h2{color:#fff;font-size:16px;margin-bottom:10px}
+  .notes li{margin:7px 0 7px 18px}
+  .bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:10px 0;z-index:20;box-shadow:0 -2px 12px rgba(0,0,0,.06)}
+  .bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .bar button{font:inherit;font-weight:600;font-size:14px;padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+  .bar button.reset:hover{border-color:var(--clay);color:var(--clay)}
+  .bar .stat{font-size:14px;color:var(--deep);font-weight:600}
+  .pre{font-size:13px;color:var(--muted);margin-top:10px}
+  a{color:var(--green)}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🌀 RMA — Meeting Pack</h1>
+    <div class="sub">May 27 minutes (recap) + June 3 doing-session agenda · ~60 min · we <em>do</em> things in the room — onboard, assign, commit.</div>
+    <div class="progresswrap"><div class="progressbar" id="pbar"></div></div>
+    <div class="progresstxt"><span id="ptxt">0 of 0 done</span><span>checks + notes auto-save on this device</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="tabs">
+    <a class="tab active" id="tab-min" onclick="show('min')">📋 Minutes — May 27</a>
+    <a class="tab" id="tab-ag" onclick="show('ag')">✅ Agenda — June 3</a>
+  </div>
+
+  <!-- ============ MINUTES (top) ============ -->
+  <section id="view-min">
+    <div class="secthead">Last meeting · for context</div>
+
+    <div class="min">
+      <div class="meta"><strong>RMA Production Meeting</strong> · Wed May 27, 2026 · 4:59–6:07 PM ET · Zoom<br>
+      Present: Sage, Nikki, Kurt, Venetia, Ed, Christine (partial)</div>
+
+      <h3>1 · Onboarding &amp; Governance (Quorum1)</h3>
+      <ul>
+        <li><strong>Sage</strong> → Contributor + <strong>organizer/admin</strong> (meeting notes &amp; journals).</li>
+        <li><strong>Kurt</strong> → onboarded Contributor (contract approved).</li>
+        <li><strong>Venetia</strong> → joined as supporter; given the 2026 project proposals.</li>
+        <li>Model: <strong>supporter = free; contributor = required for paid work</strong> (upgrading is optional).</li>
+        <li>Next to onboard (Sage facilitating): <strong>Ben, David Witzel, Danielle Bellavita</strong>.</li>
+        <li>Open: Nikki's Q1 login broken (Ed to fix) · accessibility — move Notion content to Google Docs (Sage to file with Q1 dev team).</li>
+      </ul>
+
+      <h3>2 · Series — "Heat in the Streets"</h3>
+      <ul>
+        <li>Reframed as a <strong>global street-food documentary</strong> — 20–30 min episodes per country, <strong>Basil edits</strong> for consistency.</li>
+        <li><strong>Costa Rica = first focus</strong> (Diamante Bridge Collective) · Nairobi (Isa Vari) · Mexico.</li>
+        <li>Sage: detailed episode template + coordination plan needed soon; <strong>Venetia</strong> looped into templating with Basil.</li>
+      </ul>
+
+      <h3>3 · Telethon — July 23 (Helpedia)</h3>
+      <ul>
+        <li><strong>Decision: GO to pursue</strong> — brief RMA intro; ~$5K opportunity.</li>
+        <li>Owners: <strong>Kurt</strong> (owns it; 1:1 w/ Nikki) · <strong>Nikki</strong> (deck — RMA + GRC) · <strong>Sage</strong> (RMA website + contributor sign-up before 7/23).</li>
+        <li>To confirm: telethon host details &amp; logistics before committing materials.</li>
+      </ul>
+
+      <h3>4 · Funding</h3>
+      <ul>
+        <li><strong>Giveth.io</strong> (quadratic funding) entering via <strong>Danielle Bellavita</strong> — awaiting her word.</li>
+        <li>Open: <strong>Funding Lead</strong> still unassigned.</li>
+      </ul>
+
+      <h3>5 · Next meeting</h3>
+      <ul><li><strong>Wednesday, June 3</strong> — Facilitator: <strong>Kurt Roskopf</strong> (Sage out).</li></ul>
+
+      <h3 style="margin-top:16px">Action items</h3>
+      <table class="act">
+        <tr><th>Owner</th><th>Action</th><th>When</th></tr>
+        <tr><td class="o">Sage</td><td>Confirm Sage + Kurt Contributor roles/permissions in Q1</td><td>Done</td></tr>
+        <tr><td class="o">Sage</td><td>Post these minutes in the RMA Q1.is container</td><td>This week</td></tr>
+        <tr><td class="o">Sage</td><td>Build the RMA website with contributor sign-up</td><td>Before Jul 23</td></tr>
+        <tr><td class="o">Nikki</td><td>Prepare the RMA presentation deck for the telethon</td><td>Before Jul 23</td></tr>
+        <tr><td class="o">Venetia</td><td>Review the 2026 project proposals; get up to speed</td><td>Ongoing</td></tr>
+        <tr><td class="o">Nikki</td><td>Connect with Isa Vari re: the Nairobi episode</td><td>Next day</td></tr>
+        <tr><td class="o">Kurt</td><td>Schedule a 1:1 with Nikki about the telethon</td><td>This week</td></tr>
+        <tr><td class="o">Sage</td><td>Facilitate onboarding Ben &amp; David Witzel</td><td>Ongoing</td></tr>
+        <tr><td class="o">Sage</td><td>Submit accessibility feature requests to Q1 dev team</td><td>This week</td></tr>
+        <tr><td class="o">Nikki</td><td>Follow up with Danielle Bellavita re: Giveth.io</td><td>Open</td></tr>
+        <tr><td class="o">Kurt</td><td>Facilitate the June 3 meeting</td><td>Jun 3</td></tr>
+        <tr><td class="o">Sage</td><td>Connect Venetia to the Telegram group</td><td>This week</td></tr>
+        <tr><td class="o">Nikki</td><td>Coordinate global contacts for episode filming</td><td>Ongoing</td></tr>
+        <tr><td class="o">Sage</td><td>Loop Venetia into production/templating with Basil</td><td>This week</td></tr>
+        <tr><td class="o">Ed</td><td>Fix Nikki's Q1 account login</td><td>This week</td></tr>
+        <tr><td class="o">Sage</td><td>Add Danielle Bellavita to the RMA group</td><td>This week</td></tr>
+        <tr><td class="o">Sage</td><td>Add a Funding Lead discussion to a future agenda</td><td>Future</td></tr>
+        <tr><td class="o">Sage</td><td>Add a backup/support-roles discussion to a future agenda</td><td>Future</td></tr>
+      </table>
+
+      <div class="notebox" style="margin-top:16px">
+        <label>✍️ Corrections or comments on the minutes (auto-saves · included in Export)</label>
+        <textarea class="note" data-k="mincomments" placeholder="Anything captured wrong, missing, or that you'd add — note it here and we'll fix it."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AGENDA (bottom) ============ -->
+  <section id="view-ag" class="hide">
+    <div class="secthead">This meeting · June 3 doing-session</div>
+
+    <div class="frame"><strong>The win we're driving:</strong> ship <strong>"Heat in the Streets"</strong> (4-episode investor proof) and hit the <strong>July 23 telethon</strong>. Everything today serves that.
+    <div class="pre">⚠️ <strong>Sage is out</strong> — this runs off Ed's Q1 Facilitation SOP. Pre-reads (send 24h ahead): Charter draft · Nikki's vision doc.</div></div>
+
+    <div class="roles">
+      <div class="role"><label>Facilitator (Sage out)</label><input class="fill" data-k="fac" style="width:100%" value="Kurt Roskopf"></div>
+      <div class="role"><label>Timekeeper</label><input class="fill" data-k="time" style="width:100%"></div>
+      <div class="role"><label>Scribe (logs in Q1)</label><input class="fill" data-k="scribe" style="width:100%"></div>
+    </div>
+
+    <div class="seg">
+      <h2><span class="time">5 min</span> 1 · The win we're driving toward</h2>
+      <div class="lead">Frame, not discussion — everything today serves the proof + the telethon.</div>
+      <ul class="checks">
+        <li><input type="checkbox" data-k="c1a"><span class="txt">One sentence: "by <input class="fill" data-k="windate"> we will have shipped <input class="fill" data-k="winwhat" style="min-width:160px">."</span></li>
+      </ul>
+    </div>
+
+    <div class="seg">
+      <h2><span class="time">12 min</span> 2 · Finish onboarding + governance</h2>
+      <div class="who">Ed leads · screen-share</div>
+      <div class="lead">Core team is in (Sage, Kurt, Venetia). Now close the gaps and bring the next wave.</div>
+      <ul class="checks">
+        <li><input type="checkbox" data-k="c2a"><span class="txt"><strong>Nikki's Q1 login</strong> fixed &amp; confirmed in-room (Ed)</span></li>
+        <li><input type="checkbox" data-k="c2b"><span class="txt">Next wave joins the guild now: <strong>Ben · David Witzel · Danielle Bellavita</strong> (q1.is/yc56uz/join?rm=Q0175) — who's missing: <input class="fill" data-k="q1miss"></span></li>
+        <li><input type="checkbox" data-k="c2c"><span class="txt">Charter pre-read → <strong>show of hands to adopt</strong> (or name the one fix) → Ed queues the GitHub gov repo</span></li>
+        <li><input type="checkbox" data-k="c2d"><span class="txt">Accessibility: confirm Notion→Google-Docs request filed with Q1 dev team</span></li>
+      </ul>
+      <div class="notebox"><label>Notes — onboarding</label><textarea class="note" data-k="n2"></textarea></div>
+    </div>
+
+    <div class="seg">
+      <h2><span class="time">8 min</span> 3 · Lock the lanes (core-3 → core-9)</h2>
+      <ul class="checks">
+        <li><input type="checkbox" data-k="c3a"><span class="txt">Confirm <strong>core-3:</strong> Nikki = content/series · Kurt = production/telethon · Sage = PM/governance</span></li>
+        <li><input type="checkbox" data-k="c3b"><span class="txt">Core leads name their 2-person groups → Nikki: <input class="fill" data-k="ng"> · Kurt: <input class="fill" data-k="kg"> · Sage: <input class="fill" data-k="sg"></span></li>
+        <li><input type="checkbox" data-k="c3c"><span class="txt"><strong>Funding Lead</strong> seat (open) → <input class="fill" data-k="fund"></span></li>
+      </ul>
+      <div class="notebox"><label>Notes — lanes</label><textarea class="note" data-k="n3"></textarea></div>
+    </div>
+
+    <div class="seg">
+      <h2><span class="time">15 min</span> 4 · "Heat in the Streets" — template + first episodes</h2>
+      <div class="who">Nikki leads · Venetia + Basil on production/templating</div>
+      <div class="lead">Reframed last meeting as a global street-food doc (20–30 min/country, Basil edits). Now lock the how.</div>
+      <ul class="checks">
+        <li><input type="checkbox" data-k="c4a"><span class="txt">Agree the <strong>episode template + coordination plan</strong> (Sage asked for this "soon") — owner: <input class="fill" data-k="tmpl"></span></li>
+        <li><input type="checkbox" data-k="c4b"><span class="txt"><strong>Costa Rica first</strong> (Diamante Bridge Collective) — next step: <input class="fill" data-k="cr" style="min-width:150px"></span></li>
+        <li><input type="checkbox" data-k="c4c"><span class="txt"><strong>Nairobi</strong> (Isa Vari) — Nikki reports back from her connect; status: <input class="fill" data-k="nairobi"></span></li>
+        <li><input type="checkbox" data-k="c4d"><span class="txt">Commit the <strong>4-episode</strong> investor backlog — names: <input class="fill" data-k="eps" style="min-width:200px"></span></li>
+        <li><input type="checkbox" data-k="c4e"><span class="txt">Run them through the <strong>twin intake</strong> (requirements · budget · roles) — owner: <input class="fill" data-k="intake"></span></li>
+      </ul>
+      <div class="notebox"><label>Notes — series</label><textarea class="note" data-k="n4"></textarea></div>
+    </div>
+
+    <div class="seg">
+      <h2><span class="time">10 min</span> 5 · Telethon — July 23 (Helpedia)</h2>
+      <div class="who">Kurt leads</div>
+      <div class="lead">Decision was GO to pursue. Today = move the pieces + clear the gate.</div>
+      <ul class="checks">
+        <li><input type="checkbox" data-k="c5a"><span class="txt"><span class="warn">⚠️ Gate: confirm Helpedia host details + legitimacy</span> (couldn't find the site last time) — verifier: <input class="fill" data-k="verify"></span></li>
+        <li><input type="checkbox" data-k="c5b"><span class="txt"><strong>Website + contributor sign-up</strong> (Sage, before 7/23) — status: <input class="fill" data-k="site"></span></li>
+        <li><input type="checkbox" data-k="c5c"><span class="txt"><strong>Nikki's deck</strong> (RMA + GRC) — draft by: <input class="fill" data-k="deck"></span></li>
+        <li><input type="checkbox" data-k="c5d"><span class="txt"><strong>Kurt ↔ Nikki 1:1</strong> scheduled? <input class="fill" data-k="oneonone"></span></li>
+      </ul>
+      <div class="notebox"><label>Notes — telethon</label><textarea class="note" data-k="n5"></textarea></div>
+    </div>
+
+    <div class="seg">
+      <h2><span class="time">5 min</span> 6 · One place, one cadence</h2>
+      <ul class="checks">
+        <li><input type="checkbox" data-k="c6a"><span class="txt"><strong>Q1 = work + governance</strong> (system of record). Pick ONE chat for discussion; <strong>retire the rest</strong> — retire: <input class="fill" data-k="retire"></span></li>
+        <li><input type="checkbox" data-k="c6b"><span class="txt">Confirm cadence: <strong>Tue = governance, Wed = project</strong></span></li>
+        <li><input type="checkbox" data-k="c6c"><span class="txt">Funding Lead + backup/support roles — parked for which date? <input class="fill" data-k="parkdate"></span></li>
+      </ul>
+    </div>
+
+    <div class="seg">
+      <h2><span class="time">5 min</span> 7 · Close — commitments captured</h2>
+      <ul class="checks">
+        <li><input type="checkbox" data-k="c7a"><span class="txt">Scribe reads back <strong>every action → owner → date</strong>, logged in Q1 (not just said aloud)</span></li>
+        <li><input type="checkbox" data-k="c7b"><span class="txt">One-line: "the single most important thing before next week is <input class="fill" data-k="mostimp" style="min-width:200px">"</span></li>
+      </ul>
+    </div>
+
+    <div style="background:#fff;border:2px solid var(--green);border-radius:12px;padding:16px;margin:18px 0">
+      <label style="display:block;font-weight:600;color:var(--deep);margin-bottom:8px">📝 Free notes — type freely (auto-saves · included in Export)</label>
+      <textarea class="note" data-k="freenotes" placeholder="Jot anything here as the meeting goes — this has all the room you need." style="min-height:180px"></textarea>
+    </div>
+
+    <div class="notes">
+      <h2>Facilitator notes — June 3 handoff (Sage out)</h2>
+      <ul>
+        <li>This is a <strong>doing</strong> session — if a topic turns into open-ended debate, park it and move. Goal = done + assigned, not consensus on everything.</li>
+        <li>Two stalls to beat: (a) onboarding — do it <strong>live</strong>, don't let it become homework; (b) the team prefers building to governing — lead with the <strong>win</strong>, let governance ride in on participation.</li>
+        <li>Capture commitments <strong>in Q1, in the room</strong> — verbal commitments evaporate (that's been the pattern).</li>
+        <li>Ed's <strong>Q1 Facilitation SOP</strong> is the runbook. Kurt facilitates; Ed runs the onboarding screen-share.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<div class="bar"><div class="wrap">
+  <span class="stat" id="stat">0 of 0 complete</span>
+  <div style="display:flex;gap:8px">
+    <button class="reset" onclick="exportNotes()">📋 Export notes</button>
+    <button class="reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div></div>
+
+<div id="exportbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:30;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;border-radius:12px;padding:20px;max-width:700px;width:100%;max-height:82vh;overflow:auto">
+    <div style="font-weight:600;margin-bottom:4px">Your notes — copied to clipboard.</div>
+    <div style="font-size:12px;color:#5d6e64;margin-bottom:10px">Paste into Q1, send to the scribe, or keep for your records. (If copy didn't fire, select all below and copy manually.)</div>
+    <textarea id="exporttext" style="width:100%;height:340px;font:13px ui-monospace,monospace;border:1px solid #dfeae3;border-radius:8px;padding:10px"></textarea>
+    <div style="margin-top:10px;text-align:right"><button class="reset" onclick="document.getElementById('exportbox').style.display='none'">Close</button></div>
+  </div>
+</div>
+
+<script>
+  const KEY='rma-pack-0603-v1';
+  const state=JSON.parse(localStorage.getItem(KEY)||'{}');
+  const boxes=[...document.querySelectorAll('input[type=checkbox]')];
+  const fills=[...document.querySelectorAll('.fill, textarea.note')];
+  function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+  function render(){
+    boxes.forEach(b=>{const on=!!state[b.dataset.k];b.checked=on;b.closest('li').classList.toggle('done',on)});
+    const done=boxes.filter(b=>state[b.dataset.k]).length, tot=boxes.length;
+    const pct=tot?Math.round(done/tot*100):0;
+    document.getElementById('pbar').style.width=pct+'%';
+    document.getElementById('ptxt').textContent=done+' of '+tot+' done';
+    document.getElementById('stat').textContent=done+' of '+tot+' complete';
+  }
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.dataset.k]=b.checked;save();render()}));
+  fills.forEach(f=>{if(state[f.dataset.k]!==undefined)f.value=state[f.dataset.k];else if(f.value)state[f.dataset.k]=f.value;f.addEventListener('input',()=>{state[f.dataset.k]=f.value;save()})});
+  function show(which){
+    document.getElementById('view-min').classList.toggle('hide',which!=='min');
+    document.getElementById('view-ag').classList.toggle('hide',which!=='ag');
+    document.getElementById('tab-min').classList.toggle('active',which==='min');
+    document.getElementById('tab-ag').classList.toggle('active',which==='ag');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function resetAll(){if(confirm('Clear all checks and notes for a fresh meeting?')){localStorage.removeItem(KEY);for(const k in state)delete state[k];fills.forEach(f=>{if(f.dataset.k==='fac'){f.value='Kurt Roskopf';state.fac='Kurt Roskopf'}else f.value=''});render();save()}}
+  function exportNotes(){
+    const out=['RMA Meeting Pack — notes ('+new Date().toLocaleString()+')',''];
+    const roles=[...document.querySelectorAll('.role')].map(r=>r.querySelector('label').textContent.trim()+': '+(r.querySelector('input.fill').value||'—'));
+    out.push('ROLES: '+roles.join(' | '),'');
+    const mc=document.querySelector('[data-k="mincomments"]'); if(mc&&mc.value.trim()){out.push('## MINUTES — corrections/comments',mc.value.trim(),'')}
+    const fn=document.querySelector('[data-k="freenotes"]'); if(fn&&fn.value.trim()){out.push('## FREE NOTES',fn.value.trim(),'')}
+    document.querySelectorAll('#view-ag .seg').forEach(seg=>{
+      const h=seg.querySelector('h2').textContent.replace(/\s+/g,' ').trim();
+      const lines=[];
+      seg.querySelectorAll('ul.checks li').forEach(li=>{
+        const cb=li.querySelector('input[type=checkbox]');
+        const mark=cb&&cb.checked?'[x]':'[ ]';
+        const clone=li.querySelector('.txt').cloneNode(true);
+        clone.querySelectorAll('input').forEach(inp=>{const s=document.createElement('span');s.textContent=inp.value?(' ['+inp.value+'] '):' [___] ';inp.replaceWith(s)});
+        lines.push(mark+' '+clone.textContent.replace(/\s+/g,' ').trim());
+      });
+      const segnote=seg.querySelector('textarea.note');
+      if(segnote&&segnote.value.trim())lines.push('  ↳ notes: '+segnote.value.trim());
+      if(lines.length){out.push('## '+h,...lines,'')}
+    });
+    const txt=out.join('\n');
+    document.getElementById('exporttext').value=txt;
+    document.getElementById('exportbox').style.display='flex';
+    try{navigator.clipboard.writeText(txt)}catch(e){}
+  }
+  render();
+</script>
+</body>
+</html>
