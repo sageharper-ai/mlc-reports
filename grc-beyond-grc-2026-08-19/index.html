@@ -13,11 +13,18 @@ small{color:#777}
 .intro{background:#f7faf8;border-left:4px solid #0a5;padding:10px 14px;margin:8px 0 14px;color:#333}
 .open{border:2px dashed #0a5;padding:14px 18px;margin-top:8px}
 @media (max-width:800px){.cols{grid-template-columns:1fr}}
+</style><style>
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 8px;border-bottom:2px solid #0a5;position:sticky;top:0;background:#fff;z-index:5;padding-top:6px}
+.tabs button{font:600 16px/1.2 system-ui,sans-serif;padding:10px 14px;border:1px solid #cfe8d8;border-bottom:none;background:#f4f6f4;color:#333;border-radius:8px 8px 0 0;cursor:pointer}
+.tabs button[aria-selected="true"]{background:#0a5;color:#fff;border-color:#0a5}
+.panel h2{margin-top:14px}
+.tabnav{display:flex;justify-content:space-between;margin-top:28px;font-size:15px}.tabnav a{color:#0a5;cursor:pointer;text-decoration:underline}
 </style></head><body><main>
 <h1>Beyond GRC — Part 2</h1>
 <p class="sub">Last week: what GRC is to us. Today: what we've tried, what landed, what didn't — and what's small enough to experiment with. We leave with a backlog, not a plan.</p>
 
-<h2>1 · Last week, in your words</h2>
+<nav class="tabs" role="tablist"><button role="tab" data-tab="1" aria-selected="true">1 · Last week</button><button role="tab" data-tab="2" aria-selected="false">2 · What GRC has tried</button><button role="tab" data-tab="3" aria-selected="false">3 · Poll</button><button role="tab" data-tab="4" aria-selected="false">4 · What can we try</button></nav>
+<section class="panel" id="tab1" ><h2>1 · Last week, in your words</h2>
 <p class="intro">Last Wednesday we broke the fourth wall. No guest: Tally in the chair for ten minutes, then a three-question poll, then the room took over. Nikki got spotlighted, Dennis and Joscelyn spoke to what Open Office actually is, and we ended without a closeout on purpose. Twenty-one of us. Here is what you said, verbatim from the poll and the call. This is the baseline everything below builds on: <em>what GRC is to us when we stop to say it.</em></p>
 <div class="cols">
 <div><h3>What GRC is</h3>
@@ -34,7 +41,8 @@ small{color:#777}
 <h3>What you wished for — a wish, not a commitment</h3>
 <p>noise → signal (×3) · "how does a session get concatenated to a paragraph so the larger community hears" · "how did Tristan make that video" · more experimentation · discover challenges, solve them together · collective vision / more participation from those already here · donor support · a fund for projects · revenue-generating work together · <em>Offer:</em> full training in the Consent Protocol · contribute where you're at (time / skills / money / connections)</p>
 
-<h2>2 · What GRC has actually tried <small>(Slack sweep 2021 → today: team channels, transparency, newsletters, upcoming-meetings)</small></h2>
+<div class="tabnav"><span></span><a data-go="2">2 · What GRC has tried →</a></div></section>
+<section class="panel" id="tab2" hidden><h2>2 · What GRC has actually tried <small>(Slack sweep 2021 → today: team channels, transparency, newsletters, upcoming-meetings)</small></h2>
 <p class="intro">Before we wish for anything new, look at what has already been tried, because most of last week's wishes have a history. This morning I counted every non-archived channel in GRC's Slack through Slack's own API (members, last post, posts in 30 / 90 / 365 days), and read the big community channels, the team channels Sage is in, #grc-transparency back to 2021, and this lane's full 13 months. Numbers below are measured, not impressions; the message-reading was Sage's channels only. Each row: what exists → who is actually there → what it produces → so what. Two things jump out. <b>The original promise of GRC was "a pre-incubator, a playground for experimenting,"</b> written down in 2021 and never given a structure. And <b>the Governance group decided, the same hour we ran Part 1, to start cross-group meetings on exactly this question.</b> Neither room knew. That's the ground we're standing on today.</p>
 <style>table.sw{border-collapse:collapse;width:100%;font-size:16px;margin:6px 0 14px}table.sw th,table.sw td{border:1px solid #dde;padding:7px 9px;vertical-align:top;text-align:left}table.sw th{background:#f4f6f4}table.sw td:last-child{font-weight:600;color:#0a5}.take{background:#f7faf8;border:1px solid #cfe8d8;padding:12px 16px;margin-top:10px}.take li{margin:6px 0}</style>
 <div style="overflow-x:auto"><table class="sw">
@@ -58,7 +66,8 @@ small{color:#777}
 <li><b>The 2021 "pre-incubator" promise is the experiment everyone keeps asking for.</b> Nobody has to invent it; someone has to give it a shape and an owner.</li>
 </ol></div>
 
-<h2>3 · Poll — copy/paste into Zoom</h2>
+<div class="tabnav"><a data-go="1">← 1 · Last week</a><a data-go="3">3 · Poll →</a></div></section>
+<section class="panel" id="tab3" hidden><h2>3 · Poll — copy/paste into Zoom</h2>
 <p class="intro">A poll is for questions that have answers, so we use it for the <em>retrospective</em> half, not the creative half. Q1 asks which of the things GRC has already tried gave you the most (so we know what to do more of). Q2 asks where it leaks (so the experiments aim at a real hole, not a fresh idea). Q3 checks the 2021 promise against today: is GRC a place you have actually tested something? Read the results live; let the room argue with them.</p>
 <pre>Q1 (pick one): Of what GRC has tried, which has given YOU the most?
 - A guest interview (any lane)
@@ -85,7 +94,8 @@ Q3 (pick one): The 2021 promise was "GRC as a pre-incubator — a playground to 
 - Not really — there's no structure for it
 - First I've heard of it</pre>
 
-<h2>4 · Open — what can we try?</h2>
+<div class="tabnav"><a data-go="2">← 2 · What GRC has tried</a><a data-go="4">4 · What can we try →</a></div></section>
+<section class="panel" id="tab4" hidden><h2>4 · Open — what can we try?</h2>
 <p class="intro">This is the half that stays open. Not a vote, a harvest. The question is small on purpose: <b>one experiment, thirty days, and what you'd put in.</b> Last week's wishes and the Slack history are the seeds; Governance is already prototyping and Michelle can say what. We're not deciding anything today. We're building the backlog the room can pick from, and we close by asking who'd give an hour, a skill, a dollar, or a connection. Wish, not commitment. Names in chat. <b>Then the backlog goes to Governance's cross-group organizing committee as member-sourced proposals</b> — that is the hand-off that keeps the two rooms complementary instead of duplicate; Michelle carries it. Next week: John Buck.</p>
 <div class="open">
 <p><b>One small experiment, 30 days, and what you'd put in — an hour, a skill, a dollar, a connection. Wish, not commitment.</b> Say it, or drop it in chat.</p>
@@ -105,4 +115,10 @@ Q3 (pick one): The 2021 promise was "GRC as a pre-incubator — a playground to 
 </ul>
 <p><b>Close:</b> names in chat → top 3 → hand to Governance's organizing committee → next week John Buck.</p>
 </div>
-<footer style="margin-top:40px;color:#777;font-size:14px">Published by Sage Harper · host, GRC Regenerative Iteration · <a href="https://mindful-living.us">mindful-living.us</a> · Slack channel census: <a href="census.md">data</a></footer></main></body></html>
+<div class="tabnav"><a data-go="3">← 3 · Poll</a><span></span></div></section>
+<footer style="margin-top:40px;color:#777;font-size:14px">Published by Sage Harper · host, GRC Regenerative Iteration · <a href="https://mindful-living.us">mindful-living.us</a> · Slack channel census: <a href="census.md">data</a></footer></main><script>
+(function(){var bs=[].slice.call(document.querySelectorAll('.tabs button'));function show(n){bs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab==n?'true':'false')});[1,2,3,4].forEach(function(i){document.getElementById('tab'+i).hidden=(i!=n)});history.replaceState(null,'','#'+n);window.scrollTo({top:0});}
+bs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.tab)})});
+document.querySelectorAll('.tabnav a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();show(a.dataset.go)})});
+var h=parseInt(location.hash.slice(1));if(h>=1&&h<=4)show(h);})();
+</script></body></html>
