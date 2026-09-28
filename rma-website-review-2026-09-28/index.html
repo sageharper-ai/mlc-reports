@@ -51,6 +51,7 @@
   .wffoot{padding:12px 16px;font-size:13px;color:var(--mid);display:flex;gap:14px;flex-wrap:wrap;background:var(--wire2)}
   ol.steps li{margin:6px 0}
   main{overflow-wrap:anywhere}
+  main a{color:var(--accent)}
   @media (max-width:640px){table{display:block;overflow-x:auto}.grid3{grid-template-columns:1fr}.blk h4{font-size:21px}header.top h1{font-size:18px}}
 </style>
 </head>
@@ -79,11 +80,11 @@
   <div class="card">
     <strong>Five-minute review</strong>
     <ol>
-      <li>Open <strong>Home page</strong> and look at <span class="tag">H1</span> and <span class="tag">H4</span>. Does the description fit RMA, and would the right people recognize themselves? (Ma'raj asked on 9/21 what our deeper "why" is. This is a working version, not the final answer.)</li>
-      <li>On the same tab, <span class="tag">H5</span>: may we list you? Send the name you'd like shown and one line about you.</li>
-      <li>Open <strong>Guest page</strong>, <span class="tag">V2</span>: do you support the proposed recording and sharing terms?</li>
+      <li>Open the <a href="#home"><strong>Home page</strong></a> and look at <span class="tag">H1</span> and <span class="tag">H4</span>. Does the description fit RMA, and would the right people recognize themselves? (Ma'raj asked on 9/21 what our deeper "why" is. This is a working version, not the final answer.)</li>
+      <li>On the <a href="#home">same tab</a>, <span class="tag">H5</span>: may we list you? Send the name you'd like shown and one line about you.</li>
+      <li>Open the <a href="#visitor"><strong>Guest page</strong></a>, <span class="tag">V2</span>: do you support the proposed recording and sharing terms?</li>
     </ol>
-    Look at the other tabs if you have more time.
+    Look at the other tabs if you have more time: <a href="#plan">the plan</a>, <a href="#decide">how we decide</a>, <a href="#conduct">code of conduct</a>, <a href="#week">our week</a>.
   </div>
 
   <div class="ask">
@@ -122,7 +123,7 @@
     <tr><td><span class="tag">P4</span></td><td>Guest page: guests agree to the recording terms before they get the Riverside link</td><td>Sage proposed it; Ed and Nikki supported it</td></tr>
     <tr><td><span class="tag">P5</span></td><td>Code of conduct</td><td>Discussed; Ed has a starter version</td></tr>
     <tr><td><span class="tag">P6</span></td><td>"How we decide" page, linking our governance drafts</td><td>Sage asked to publish governance on the site and GitHub</td></tr>
-    <tr><td><span class="tag">P7</span></td><td>A checklist for our Monday, Wednesday and Friday meetings (see "Our week")</td><td>Sage: we're ready to be a little more formal</td></tr>
+    <tr><td><span class="tag">P7</span></td><td>A checklist for our Monday, Wednesday and Friday meetings (see <a href="#week">"Our week"</a>)</td><td>Sage: we're ready to be a little more formal</td></tr>
   </table>
 
   <h3>Possible later additions (not yet agreed)</h3>
@@ -295,6 +296,7 @@ document.getElementById('tabs').addEventListener('click',function(e){
   openTab(b.dataset.t); history.replaceState(null,'','#'+b.dataset.t); window.scrollTo(0,0);
 });
 if(location.hash) openTab(location.hash.slice(1));
+window.addEventListener('hashchange',function(){openTab(location.hash.slice(1));window.scrollTo(0,0);});
 </script>
 </body>
 </html>
