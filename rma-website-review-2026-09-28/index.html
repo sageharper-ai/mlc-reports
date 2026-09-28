@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>RMA Website Review</title>
+<style>
+  :root{--ink:#1f2328;--mid:#5f6670;--line:#c9ccd1;--wire:#ececec;--wire2:#f6f6f6;--accent:#2f5d50;--tag:#2f5d50;--tagbg:#e4efeb;--note:#7a5b00;--notebg:#fff6dc;--bg:#f3f4f6;--card:#fff}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header.top{background:var(--card);border-bottom:1px solid var(--line);padding:18px 20px 0}
+  header.top h1{margin:0;font-size:20px}
+  header.top p{margin:4px 0 12px;color:var(--mid);font-size:14px}
+  nav.tabs{display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  nav.tabs button{flex:0 0 auto;border:1px solid var(--line);border-bottom:0;background:var(--wire2);padding:8px 14px;border-radius:6px 6px 0 0;font:inherit;font-size:14px;cursor:pointer;color:var(--mid)}
+  nav.tabs button.on{background:var(--bg);color:var(--ink);font-weight:600}
+  main{max-width:900px;margin:0 auto;padding:22px 16px 60px}
+  .tab{display:none}.tab.on{display:block}
+  h2{font-size:24px;margin:6px 0 10px}
+  h3{font-size:18px;margin:22px 0 8px}
+  .lead{color:var(--mid);margin-top:0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px;margin:14px 0}
+  .tag{display:inline-block;background:var(--tagbg);color:var(--tag);font-weight:700;font-size:12px;padding:2px 8px;border-radius:10px;margin-right:6px;vertical-align:middle}
+  .why{background:var(--notebg);color:var(--note);font-size:14px;padding:8px 12px;border-radius:4px;margin-top:10px}
+  .ask{border-left:4px solid var(--accent);padding:10px 14px;background:var(--card);margin:12px 0}
+  table{width:100%;border-collapse:collapse;font-size:15px;background:var(--card)}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--wire2)}
+  /* wireframe */
+  .wf{background:#fff;border:2px solid #9aa0a6;border-radius:6px;overflow:hidden;margin:14px 0}
+  .wfnav{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--wire2);font-size:13px;color:var(--mid)}
+  .wfnav .logo{background:var(--wire);padding:3px 14px;border-radius:3px}
+  .blk{padding:22px 18px;border-bottom:1px dashed var(--line);position:relative}
+  .blk:last-child{border-bottom:0}
+  .blk .tag{position:absolute;top:10px;right:10px}
+  .blk h4{font-size:24px;margin:4px 0 8px;line-height:1.25}
+  .blk h5{font-size:19px;margin:0 0 8px}
+  .blk p{margin:6px 0}
+  .btn{display:inline-block;border:2px solid var(--ink);padding:6px 14px;margin:10px 8px 0 0;font-weight:600;font-size:14px;border-radius:3px}
+  .btn.alt{border-color:var(--line);color:var(--mid)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+  .cell{background:var(--wire2);border:1px solid var(--line);padding:10px;font-size:14px;border-radius:4px}
+  .ph{background:var(--wire);height:54px;width:54px;border-radius:50%;margin:0 auto 6px}
+  .person{text-align:center;font-size:13px}
+  .field{border:1px solid var(--line);background:#fff;height:30px;margin:5px 0;border-radius:3px;font-size:12px;color:#999;padding:5px 8px}
+  .field.tall{height:64px}
+  .log{border-left:3px solid var(--line);padding-left:10px;margin:6px 0}
+  .fill{background:#fff2cc;padding:0 3px;border-radius:2px}
+  .check{display:flex;gap:8px;align-items:center;margin-top:10px}.box{width:16px;height:16px;border:2px solid var(--ink)}
+  .wffoot{padding:12px 16px;font-size:13px;color:var(--mid);display:flex;gap:14px;flex-wrap:wrap;background:var(--wire2)}
+  ol.steps li{margin:6px 0}
+  main{overflow-wrap:anywhere}
+  @media (max-width:640px){table{display:block;overflow-x:auto}.grid3{grid-template-columns:1fr}.blk h4{font-size:21px}header.top h1{font-size:18px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>RMA website: proposed plan and first copy, for your review</h1>
+  <p>Draft of Monday, September 28, 2026 · from our Friday, September 25 Media Review</p>
+  <nav class="tabs" id="tabs">
+    <button class="on" data-t="start">Start here</button>
+    <button data-t="plan">The plan</button>
+    <button data-t="home">Home page</button>
+    <button data-t="visitor">Guest page</button>
+    <button data-t="decide">How we decide</button>
+    <button data-t="conduct">Code of conduct</button>
+    <button data-t="week">Our week</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- START -->
+<section class="tab on" id="start">
+  <h2>What this is, and what we need from you</h2>
+  <p class="lead">On Friday we talked about starting the website simple. This page turns what we said into a proposed plan and a first draft of each page, with real words in place. These changes haven't been built or published.</p>
+
+  <div class="card">
+    <strong>Five-minute review</strong>
+    <ol>
+      <li>Open <strong>Home page</strong> and look at <span class="tag">H1</span> and <span class="tag">H4</span>. Does the description fit RMA, and would the right people recognize themselves? (Ma'raj asked on 9/21 what our deeper "why" is. This is a working version, not the final answer.)</li>
+      <li>On the same tab, <span class="tag">H5</span>: may we list you? Send the name you'd like shown and one line about you.</li>
+      <li>Open <strong>Guest page</strong>, <span class="tag">V2</span>: do you support the proposed recording and sharing terms?</li>
+    </ol>
+    Look at the other tabs if you have more time.
+  </div>
+
+  <div class="ask">
+    <strong>How to reply:</strong> answer the email this came in, with a code and one of these:
+    <ul>
+      <li><strong>YES</strong>: good as is</li>
+      <li><strong>NO</strong>: plus a line on why</li>
+      <li><strong>EDIT</strong>: plus your wording</li>
+      <li><strong>LATER</strong>: move it to a later stage</li>
+    </ul>
+    Example: <em>"H1 EDIT: A weekly room for regenerative storytellers. H5 YES, list me as Ed Hwang, [one line]. V2 NO: clips should stay internal longer."</em><br>
+    Suggested reply date: <strong>Wednesday, September 30</strong>.
+  </div>
+
+  <h3>What happens next</h3>
+  <ol class="steps">
+    <li>Sage collects the replies and sends back a summary of the changes and any open objections.</li>
+    <li>Sage builds a first version.</li>
+    <li>Ed and Sage walk through it together.</li>
+    <li>We show it on a Wednesday.</li>
+  </ol>
+  <div class="why"><b>Reviewer note (not website copy):</b> the page previews are drafts. The forms and buttons don't do anything yet. If you haven't replied, your answer is still pending; nothing is decided by silence.</div>
+</section>
+
+<!-- PLAN -->
+<section class="tab" id="plan">
+  <h2>The plan: start simple, then grow</h2>
+  <p class="lead">Ed suggested starting simple, then adding more. Here's a proposed order for the website work. Reply with any changes to it.</p>
+
+  <h3>Stage 1: proposed for now</h3>
+  <table>
+    <tr><th style="width:70px">Code</th><th>What</th><th>Where it came from (9/25)</th></tr>
+    <tr><td><span class="tag">P1</span></td><td>Home page: what RMA is, what we've done, who it's for, who's taking part</td><td>Nikki: people should be able to tell whether it's a space for them</td></tr>
+    <tr><td><span class="tag">P2</span></td><td>Contact form</td><td>Nikki</td></tr>
+    <tr><td><span class="tag">P3</span></td><td>Free membership sign-up, with an invitation to take part and share</td><td>Ed: a membership ask doesn't have to be money</td></tr>
+    <tr><td><span class="tag">P4</span></td><td>Guest page: guests agree to the recording terms before they get the Riverside link</td><td>Sage proposed it; Ed and Nikki supported it</td></tr>
+    <tr><td><span class="tag">P5</span></td><td>Code of conduct</td><td>Discussed; Ed has a starter version</td></tr>
+    <tr><td><span class="tag">P6</span></td><td>"How we decide" page, linking our governance drafts</td><td>Sage asked to publish governance on the site and GitHub</td></tr>
+    <tr><td><span class="tag">P7</span></td><td>A checklist for our Monday, Wednesday and Friday meetings (see "Our week")</td><td>Sage: we're ready to be a little more formal</td></tr>
+  </table>
+
+  <h3>Possible later additions (not yet agreed)</h3>
+  <table>
+    <tr><th style="width:70px">Code</th><th>What</th><th>Note</th></tr>
+    <tr><td><span class="tag">P8</span></td><td>Pay what you can, $0 to $25 a month</td><td>Discussed 9/25. Needs an account to receive money first (Ed), and a way for people outside the US payment system to pay (Nikki).</td></tr>
+    <tr><td><span class="tag">P9</span></td><td>A clips and stories page</td><td></td></tr>
+    <tr><td><span class="tag">P10</span></td><td>Our story backlog, visible on the site</td><td>Backlog discussed 9/25; making it public is new</td></tr>
+    <tr><td><span class="tag">P11</span></td><td>A public log of our decisions</td><td>Ed: show our own decision process</td></tr>
+    <tr><td><span class="tag">P12</span></td><td>Ways to contribute beyond money: time, skills, sharing</td><td>Sage and Ed, 9/25</td></tr>
+    <tr><td><span class="tag">P13</span></td><td>A members' area</td><td>New idea</td></tr>
+  </table>
+  <div class="why"><b>Reviewer note:</b> money comes later because, as Ed said, if we ask for it we need an account ready to receive it. Ed is looking into the options.</div>
+</section>
+
+<!-- HOME -->
+<section class="tab" id="home">
+  <h2>Home page</h2>
+  <p class="lead">One page, top to bottom. Yellow marks what still needs filling in.</p>
+  <div class="wf">
+    <div class="wfnav"><span class="logo">RMA</span><span>How it works · People · Join · Contact</span></div>
+
+    <div class="blk"><span class="tag">H1</span>
+      <h4>Bring a story. Help each other tell it.</h4>
+      <p>The Regenerative Media Alliance brings together people telling stories about healthier communities and a thriving natural world. Each week we shape ideas, record conversations, and get stories ready to share. Bring your topic and get help developing it.</p>
+      <span class="btn">Ask to join a Wednesday</span><span class="btn alt">Follow RMA on Instagram</span>
+    </div>
+
+    <div class="blk"><span class="tag">H2</span>
+      <h5>How a week works</h5>
+      <p><strong>Monday</strong>, we plan Wednesday's topics. <strong>Wednesday</strong>, we record together. <strong>Friday</strong>, we review the clips and decide what's ready to share.</p>
+      <p>Bring your own topic, and tell us what help you want. You might want someone with a story about it, someone who can connect it to what others are doing, or someone who'll challenge the idea.</p>
+    </div>
+
+    <div class="blk"><span class="tag">H3</span>
+      <h5>What we've been working on</h5>
+      <div class="log"><strong>Recently</strong> · We recorded conversations about funding regenerative work, including why projects struggle to find funding.</div>
+      <div class="log"><strong>How we're working</strong> · We record in Riverside and review the clips together.</div>
+      <div class="log"><strong>Next</strong> · <span class="fill">the next confirmed topic</span></div>
+    </div>
+
+    <div class="blk"><span class="tag">H4</span>
+      <h5>Is this for you?</h5>
+      <div class="grid3">
+        <div class="cell">You tell stories about regeneration: as a host, writer, filmmaker or podcaster.</div>
+        <div class="cell">You're doing the work on the ground, and you have a story worth telling.</div>
+        <div class="cell">You help stories travel: editing, design, social, getting them seen.</div>
+      </div>
+      <p>Bring a project or a question you want to explore with others. Come ready to listen, give feedback, and help shape someone else's story too.</p>
+    </div>
+
+    <div class="blk"><span class="tag">H5</span>
+      <h5>People taking part</h5>
+      <div class="grid3">
+        <div class="person"><div class="ph"></div>Sage Harper<br><span class="fill">one line</span></div>
+        <div class="person"><div class="ph"></div>Ed Hwang<br><span class="fill">one line</span></div>
+        <div class="person"><div class="ph"></div>Nikki Wall<br><span class="fill">one line</span></div>
+        <div class="person"><div class="ph"></div>Christine Francis<br><span class="fill">one line</span></div>
+        <div class="person"><div class="ph"></div>David Witzel<br><span class="fill">one line</span></div>
+        <div class="person"><div class="ph"></div>Kurt Roskopf<br><span class="fill">one line</span></div>
+        <div class="person"><div class="ph"></div>Ma'raj<br><span class="fill">one line</span></div>
+        <div class="person"><div class="ph"></div>Venetia<br><span class="fill">one line</span></div>
+      </div>
+      <div class="why"><b>Reviewer note:</b> a proposed list, in no order and not confirmed. Each person approves their own name and line before anything is published. Nikki suggested showing who leads and who contributes; we can split the list that way once people say which fits them.</div>
+    </div>
+
+    <div class="blk"><span class="tag">H6</span>
+      <h5>Join RMA</h5>
+      <p>Membership is free. Come when you can, and help share the stories we make. To take part in a Wednesday recording, start with our guest page and recording agreement.</p>
+      <div class="field">Name</div><div class="field">Email</div>
+      <span class="btn">Join</span>
+    </div>
+
+    <div class="blk"><span class="tag">H7</span>
+      <h5>Get in touch</h5>
+      <p>Have a story you're carrying, a question, or someone we should talk to?</p>
+      <div class="field">Name</div><div class="field">Email</div><div class="field tall">Your message</div>
+      <span class="btn">Send</span>
+    </div>
+
+    <div class="wffoot"><span>How we decide</span><span>Code of conduct</span><span>Invited to a session? Guest page</span><span>Instagram</span></div>
+  </div>
+  <div class="why"><b>Reviewer note:</b> today's site at regenmedia.studio leads with "Stories beyond the limits of extractive media." If you'd rather keep that line, say H1 EDIT. The older sections there (five focus areas, the membership path, Heat in the Streets) would come off until we decide what replaces them.</div>
+</section>
+
+<!-- VISITOR -->
+<section class="tab" id="visitor">
+  <h2>Guest page</h2>
+  <p class="lead">Where we send a guest before a Wednesday. They get the Riverside link after they agree.</p>
+  <div class="wf">
+    <div class="wfnav"><span class="logo">RMA</span><span>Home</span></div>
+    <div class="blk"><span class="tag">V1</span>
+      <h4>You've been invited to a Regenerative Media Alliance session.</h4>
+      <p>On Wednesdays we record conversations about regenerative work to share. Please read this and agree, and you'll get the link to join us.</p>
+    </div>
+    <div class="blk"><span class="tag">V2</span>
+      <h5>What you're agreeing to</h5>
+      <p><strong>This session is recorded for public sharing.</strong> Clips the group approves for publishing may appear on RMA's channels and on participants' own channels.</p>
+      <p><strong>By agreeing, you allow your image and voice to appear in those clips.</strong> If you'd rather not, this session isn't the right fit, and that's fine. Use the contact form and we'll find another way to connect.</p>
+      <p><strong>You'll follow our code of conduct.</strong></p>
+    </div>
+    <div class="blk"><span class="tag">V3</span>
+      <h5>Before you join</h5>
+      <p>Join from a quiet spot, with headphones if you can. When you finish, select <strong>Leave</strong>, and keep the tab or app open until your upload finishes.</p>
+      <div class="field">Name</div><div class="field">Email</div>
+      <p style="font-size:13px;color:#777">We keep your name and email as a record of your agreement.</p>
+      <div class="check"><div class="box"></div> I've read this and agree.</div>
+      <span class="btn">Get the Riverside link</span>
+    </div>
+  </div>
+  <div class="why"><b>Reviewer note:</b> proposed sharing rule. Recordings are meant for public use, clips stay internal until the group clears them, and then anyone who took part may share the cleared clips. David's agreement was still needed as of Friday.</div>
+</section>
+
+<!-- DECIDE -->
+<section class="tab" id="decide">
+  <h2>How we decide</h2>
+  <div class="wf">
+    <div class="wfnav"><span class="logo">RMA</span><span>Home</span></div>
+    <div class="blk"><span class="tag">D1</span>
+      <h4>How we make decisions</h4>
+      <p>We're developing how we make decisions together, and drafting our rules as we go. We share the drafts so anyone can read them and weigh in.</p>
+      <span class="btn">Read our drafts</span>
+    </div>
+  </div>
+  <div class="why"><b>Reviewer note:</b> the button would link to our governance drafts on GitHub. We confirm which documents and their status before publishing. Ed's Smoking Tigers governance can be added when he shares it.</div>
+</section>
+
+<!-- CONDUCT -->
+<section class="tab" id="conduct">
+  <h2>Code of conduct (draft)</h2>
+  <div class="why"><b>Reviewer note:</b> C1 and C4 draw on Friday's discussion; the rest is new wording for review. Ed offered a starter code we can compare with this.</div>
+  <div class="card">
+    <p><span class="tag">C1</span><strong>Yes, and.</strong> Build on what others bring. Help each person make their point.</p>
+    <p><span class="tag">C2</span><strong>Come to co-create.</strong> Bring your project or question, and help shape other people's too.</p>
+    <p><span class="tag">C3</span><strong>Speak from your own experience.</strong> Honest disagreement is welcome. Attacks on people are not.</p>
+    <p><span class="tag">C4</span><strong>Our shared name matters.</strong> When you speak for RMA, make clear what's your own view and what the group has agreed.</p>
+    <p><span class="tag">C5</span><strong>Credit people.</strong> Share approved clips, and name the people in them.</p>
+    <p><span class="tag">C6</span><strong>Drafts stay inside.</strong> Keep clips internal until they're cleared for publishing.</p>
+  </div>
+</section>
+
+<!-- WEEK -->
+<section class="tab" id="week">
+  <h2>Our week (a proposed checklist)</h2>
+  <p class="lead">For us, not the public site: a checklist for our Monday, Wednesday and Friday meetings. Reply with changes by W code.</p>
+  <table>
+    <tr><th style="width:70px">Code</th><th style="width:130px">Day</th><th>What we do</th><th>What it hands on</th></tr>
+    <tr><td><span class="tag">W1</span></td><td><strong>Monday</strong><br>Strategy, 5 PM ET</td><td>Plan Wednesday's topics from the story backlog. Send any guest the guest page. A quick check on bigger projects (website, governance). Note any updates to share Wednesday.</td><td>Topics, who's on, guests invited</td></tr>
+    <tr><td><span class="tag">W2</span></td><td><strong>Wednesday</strong><br>Record</td><td>Share updates, then record. Everyone selects Leave at the end and keeps the app open until the upload finishes.</td><td>A complete recording</td></tr>
+    <tr><td><span class="tag">W3</span></td><td><strong>Friday</strong><br>Media Review, 2 PM ET</td><td>Check every track finished uploading. Pick clips. Share them in Telegram as internal only. Decide which clips are cleared to publish. Refresh the website's "what we've been working on."</td><td>Clips cleared, site refreshed, backlog updated</td></tr>
+  </table>
+  <h3>Open questions</h3>
+  <table>
+    <tr><th style="width:70px">Code</th><th>Question</th></tr>
+    <tr><td><span class="tag">W4</span></td><td>Where does the story backlog live? (Notion was suggested.)</td></tr>
+    <tr><td><span class="tag">W5</span></td><td>Do Wednesdays get up to two hours?</td></tr>
+    <tr><td><span class="tag">W6</span></td><td>Who publishes cleared clips to Instagram?</td></tr>
+  </table>
+</section>
+
+</main>
+<script>
+function openTab(id){
+  var b=document.querySelector('#tabs button[data-t="'+id+'"]'); if(!b) return;
+  document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b)});
+  document.querySelectorAll('.tab').forEach(function(s){s.classList.toggle('on',s.id===id)});
+}
+document.getElementById('tabs').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  openTab(b.dataset.t); history.replaceState(null,'','#'+b.dataset.t); window.scrollTo(0,0);
+});
+if(location.hash) openTab(location.hash.slice(1));
+</script>
+</body>
+</html>
