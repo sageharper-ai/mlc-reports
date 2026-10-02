@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>MitoLabs, Seen Whole</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F3E8;--paper:#FFFDF6;--ink:#22301F;--ink-2:#4F5B46;--line:rgba(34,48,31,.14);--green:#2F5D34;--clay:#8F5428;--gold:#9A7A1E;--soft:#EFE8D8;--warn:#8F2F28}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#151a14;--paper:#1d241b;--ink:#ECE6D6;--ink-2:#B9B3A2;--line:rgba(236,230,214,.14);--green:#8FC28F;--clay:#E2A372;--gold:#D9B95A;--soft:#232b21;--warn:#E58C84}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Inter",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header.hero{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+.kicker{font:600 12px/1.3 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin:0 0 10px}
+h1{font:400 clamp(2.1rem,4.6vw,3.4rem)/1.08 "Newsreader",Georgia,serif;margin:0 0 14px}
+h2{font:400 clamp(1.5rem,2.8vw,2.1rem)/1.15 "Newsreader",Georgia,serif;margin:0 0 14px}
+h3{font:600 1.02rem/1.35 Inter,sans-serif;margin:18px 0 6px}
+.lede{font-size:1.15rem;color:var(--ink-2);max-width:62ch;margin:0}
+.meta{font-size:13px;color:var(--ink-2);margin-top:16px}
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+p{margin:0 0 12px;max-width:68ch}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.card .k{font:600 11px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.card p{margin:0;font-size:15px}
+.insight{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;padding:18px 20px;margin:0 0 16px}
+.insight h3{margin-top:0;font:500 1.15rem/1.3 "Newsreader",Georgia,serif}
+.chain{display:grid;grid-template-columns:110px 1fr;gap:4px 14px;font-size:15px;margin:8px 0 0}
+.chain dt{font:600 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);padding-top:3px}
+.chain dd{margin:0}
+.tablewrap{overflow-x:auto;margin:10px 0 6px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--paper)}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600}
+.tag{display:inline-block;font:600 11px Inter,sans-serif;padding:2px 7px;border-radius:99px;border:1px solid var(--line);white-space:nowrap}
+.tag.sub{color:var(--clay)}.tag.com{color:var(--green)}.tag.int{color:var(--gold)}.tag.ovl{color:var(--ink-2)}
+.edges{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.edge{border:1px solid var(--line);border-radius:6px;padding:14px 16px;background:var(--paper)}
+.edge .k{font:600 11px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.edge.safe .k{color:var(--green)}.edge.danger .k{color:var(--warn)}.edge.care .k{color:var(--gold)}
+.stack{display:grid;gap:6px;max-width:620px;margin:14px 0}
+.layer{border:1px solid var(--line);border-radius:5px;padding:9px 14px;background:var(--paper);font-size:14.5px}
+.layer.me{border:2px solid var(--green);font-weight:600}
+.layer small{display:block;font-weight:400;color:var(--ink-2)}
+ul.fix{list-style:none;padding:0;margin:8px 0;max-width:72ch}
+ul.fix li{padding:8px 0 8px 28px;border-bottom:1px dashed var(--line);position:relative}
+ul.fix li:before{content:"☐";position:absolute;left:4px;top:7px;color:var(--green)}
+.note{font-size:14px;color:var(--ink-2)}
+.loop{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.loop .card .n{font:400 2rem/1 "Newsreader",Georgia,serif;color:var(--green)}
+a{color:var(--green)}
+footer{padding:30px 0 60px;font-size:13px;color:var(--ink-2)}
+ol.src{font-size:13.5px;color:var(--ink-2);padding-left:20px}
+ol.src li{margin-bottom:3px;word-break:break-word}
+@media (max-width:560px){.chain{grid-template-columns:1fr}.chain dt{padding-top:6px}}
+</style>
+</head><body>
+<header class="hero"><div class="wrap">
+<p class="kicker">A perspective of potential · prepared for Shyon Parsadoust, MitoLabs</p>
+<h1>MitoLabs, seen whole</h1>
+<p class="lede">Mito's strongest proof is hidden and its weakest is on display. The product can already do things its website doesn't mention, and the buyer its own story points to isn't the one its comparison pages are chasing.</p>
+<p class="meta">Subject: MitoLabs (mitolabs.ai) · Prepared October 2, 2026 by ClaudeUben, the AI partner at Mindful Living · Built from Mito's public pages captured that day (every sitemap page, every FAQ opened one by one), public sources, and, clearly labeled, our own hands-on use as beta members. Every public claim links to its source.</p>
+<div class="cards">
+<div class="card"><div class="k">What it's for</div><p>"The greatest bottleneck to human progress isn't a lack of ideas — it's our inability to connect our efforts." Missions, people, processes and projects in one place, with AI working inside it.</p></div>
+<div class="card"><div class="k">Where it nests</div><p>The coordination and execution layer: above the systems of record, below the mission itself. And reachable by AI agents through a working MCP connector that the website never mentions.</p></div>
+<div class="card"><div class="k">Biggest opening</div><p>Programs that sponsor cohorts (incubators, accelerators, mission networks), paired with a public gallery of proven Activation Kits.</p></div>
+</div>
+</div></header>
+
+<main class="wrap">
+
+<section id="mission">
+<p class="kicker">1 · Mission and money</p>
+<h2>Why it exists, and what its money makes it do</h2>
+<p>The conviction is consistent and long-running. Shyon's earlier venture came out of UMD's Terp Startup accelerator (<a href="https://www.rhsmith.umd.edu/news/dingman-center-partners-wework-expand-terp-startup-accelerator-program">Dingman Center</a>). In December 2025 he answered Paul O'Brien's essay on ecosystem capacity: "exactly why I built mitolabs.ai" (<a href="https://seobrien.com/startup-ecosystem-capacity-building">seobrien.com</a>). The FAQs are honest about limits, which is rare and worth keeping: Mito "won't replace Obsidian for personal note-taking," and it "trades some of that flexibility for opinionated structure." The knowledge grid even marks Mito ✗ on databases.</p>
+<p>Judged by its own mission (impact-driven teams, missions, Activation Kits), the story holds together. The one line that pulls against it is the task-management headline "Mito runs the whole company," which picks a fight with the biggest bundlers instead of serving the mission crowd.</p>
+<h3>What the money implies</h3>
+<p>Pricing is per person ($0 Collaborator, $22 Contributor, $47 Steward), with sponsored seats, a card for the trial and no refunds (<a href="https://mitolabs.ai/pricing">pricing</a>). The FAQ adds that "communities typically cover member access." So the natural payer is whoever sponsors a cohort, not each individual maker. The incubator page already reads that way ("Book a Demo," no price). The nonprofit page promises "special pricing" for 501(c)(3)s that the pricing page doesn't show. <strong>How others did it:</strong> Asana gives verified nonprofits 50% off through Goodstack (<a href="https://asana.com/industry/nonprofit">Asana</a>).</p>
+</section>
+
+<section id="people">
+<p class="kicker">2 · The people</p>
+<h2>The journey, and the public footprint</h2>
+<p><strong>The journey.</strong> The trigger is "stitching together" disconnected apps (startups page). Switching in is easier than the site suggests: "projects, tasks, and assignees can be imported via CSV today," and Notion pages can come into the Knowledge Hub (FAQ). Switching out isn't stated anywhere; export is the question careful buyers will ask first.</p>
+<p><strong>Time to value is said five ways:</strong> "executing in 5 minutes" (home), "a single working week" (FAQ), "2hrs to onboard" (startups page), "day one, not week three" (incubators page), "weeks to days" (knowledge page). Any one of them is fine; five of them read as a guess.</p>
+<h3>Who speaks for Mito today</h3>
+<p>Publicly, only Shyon. There's no case study, review, community, blog or changelog. Search for "Mito AI" also runs into other products with the same name (section 6). The voices that <em>should</em> be speaking:</p>
+<ul>
+<li><strong>The ecosystem-builder conversation</strong> Shyon has already joined (Paul O'Brien's readers), where he asked for "meaningful advisory."</li>
+<li><strong>Accelerators in his own network</strong>, starting with the Dingman Center, which has partnered with vendors before.</li>
+<li><strong>Beta members running real kits.</strong> We're one. The Beta Testing Portal is a real, working community of 14 people inside Mito; it just isn't visible from outside.</li>
+</ul>
+</section>
+
+<section id="map">
+<p class="kicker">3 · The map</p>
+<h2>Who it's compared with, how each connects, and where it nests</h2>
+<div class="tablewrap"><table>
+<tr><th>Neighbor</th><th>Connection</th><th>Note</th></tr>
+<tr><td>monday, Asana, ClickUp, Jira, Trello</td><td><span class="tag sub">substitute</span> task layer</td><td>The comparison Mito leads with, and the hardest fight (section 4)</td></tr>
+<tr><td>Circle, Mighty Networks</td><td><span class="tag ovl">overlap</span> community layer</td><td>Both charge one flat fee for unlimited members (Mighty from $79/mo, <a href="https://www.mightynetworks.com/pricing">pricing</a>)</td></tr>
+<tr><td>Notion, Coda</td><td><span class="tag sub">substitute</span> knowledge layer</td><td>Mito's FAQ frames the trade honestly: structure over a free-form canvas</td></tr>
+<tr><td>Obsidian</td><td><span class="tag com">complement</span></td><td>Mito's own FAQ says so</td></tr>
+<tr><td>Bonfire Networks</td><td><span class="tag com">complement</span> listed as a rival</td><td>Open source, nonprofit, no investors (<a href="https://bonfirenetworks.org/">bonfire</a>): something to build on, not compete with</td></tr>
+<tr><td>Hylo</td><td><span class="tag com">complement</span> not on the map yet</td><td>The nearest mission peer: where groups gather, while Mito is where they execute (<a href="https://www.hylo.com/about/">Hylo</a>)</td></tr>
+<tr><td>Supabase, Stripe, OpenAI/Anthropic</td><td><span class="tag int">foundation</span></td><td>Named sub-processors (<a href="https://mitolabs.ai/privacy">privacy</a>)</td></tr>
+</table></div>
+<p><strong>The comparison grids are aging.</strong> Mito marks itself ✓ on every row but one, and gives rivals ✗ on things several now have: Asana goals update automatically "from sub-goals, projects, or tasks" (<a href="https://help.asana.com/s/article/progress-status-and-connecting-work-to-goals">Asana help</a>), monday opened its platform to AI agents in March 2026 (<a href="https://ir.monday.com/news-and-events/news-releases/news-details/2026/monday-com-Welcomes-AI-Agents-to-Its-Platform-Marking-a-Shift-in-How-Work-Gets-Done/default.aspx">monday</a>), and Mighty includes an "AI Cohost" on its $79 plan (<a href="https://www.mightynetworks.com/pricing">Mighty</a>). Buyers check these. A grid that's generous to rivals wins more trust than one that isn't.</p>
+<h3>Where it nests</h3>
+<div class="stack">
+<div class="layer">The mission or program<small>a coalition, cohort, nonprofit or venture</small></div>
+<div class="layer me">Mito: coordination and execution<small>missions, goals, processes, Activation Kits, time, knowledge, and an AI that works inside it</small></div>
+<div class="layer">Conversation and community<small>Circle, Discord, Zoom (beside it, not under it)</small></div>
+<div class="layer">Systems of record and money<small>Drive, QuickBooks, Stripe</small></div>
+</div>
+<div class="insight"><h3>From our own use (first-hand, as beta members)</h3>
+<p>Mito is already agent-operable, far beyond what the site shows. We've connected Claude to Mito's MCP and seen <strong>49 live tools</strong> covering processes and steps, kits, goals, time, knowledge and requests, plus analytics like drift, bottlenecks and ROI. Building a whole process in one approved step and packaging it into a kit is where Mito felt most like nothing else. Shyon answered all six of our beta requests in one review and shipped three of them on Oct 1: <code>create_project</code> and <code>create_goal</code>, <code>set_process_public</code>, and <code>archive_process</code> (better than the delete we asked for). Two notes from the bench: the request tools still hit a schema error, and full-process updates replace every step, so a step left out of an update is deleted. Worth a guard.</p></div>
+<p class="note">On the public site, /docs and /mcp show only the app shell; no API, MCP or developer page is stated.</p>
+</section>
+
+<section id="edges">
+<p class="kicker">4 · The edges</p>
+<h2>Where the lane can widen without hurting the business</h2>
+<div class="edges">
+<div class="edge care"><div class="k">Careful widening</div><h3>A cohort edition for programs</h3><p>The incubator page already exists. Give it a price, a kit and a sponsor-pays model. <strong>How others did it:</strong> Circle packages program design and routes members to communities through Discover, citing "100K+ members a month" (<a href="https://circle.so/eclipse-release">Circle</a>).</p></div>
+<div class="edge safe"><div class="k">Safe edge</div><h3>A public gallery of proven kits</h3><p>The audience pages promise a "marketplace of proven processes," and <code>set_process_public</code> now exists. Kits made by real programs become the advocates Mito doesn't have yet. <strong>How others did it:</strong> Hylo grew through design partners like the Planetary Health Alliance and OpenTEAM, and won NTEN's 2026 Pizzigati Prize (<a href="https://www.hylo.com/about/">Hylo</a>).</p></div>
+<div class="edge danger"><div class="k">Danger edge</div><h3>Hard numbers without a source</h3><p>"80% less reporting time," "$8K annual savings," "3x faster onboarding": twelve figures on the audience pages, with no customer, method or time period. <strong>How others got caught:</strong> the FTC required Workado to back its "98 percent" accuracy claim after testing found 53% (<a href="https://www.ftc.gov/news-events/news/press-releases/2025/04/ftc-order-requires-workado-back-artificial-intelligence-detection-claims">FTC, Apr 2025</a>). One real story with a name beats twelve numbers.</p></div>
+</div>
+<p><strong>The fight to avoid:</strong> "Mito runs the whole company" and "replace Jira" put Mito against the bundlers, who are all adding AI and agents now. Asana calls itself an operating system for human-agent teams, and monday invites outside agents in. Mito's ground is the one they don't stand on: missions that roll up across organizations, and kits that carry a whole way of working from one group to the next.</p>
+</section>
+
+<section id="trust">
+<p class="kicker">5 · Trust and consistency</p>
+<h2>Small fixes that add up</h2>
+<ul class="fix">
+<li><strong>Say who you are.</strong> The terms are "provided by mitolabs.ai" and name no legal entity. Privacy-rights requests and copyright notices go to a Gmail address (<a href="https://mitolabs.ai/terms">terms</a>, <a href="https://mitolabs.ai/privacy">privacy</a>). A company name, an address and a domain email cost almost nothing.</li>
+<li><strong>Say how people leave.</strong> Import is covered; export isn't. A sentence plus an export window in the terms answers the "lock-in" worry before anyone asks it.</li>
+<li><strong>One audience, one line.</strong> "Impact-driven entrepreneurs" (llms.txt), "Mycellial Learners and Builders" (home, where the word is spelled <em>mycelial</em>), "Most startups" (compare), plus three audience pages. Two footer taglines: "Infrastructure for collective action" and "The Operating System for Connected Impact."</li>
+<li><strong>Link the hidden pages.</strong> /for-startups, /for-incubators and /for-nonprofits are in the sitemap but not linked from home or listed in llms.txt, and they still say © 2024.</li>
+<li><strong>Match the onboarding promise.</strong> "No onboarding call" on home, "Book a Demo" and "Schedule Discovery Call" on the audience pages. Both can be true; say which applies to whom.</li>
+<li><strong>Update the grids</strong> (section 3), and pick one time-to-value figure.</li>
+</ul>
+</section>
+
+<section id="unseen">
+<p class="kicker">6 · What you can't see at face value</p>
+<h2>The picture that only appears when you connect the pieces</h2>
+
+<div class="insight"><h3>1. The best proof is hidden; the weakest proof is on display</h3>
+<dl class="chain"><dt>Surface</dt><dd>Twelve unsourced percentages on pages no one links to; no API or MCP anywhere on the site.</dd>
+<dt>Connected</dt><dd>Mito has a working agent connector with 49 tools, and a founder who answered six beta requests in one review and shipped three the same day. That's shown, not claimed, and it's exactly what AI-forward buyers are looking for right now.</dd>
+<dt>Evidence</dt><dd>first-hand (our MCP use, Sep 23 and Oct 1) → <a href="https://mitolabs.ai/for-nonprofits">audience pages</a> → /mcp shows only the app shell</dd>
+<dt>Gift</dt><dd>Publish the MCP: a docs page, a directory listing, one demo of an agent building a kit. It turns "native AI" from a claim into a capability anyone can test.</dd></dl></div>
+
+<div class="insight"><h3>2. "Rivals have no AI" is the fastest-aging claim on the site</h3>
+<dl class="chain"><dt>Surface</dt><dd>The grids mark monday, Asana, Circle and Mighty ✗ on AI.</dd>
+<dt>Connected</dt><dd>All four shipped AI in 2025–26. What none of them have is Mito's real difference: missions that roll up across organizations, Activation Kits as one deployable unit, and an AI that calls out to other tools through MCP.</dd>
+<dt>Evidence</dt><dd><a href="https://ir.monday.com/news-and-events/news-releases/news-details/2026/monday-com-Welcomes-AI-Agents-to-Its-Platform-Marking-a-Shift-in-How-Work-Gets-Done/default.aspx">monday</a> · <a href="https://circle.so/eclipse-release">Circle</a> · <a href="https://www.mightynetworks.com/pricing">Mighty</a> → <a href="https://mitolabs.ai/compare/task-management">Mito's grid</a></dd>
+<dt>Gift</dt><dd>Compete on kits and cross-org missions, not on "AI inside."</dd></dl></div>
+
+<div class="insight"><h3>3. The real buyer is the sponsor, and Shyon's own story already points there</h3>
+<dl class="chain"><dt>Surface</dt><dd>Per-person plans aimed at individual makers.</dd>
+<dt>Connected</dt><dd>Sponsored seats, "communities typically cover member access," a sales-led incubator page, and a founder who came out of an accelerator and joins ecosystem-capacity conversations. Programs that pay for cohorts are the market his story was written for.</dd>
+<dt>Evidence</dt><dd><a href="https://mitolabs.ai/pricing">pricing</a> → FAQ → <a href="https://mitolabs.ai/for-incubators">for-incubators</a> → <a href="https://www.rhsmith.umd.edu/news/dingman-center-partners-wework-expand-terp-startup-accelerator-program">Dingman</a> → <a href="https://seobrien.com/startup-ecosystem-capacity-building">O'Brien thread</a></dd></dl></div>
+
+<div class="insight"><h3>4. A pattern across tools in this space: trust leaks through inconsistency, not missing features</h3>
+<dl class="chain"><dt>Surface</dt><dd>Small coordination tools all benchmark against the same per-seat giants.</dd>
+<dt>Connected</dt><dd>Across the coordination tools in our library, the truest facts sit in documents nobody markets (FAQs, terms, unlinked pages), and the front page carries drifting numbers. Mito and another tool we evaluated the same day share five competitors, yet their advocate trails point in completely different directions. The niche is in the advocate trail, not the comparison chart.</dd>
+<dt>Evidence</dt><dd>Our shared library (two organizations, 50+ cited entries so far). This is the part that compounds as we evaluate more.</dd></dl></div>
+
+<div class="insight"><h3>5. The name is fighting for its own search results</h3>
+<dl class="chain"><dt>Surface</dt><dd>The AI is branded "Mito AI."</dd>
+<dt>Connected</dt><dd>"Mito AI" is also the name of trymito's Jupyter assistant (<a href="https://docs.trymito.io/how-to/mito-ai">trymito</a>) and of a Lightspeed-backed video startup (<a href="https://pulse2.com/mito-ai-4-5-million-pre-seed-funding-closed-for-collaborative-ai-video-creation-platform/">pulse2</a>). Reviews and mentions leak to them.</dd>
+<dt>Gift</dt><dd>Lead with "MitoLabs" and "Activation Kits," the words only you own.</dd></dl></div>
+</section>
+
+<section id="how">
+<p class="kicker">7 · How this was made</p>
+<h2>A perspective that builds itself</h2>
+<p>We ran Mito through a question loop that improves itself: <strong>expand</strong> the questions wherever the picture has holes, <strong>measure</strong> what each question yields, then <strong>shrink</strong> by merging, gating or dropping what didn't earn its place. Every answer adds cited entries to a shared library of organizations, people, products and how they connect, so each evaluation starts from a richer map than the last.</p>
+<div class="loop">
+<div class="card"><div class="n">55 → 13</div><p>things to know, compressed into 13 compound questions</p></div>
+<div class="card"><div class="n">2 runs</div><p>run 2 overturned seven of run 1's claims. For one, run 1 said there were no numbers; run 2 found twelve on the unlinked pages.</p></div>
+<div class="card"><div class="n">gated</div><p>Mito is early in public, so reviews and advocates folded into one "public footprint" question</p></div>
+<div class="card"><div class="n">capture</div><p>run 2 taught the loop to read the sitemap first and open every FAQ one by one</p></div>
+</div>
+<p class="note">Method: Mito's public pages captured on Oct 2, 2026 in a clean browser (every sitemap URL, each FAQ opened individually, grid ✓/✗ recorded), then public sources, every claim linked. First-hand notes come from our MCP use as beta members and are labeled. Built by ClaudeUben with Claude helper agents.</p>
+</section>
+</main>
+<footer><div class="wrap">Prepared for Shyon Parsadoust by ClaudeUben · Mindful Living · October 2, 2026. Corrections welcome: reply to the email this came with, and we'll update this page at the same address.</div></footer>
+</body></html>
