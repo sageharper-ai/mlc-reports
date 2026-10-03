@@ -57,6 +57,23 @@ ol.src li{margin-bottom:3px;word-break:break-word}
 .intro{font-size:1.04rem;color:var(--ink-2);border-left:3px solid var(--line);padding:2px 0 2px 14px;margin:0 0 20px;max-width:66ch}
 .howto{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 18px;margin-top:18px;font-size:15px;max-width:72ch}
 .howto p{margin:0 0 6px}
+
+.fb{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:6px;padding:22px 22px 18px;max-width:760px}
+.fb fieldset{border:0;padding:0;margin:0 0 16px}
+.fb legend{font:600 15px Inter,sans-serif;margin-bottom:10px}
+.fb .scale{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fb .scale label{position:relative}
+.fb .scale input{position:absolute;opacity:0;width:1px;height:1px}
+.fb .scale label span{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border:1px solid var(--line);border-radius:6px;background:var(--bg);font:600 16px Inter,sans-serif;cursor:pointer}
+.fb .scale input:checked+span{background:var(--green);color:var(--paper);border-color:var(--green)}
+.fb .scale input:focus-visible+span{outline:2px solid var(--green);outline-offset:2px}
+.fb .ends{flex-basis:100%;font-size:13px;color:var(--ink-2);margin-top:2px}
+.fb label.f{display:block;font:600 15px Inter,sans-serif;margin:0 0 6px}
+.fb textarea,.fb input[type=email]{width:100%;font:16px Inter,sans-serif;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.fb textarea{min-height:110px}
+.fb button{margin-top:14px;font:600 15px Inter,sans-serif;background:var(--green);color:var(--paper);border:0;border-radius:6px;padding:12px 20px;min-height:46px;cursor:pointer}
+.fb .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fb .small{font-size:13px;color:var(--ink-2);margin:10px 0 0}
 </style>
 </head><body>
 <header class="hero"><div class="wrap">
@@ -69,7 +86,7 @@ ol.src li{margin-bottom:3px;word-break:break-word}
 <div class="card"><div class="k">Where it nests</div><p>The coordination and execution layer: above the systems of record, below the mission itself. And AI assistants can already work inside it through a connector (an MCP server) that the website never mentions.</p></div>
 <div class="card"><div class="k">Biggest opening</div><p>Programs that sponsor cohorts (incubators, accelerators, mission networks), paired with a public gallery of proven Activation Kits.</p></div>
 </div>
-<div class="howto"><p><strong>How to read this.</strong> Sections 1–4 describe Mito on its own terms: what it's for, who it serves, who it's compared with, and where it could grow. Section 5 lists small fixes. Section 6 is the heart of it: the things you only notice when you put all the pieces side by side. Section 7 explains how the report was made. Notes from our own use as beta members are labeled "first-hand".</p></div>
+<div class="howto"><p><strong>How to read this.</strong> Sections 1–4 describe Mito on its own terms: what it's for, who it serves, who it's compared with, and where it could grow. Section 5 lists small fixes. Section 6 is the heart of it: the things you only notice when you put all the pieces side by side. Section 7 explains how it was made, and section 8 asks what would make it better. Notes from our own use as beta members are labeled "first-hand".</p></div>
 </div></header>
 
 <main class="wrap">
@@ -176,8 +193,8 @@ ol.src li{margin-bottom:3px;word-break:break-word}
 
 <div class="insight"><h3>4. A pattern across tools in this space: trust leaks through inconsistency, not missing features</h3>
 <dl class="chain"><dt>Surface</dt><dd>Small coordination tools all compare themselves against the same big per-user tools.</dd>
-<dt>Connected picture</dt><dd>We keep a shared library of the organizations we evaluate. Across the work-management tools in it so far, the most telling facts sit in documents nobody markets (FAQs, terms, unlinked pages), while the front page carries numbers that don't agree with each other. Mito and another tool we evaluated the same day share five competitors, yet the people drawn to each point in completely different directions. A company's real niche shows up in who champions it, not in its comparison chart.</dd>
-<dt>Evidence</dt><dd>Our shared library (two organizations, 50+ cited entries so far). This is the part that compounds as we evaluate more.</dd></dl></div>
+<dt>Connected picture</dt><dd>We record every organization we evaluate the same way, so they can be compared. Across the work-management tools in it so far, the most telling facts sit in documents nobody markets (FAQs, terms, unlinked pages), while the front page carries numbers that don't agree with each other. Mito and another tool we evaluated the same day share five competitors, yet the people drawn to each point in completely different directions. A company's real niche shows up in who champions it, not in its comparison chart.</dd>
+<dt>Evidence</dt><dd>Our records of both evaluations, made the same day with the same questions. This is the part that gets richer as we evaluate more organizations.</dd></dl></div>
 
 <div class="insight"><h3>5. The name is fighting for its own search results</h3>
 <dl class="chain"><dt>Surface</dt><dd>The AI is branded "Mito AI."</dd>
@@ -187,16 +204,33 @@ ol.src li{margin-bottom:3px;word-break:break-word}
 
 <section id="how">
 <p class="kicker">7 · How this was made</p>
-<h2>A perspective that builds itself</h2>
-<p class="intro">This report came from a process we're building at Mindful Living to understand any organization's potential. Here is how it works, briefly.</p>
-<p>We ran Mito through a question loop that improves itself: <strong>expand</strong> the questions wherever the picture has holes, <strong>measure</strong> what each question yields, then <strong>shrink</strong> by merging, gating or dropping what didn't earn its place. Every answer adds cited entries to a shared library of organizations, people, products and how they connect, so each evaluation starts from a richer map than the last.</p>
+<h2>Why you can trust what's here</h2>
+<p class="intro">This report came from a process we're building at Mindful Living to understand any organization's potential: what it's for, who it serves, and where it can grow. Here is what goes into each one.</p>
 <div class="loop">
-<div class="card"><div class="n">55 → 13</div><p>things to know, compressed into 13 compound questions</p></div>
-<div class="card"><div class="n">2 runs</div><p>run 2 overturned seven of run 1's claims. For one, run 1 said there were no numbers; run 2 found twelve on the unlinked pages.</p></div>
-<div class="card"><div class="n">adapted</div><p>Mito is early in public, so the questions about reviews and champions merged into one "public footprint" question</p></div>
-<div class="card"><div class="n">deeper</div><p>run 2 taught the process to read every page in the sitemap and open each FAQ one by one</p></div>
+<div class="card"><div class="n">At the source</div><p>We read Mito's own pages directly (every page, every FAQ, the legal fine print), not summaries of them.</p></div>
+<div class="card"><div class="n">Checked twice</div><p>A second pass rechecked the first and corrected what it got wrong. The first pass said the site had no results figures; the second found twelve on pages nothing links to.</p></div>
+<div class="card"><div class="n">18 sources</div><p>Every claim links to where it came from, so anything here can be checked in one click.</p></div>
+<div class="card"><div class="n">Connected</div><p>The insights come from putting customers, pricing, legal pages and competitors side by side. That's how we spot what a single page hides.</p></div>
+<div class="card"><div class="n">Compared</div><p>Each organization is evaluated the same way as others in its space, so patterns show up that a one-off review can't see.</p></div>
 </div>
-<p class="note">Method: Mito's public pages captured on Oct 2, 2026 in a clean browser (every sitemap URL, each FAQ opened individually, grid ✓/✗ recorded), then public sources, every claim linked. First-hand notes come from our use as beta members and are labeled. Built by ClaudeUben with Claude helper agents.</p>
+<p class="note">Built by ClaudeUben, the AI partner at Mindful Living, with Claude helper agents, on October 2, 2026. Pages were read as they stood that day; review counts and dates come from the review sites as read that day.</p>
+</section>
+<section id="feedback">
+<p class="kicker">8 · Your turn</p>
+<h2>What would make this report better?</h2>
+<p class="intro">We ask this of every report. Your answer shapes the next version of this one, and how we write the next report for anyone.</p>
+<form class="fb" action="https://submit.jotform.com/submit/262748196898077" method="post" accept-charset="utf-8">
+<input type="hidden" name="formID" value="262748196898077"><input type="hidden" name="simple_spc" value="262748196898077-262748196898077">
+<input type="hidden" name="q5_q5_textbox3" value="mitolabs-2026-10-02">
+<span class="hp" aria-hidden="true"><label>Website<input type="text" name="website" value="" tabindex="-1" autocomplete="off"></label></span>
+<fieldset><legend>Rate this report</legend><div class="scale"><label><input type="radio" name="q2_q2_scale0" value="1" required><span>1</span></label><label><input type="radio" name="q2_q2_scale0" value="2" required><span>2</span></label><label><input type="radio" name="q2_q2_scale0" value="3" required><span>3</span></label><label><input type="radio" name="q2_q2_scale0" value="4" required><span>4</span></label><label><input type="radio" name="q2_q2_scale0" value="5" required><span>5</span></label><span class="ends">1 = not useful · 5 = very useful</span></div></fieldset>
+<label class="f" for="fb-better">What would make this report better?</label>
+<textarea id="fb-better" name="q3_q3_textarea1" placeholder="Anything missing, wrong, unclear, or more useful to you"></textarea>
+<label class="f" for="fb-email" style="margin-top:14px">Your email (optional, if you'd like a reply)</label>
+<input id="fb-email" type="email" name="q4_q4_email2" autocomplete="email">
+<button type="submit">Send feedback</button>
+<p class="small">Goes straight to the team that wrote this. We correct the page at the same address.</p>
+</form>
 </section>
 </main>
 <footer><div class="wrap">Prepared by ClaudeUben · Mindful Living · October 2, 2026. Corrections welcome: reply to the email this came with, and we'll update this page at the same address.</div></footer>
