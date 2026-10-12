@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RMA Mockup Paths</title>
+<style>
+/* Layout: a guided test in one column: who you are → pick a visitor → walk and rate each step → answer three questions → share. Builder detail folded at the end. */
+:root{
+  --bg:#f6f7f6; --card:#ffffff; --ink:#1f2328; --mid:#5c636b; --line:#d3d7d4;
+  --accent:#2f5d50; --tint:#e3eee9; --warn:#7a5b00; --warnbg:#fff4d6; --bad:#8a2f2f; --badbg:#fbe9e7;
+  --sans:"Source Sans 3",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141816; --card:#1c211f; --ink:#e6e9e7; --mid:#a3aba7; --line:#34403b;
+  --accent:#8cc4b0; --tint:#20302a; --warn:#f0c869; --warnbg:#3a3015; --bad:#f0a49b; --badbg:#3d211f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141816; --card:#1c211f; --ink:#e6e9e7; --mid:#a3aba7; --line:#34403b;
+  --accent:#8cc4b0; --tint:#20302a; --warn:#f0c869; --warnbg:#3a3015; --bad:#f0a49b; --badbg:#3d211f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans)}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:32px 80px}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--warn);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0;font-weight:600}
+h1{font-size:clamp(2rem,5vw,2.7rem)}
+h2{font-size:1.5rem}
+h3{font-size:1.2rem}
+p{margin:0}
+.lead{color:var(--mid);max-width:65ch;margin-top:10px}
+.label{font:600 11px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--mid)}
+.section{margin-top:44px;display:grid;gap:14px}
+.stepno{font:600 12px/1 var(--mono);color:var(--accent);letter-spacing:.06em}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:22px}
+.howto div{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px;display:grid;gap:6px}
+.howto b{font-weight:600}
+.howto span{color:var(--mid);font-size:.93rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:grid;gap:10px}
+.status{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.95rem}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--warn);flex:none}
+.dot.ok{background:var(--accent)}
+input[type="text"],textarea{width:100%;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);padding:9px 10px}
+textarea{min-height:64px;resize:vertical}
+.visitors{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.vis{all:unset;box-sizing:border-box;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:grid;gap:4px;min-width:0}
+.vis:hover{border-color:var(--accent)}
+.vis:focus-visible{outline:3px solid var(--warn);outline-offset:2px}
+.vis[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--tint)}
+.vis b{font-weight:600}
+.vis small{color:var(--mid);font-size:.88rem;line-height:1.4}
+.vis .prog{font:12px/1 var(--mono);color:var(--mid)}
+.vis .prog.done{color:var(--accent)}
+.walk{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:16px}
+.imagine{background:var(--tint);border-radius:4px;padding:12px 14px;display:grid;gap:4px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+ol.steps li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.sline{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.sn{font:600 12px/1 var(--mono);color:var(--mid);min-width:18px}
+.open{font-weight:600}
+.see{color:var(--mid);font-size:.93rem;padding-left:28px}
+.rate{display:flex;gap:6px;flex-wrap:wrap;padding-left:28px}
+.rate button{font:600 14px var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.rate button:hover{border-color:var(--accent)}
+.rate button[aria-pressed="true"].ok{background:var(--tint);border-color:var(--accent);color:var(--accent)}
+.rate button[aria-pressed="true"].meh{background:var(--warnbg);border-color:var(--warn);color:var(--warn)}
+.rate button[aria-pressed="true"].bad{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.snote{padding-left:28px}
+.q{display:grid;gap:6px}
+.q > span{font-weight:600}
+.choices{display:flex;gap:6px;flex-wrap:wrap}
+.choices button{font:600 14px var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.choices button[aria-pressed="true"]{background:var(--tint);border-color:var(--accent);color:var(--accent)}
+.end{font-size:.93rem;color:var(--mid)}
+.small{font-size:.92rem;color:var(--mid)}
+.submitbox{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+.done-msg{background:var(--tint);color:var(--accent);border-radius:4px;padding:10px 12px;font-weight:600}
+textarea.mono{font:13px/1.5 var(--mono);min-height:140px}
+.pill{display:inline-block;font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:3px;white-space:nowrap}
+.ph{background:var(--warnbg);color:var(--warn)}
+.gap{background:var(--badbg);color:var(--bad)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 14px var(--sans);background:var(--accent);color:var(--card);border:1px solid var(--accent);border-radius:4px;padding:9px 14px;cursor:pointer}
+.btn.secondary{background:var(--card);color:var(--ink);border-color:var(--line)}
+.btn:hover{filter:brightness(1.05)}
+.msg{font-size:.92rem;color:var(--accent)}
+.msg.error{color:var(--bad)}
+.copy-fallback[hidden]{display:none}
+.copy-fallback{display:grid;gap:8px}
+.copy-fallback textarea{font:13px/1.5 var(--mono);min-height:140px}
+.btn:disabled{opacity:.65;cursor:wait}
+#out{font:13px/1.5 var(--mono);min-height:160px}
+.team{display:grid;gap:8px}
+.person{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;border-top:1px solid var(--line);padding-top:10px}
+.person img{width:28px;height:28px;border-radius:50%}
+.person .pn{font-weight:600}
+.person .pd{color:var(--mid);font-size:.9rem;white-space:pre-wrap}
+details.builders{margin-top:48px;background:var(--card);border:1px solid var(--line);border-radius:6px}
+details.builders>summary{cursor:pointer;padding:14px 18px;font-weight:600}
+.bbody{padding:0 18px 18px;display:grid;gap:16px}
+.tree{font:13px/1.7 var(--mono);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto;white-space:pre}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line)}
+th{font:600 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mid);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+code{font:13px var(--mono)}
+ul.plain{margin:0;padding-left:20px;display:grid;gap:8px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap">
+</head>
+<body>
+
+<div class="wrap">
+  <h1>Help us test the RMA website</h1>
+  <p class="lead">Your answers save in this browser as you go. Nothing is sent until you press Submit. Links open in a new tab.</p>
+  <p class="lead">We're building a new website for the Regenerative Media Alliance, and a first draft is up at <a href="https://regenmedia.studio/mockup-v1/" target="_blank" rel="noopener">regenmedia.studio/mockup-v1</a>. Before we build the real thing, we want to see it through the eyes of the people it's for.</p>
+  <p class="lead">Each review below puts you in someone else's shoes, like a newcomer, a guest or someone with a story to bring. You click through the pages that person would visit, say how each step went, answer a few questions and submit. One review takes about five minutes. One is helpful, three is great. The draft isn't finished, so some boxes say "pending" and the forms don't send anything yet. That's expected.</p>
+
+  <div class="howto">
+    <div><span class="stepno">1</span><b>Add your name</b><span>So we know whose review is whose.</span></div>
+    <div><span class="stepno">2</span><b>Choose a review and click through</b><span>Each link opens the draft in a new tab. Look around, come back here, and mark the step Worked, Confusing or Broken.</span></div>
+    <div><span class="stepno">3</span><b>Answer the questions and submit</b><span>Three short questions finish each review. Press "Submit this review", then start the next one.</span></div>
+  </div>
+
+  <section class="section" id="you">
+    <span class="stepno">STEP 1 · WHO YOU ARE</span>
+    <div class="panel">
+      <div class="status"><span class="dot ok" id="saveDot"></span><span id="saveText">Your answers save in this browser as you go.</span></div>
+      <label class="label" for="tester">Your name</label>
+      <input id="tester" type="text" autocomplete="name" placeholder="e.g. Ed" required>
+      <span class="msg error" id="nameMsg" role="status"></span>
+    </div>
+  </section>
+
+  <section class="section" id="pick">
+    <span class="stepno">STEP 2 · CHOOSE A REVIEW</span>
+    <p class="lead" style="margin-top:0">Each review is one kind of visitor. Start with whoever is closest to you.</p>
+    <div class="visitors" id="visitors" role="group" aria-label="Visitors"></div>
+    <div class="walk" id="walk"></div>
+  </section>
+
+  <section class="section" id="overall">
+    <span class="stepno">LAST STEP · THE WHOLE SITE</span>
+    <div class="panel">
+      <p class="small">After your reviews, three questions about the site as a whole.</p>
+      <label class="q"><span>Does this feel like RMA? What would make it feel more like us?</span><textarea id="ov-feel"></textarea></label>
+      <label class="q"><span>Is there anything here that shouldn't be on a public website?</span><textarea id="ov-remove"></textarea></label>
+      <label class="q"><span>What's missing that you expected to find?</span><textarea id="ov-missing"></textarea></label>
+      <div class="row"><button type="button" class="btn" id="submitOverall">Submit whole site</button><button type="button" class="btn secondary" id="copyOverall">Copy as text</button><span class="msg" id="overallMsg" role="status"></span></div>
+      <div class="copy-fallback" id="overallFallback" hidden><textarea id="overallText" readonly aria-label="Whole-site review as text"></textarea><div class="row"><button type="button" class="btn secondary" id="copyOverallFallback">Copy</button><span class="msg" id="overallCopyMsg" role="status"></span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="share">
+    <span class="stepno">ALL YOUR ANSWERS IN ONE PLACE</span>
+    <div class="panel">
+      <p id="shareIntro">This box holds every review you've done. Submit everything when you are ready to send all of it.</p>
+      <div class="row"><button type="button" class="btn" id="submitAll">Submit everything</button><button type="button" class="btn secondary" id="copyOut">Copy as text</button><span class="msg" id="allMsg" role="status"></span><span class="msg" id="copyMsg" role="status"></span></div>
+      <label class="label" for="out">Your results as text</label>
+      <textarea id="out" readonly></textarea>
+      <div class="copy-fallback" id="allFallback" hidden><textarea id="allText" readonly aria-label="Everything as text"></textarea><div class="row"><button type="button" class="btn secondary" id="copyAllFallback">Copy</button><span class="msg" id="allCopyMsg" role="status"></span></div></div>
+    </div>
+    <div class="panel">
+      <label class="label" for="paste">Got someone's results? Paste them here to read them</label>
+      <textarea id="paste" placeholder="Paste the whole message, including the last line that starts with RMA-PATHS-v1"></textarea>
+      <div class="row"><button type="button" class="btn secondary" id="readIn">Show their results</button><span class="msg" id="readMsg" role="status"></span></div>
+      <div id="theirs" class="team"></div>
+    </div>
+  </section>
+
+  <details class="builders" id="builders">
+    <summary>For the builders: page tree, data flows and known gaps</summary>
+    <div class="bbody">
+      <p class="lead" style="margin-top:0">Desktop navigation shows Home, Our week, Topics, Projects and People, plus a "Bring your topic" button. The phone menu and the footer list all nine pages. <code>/mockup-v1/</code> serves the same page as <code>home.html</code>.</p>
+      <div class="tree">mockup-v1/  (index.html = home.html)
+├─ Home ................. home.html
+│   #find-your-way · #how-it-works · #share-video · #join-support · #produce · #social-links
+├─ Our week ............. our-week.html
+├─ Topics in progress ... topics-in-progress.html   #backlog-public-link
+├─ Projects ............. projects.html
+├─ People ............... people.html
+├─ Bring your topic ..... bring-your-topic.html     ?role=storyteller | ?role=panel
+├─ Guest information .... guest.html                #panel · #recording-terms
+├─ How we decide ........ how-we-decide.html        #governance-drafts   (footer + phone menu only)
+└─ Code of conduct ...... code-of-conduct.html                            (footer + phone menu only)</div>
+      <div class="tablewrap"><table><thead><tr><th>Page</th><th>Purpose</th><th>What is on it</th><th>Way out</th></tr></thead><tbody id="pages"></tbody></table></div>
+      <h3>Data flows</h3>
+      <ul class="plain">
+        <li><b>Bring-your-topic form → Notion "BYOT Production Backlog"</b> (BYOT Topics database in Quorum1, beside Ed's Booking CRM, which it leaves alone). Fields: name, email, title, story, why now, role, links, Wednesday preference, consent. <span class="pill ph">Placeholder endpoint</span></li>
+        <li><b>Notion backlog → Topics in progress</b>: rows marked "Show on website" become cards in Submitted, Planned, Scheduled, Recorded, Released. Today: three example cards. <span class="pill ph">Not wired</span></li>
+        <li><b>Guest form → agreement + Riverside link</b>: terms template coming from Ed. <span class="pill ph">Placeholder</span></li>
+        <li><b>Contact form and short-video form</b> on Home (interest: produce/edit, follow and support, join, question). <span class="pill ph">Placeholder</span></li>
+        <li><b>Social links</b>: YouTube and Instagram pending. <span class="pill ph">Pending</span></li>
+      </ul>
+      <h3>Gaps found while mapping</h3>
+      <ul class="plain">
+        <li><span class="pill gap">Gap</span> How we decide and Code of conduct are footer-only on desktop and not linked from the Home body.</li>
+        <li><span class="pill gap">Gap</span> How we decide has no next step after the (pending) drafts link.</li>
+        <li><span class="pill gap">Gap</span> People has no links: no contact, no onward button.</li>
+        <li><span class="pill gap">Gap</span> "Join the panel" opens the invited-guest page, whose button leads to the topic form "What story are you carrying?" with role Panel.</li>
+        <li><span class="pill gap">Gap</span> No confirmation or back-link after any form (all four are mockups).</li>
+        <li><span class="pill gap">Gap</span> "Follow along" ends at pending social links; "View the live backlog" and "Read our drafts" point at their own placeholder boxes.</li>
+        <li><span class="pill ph">Note</span> Still pending from people: Ed's line and other people lines, the mission statement, meeting times, the project list after April, Nikki's project status, the recording terms text.</li>
+      </ul>
+    </div>
+  </details>
+  <p class="small" style="margin-top:24px">Trouble sending? Email <a href="mailto:sage.harper@mindful-living.us">sage.harper@mindful-living.us</a>.</p>
+</div>
+
+<script>
+const B = "https://regenmedia.studio/mockup-v1/";
+const CASES = [
+  { id:"practitioner", title:"Someone new deciding if RMA is for them", short:"New and curious",
+    imagine:"You do regenerative work or tell its stories. A friend mentioned RMA. You want to see what they actually do and who's in it before you show up.",
+    steps:[
+      ["", "Open Home", "A headline about bringing a story and telling it together."],
+      ["home.html#find-your-way", "Read “Find your way in”", "Four ways to take part."],
+      ["home.html#how-it-works", "Read “How it works”", "Four plain steps from topic to release."],
+      ["our-week.html", "Open “Our week”", "The Monday, Wednesday, Friday rhythm."],
+      ["people.html", "Open “People”", "Who's involved, one line each."],
+      ["home.html#join-support", "Go back to Home and find “Join / Support RMA”", "A way to get in touch."]
+    ], ends:"the contact form (not connected yet)" },
+  { id:"storyteller", title:"Someone with a story to bring", short:"Has a story",
+    imagine:"You're carrying a story or topic you'd like help to make. You want to send it in and know what happens next.",
+    steps:[
+      ["home.html#find-your-way", "On Home, choose “Bring a story”, then “Bring your topic”", "A form opens."],
+      ["bring-your-topic.html?role=storyteller", "Look at the form", "It asks “What story are you carrying?” and your role says Storyteller."],
+      ["bring-your-topic.html?role=storyteller", "Fill it in and press “Submit your topic”", "A note says nothing is sent yet."],
+      ["bring-your-topic.html", "Read “What happens next”", "Received, Reviewed, Scheduled, Recorded and released."],
+      ["topics-in-progress.html", "Follow “See the topic journey”", "A board showing where topics are."]
+    ], ends:"the topic form, which will feed the BYOT backlog (not connected yet)" },
+  { id:"guest", title:"An invited Wednesday guest", short:"Invited guest",
+    imagine:"Someone invited you to join a Wednesday recording and sent you this page. You want to know the terms and how to join.",
+    steps:[
+      ["guest.html", "Open Guest information", "“You’re invited to join the conversation.”"],
+      ["guest.html#panel", "Read “Joining the panel”", "What happens on a Wednesday."],
+      ["guest.html#recording-terms", "Read the recording-and-sharing terms", "How your recording may be shared (full terms coming)."],
+      ["code-of-conduct.html", "Open the code of conduct link", "Six short norms for the room."],
+      ["guest.html", "Back on the guest page, tick the agreement and press “Get the Riverside link”", "A note says the link isn't connected yet."]
+    ], ends:"the agreement and Riverside link (not connected yet)" },
+  { id:"producer", title:"A producer or editor who wants to help", short:"Wants to help make media",
+    imagine:"You produce, edit or film. You'd like to offer your skills to RMA.",
+    steps:[
+      ["home.html#find-your-way", "On Home, choose “Help produce or edit”, then “Offer your skills”", "You land on the production part of the page."],
+      ["home.html#produce", "Read “Help produce or edit”", "What helping looks like."],
+      ["home.html#join-support", "In the contact form, choose “Help produce or edit”", "Name, email, message, “Get in touch”."]
+    ], ends:"the contact form (not connected yet)" },
+  { id:"follower", title:"A supporter who wants to follow along", short:"Follower or supporter",
+    imagine:"You won't take part every week, but you want to follow what RMA makes and support it.",
+    steps:[
+      ["home.html#find-your-way", "On Home, choose “Follow and support”", "You land on Join / Support RMA."],
+      ["home.html#social-links", "Look for where to follow", "YouTube and Instagram (links not added yet)."],
+      ["home.html#share-video", "Read “Share a short video”", "An invitation to send a 3–5 minute video."]
+    ], ends:"social links and the video form (not connected yet)" },
+  { id:"member", title:"Someone checking how decisions are made", short:"Checking the rules",
+    imagine:"You're thinking about joining and want to know how RMA makes decisions before you commit.",
+    steps:[
+      ["home.html", "From Home, try to find “How we decide” on your own", "Notice where you looked and how long it took."],
+      ["how-we-decide.html", "Open “How we decide”", "“Our rules are a work in progress.”"],
+      ["how-we-decide.html#governance-drafts", "Press “Read our drafts”", "The drafts aren't linked yet."],
+      ["code-of-conduct.html", "Open “Code of conduct” (in the footer)", "Six short norms."]
+    ], ends:"the governance drafts (not linked yet)" },
+  { id:"observer", title:"An outsider watching RMA build in the open", short:"Watching from outside",
+    imagine:"You've heard RMA builds its media in the open. You want to see what's in the works.",
+    steps:[
+      ["topics-in-progress.html", "Open “Topics” from the menu", "Five columns from Submitted to Released, with example cards."],
+      ["topics-in-progress.html#backlog-public-link", "Press “View the live backlog”", "The live backlog isn't linked yet."],
+      ["projects.html", "Open “Projects”", "Longer projects, including Source."],
+      ["home.html#join-support", "Press “Get in touch about a project”", "The contact form on Home."]
+    ], ends:"the live backlog (not linked yet) or the contact form" },
+  { id:"weekly", title:"A member checking this week", short:"Member, this week",
+    imagine:"You're already part of RMA and want to check the weekly rhythm and what to bring.",
+    steps:[
+      ["our-week.html", "Open “Our week”", "Monday plan, Wednesday record, Friday review, then release."],
+      ["our-week.html", "Find the meeting times", "Times are still to be confirmed."],
+      ["bring-your-topic.html", "Press “Bring a topic for planning”", "The topic form."]
+    ], ends:"the topic form; times still pending" }
+];
+const PAGES = [
+  ["Home","home.html","Answer “is this a space for me?” and route each visitor.","Hero; 4 doors; 4 steps; ticker (static); projects; people; video form; Join / Support form.","Bring your topic; door buttons; links to week, topics, projects, people, guest."],
+  ["Our week","our-week.html","The weekly rhythm.","Mon / Wed / Fri / Release; still to confirm.","Bring a topic; guest info; help produce."],
+  ["Topics in progress","topics-in-progress.html","Build in the open.","Five-column board, example cards.","Live backlog (pending); Bring your topic."],
+  ["Projects","projects.html","Longer stories.","About a dozen projects incl. Source.","Visit Source; get in touch."],
+  ["People","people.html","Who takes part.","Nine people.","None (nav and footer only)."],
+  ["Bring your topic","bring-your-topic.html","Story into the backlog.","Topic form + what happens next; role from ?role=.","Submit (mockup); guest terms; topic journey."],
+  ["Guest information","guest.html","Prepare an invited guest.","Panel; terms (pending); before you join; agreement form.","Riverside link (mockup); ask to join the panel; conduct; contact."],
+  ["How we decide","how-we-decide.html","How decisions are made.","Work-in-progress note; drafts (pending).","None after drafts."],
+  ["Code of conduct","code-of-conduct.html","Norms for the room.","Six norms.","Recording terms."]
+];
+const RATES = [["ok","Worked"],["meh","Confusing"],["bad","Broken"]];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- state ---------- */
+const LS = "rmaPaths2";
+function blank(){ const c = {}; CASES.forEach(k => c[k.id] = { s:[], sn:[], reached:"", confusing:"", change:"", submitted:"" }); return { label:"", cases:c, overall:{ feel:"", remove:"", missing:"", submitted:"" } }; }
+let state = blank();
+try { const saved = JSON.parse(localStorage.getItem(LS)); if (saved && saved.cases) { state.label = saved.label || ""; CASES.forEach(k => state.cases[k.id] = Object.assign(blank().cases[k.id], saved.cases[k.id] || {})); state.overall = Object.assign(blank().overall, saved.overall || {}); } } catch(e) {}
+let current = (() => { try { return localStorage.getItem(LS+":cur") || CASES[0].id; } catch(e) { return CASES[0].id; } })();
+if (!CASES.some(k => k.id === current)) current = CASES[0].id;
+
+const SEND_LS = LS + ":sends";
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdCXlk9UwrAxK6dfd7G82o6ClFAFy5HqI82-BasthWcTLd1ag/formResponse";
+const sendErrors = {};
+const sending = {};
+let receipts = {};
+try { receipts = JSON.parse(localStorage.getItem(SEND_LS)) || {}; } catch(e) {}
+function persistLocal(){ try { localStorage.setItem(LS, JSON.stringify(state)); } catch(e) {} }
+function persistReceipts(){ try { localStorage.setItem(SEND_LS, JSON.stringify(receipts)); } catch(e) {} }
+function changed(){ persistLocal(); buildOut(); renderVisitors(); updateReviewSubmit(); updateOverallSubmit(); updateAllSubmit(); }
+function sentState(key, body){ const r = receipts[key]; return r && r.text === body ? "sent" : r ? "changed" : "unsent"; }
+function sentMessage(key, body){
+  const state = sentState(key, body);
+  if (state === "changed") return "Changed since you sent it";
+  if (state === "sent") return `Sent to Sage and the team at ${new Date(receipts[key].at).toLocaleTimeString([], { hour:"numeric", minute:"2-digit" })}. Thank you.`;
+  return "";
+}
+const failureMessage = "This did NOT send (no connection?). Your answers are still saved in this browser. Try again, or copy them below and email them to sage.harper@mindful-living.us.";
+function requireName(msg){
+  if (state.label.trim()) return true;
+  document.getElementById("nameMsg").textContent = "Enter your name before submitting.";
+  msg.textContent = "Enter your name before submitting.";
+  msg.classList.add("error");
+  document.getElementById("tester").focus();
+  return false;
+}
+async function postReview(key, which, body){
+  if (sending[key]) return false;
+  sending[key] = true;
+  try {
+    await fetch(FORM_URL, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:new URLSearchParams({"entry.105730802":state.label.trim(), "entry.1139307723":which, "entry.1266549172":body}) });
+    receipts[key] = { at:new Date().toISOString(), text:body };
+    persistReceipts();
+    delete sendErrors[key];
+    return true;
+  } catch(e) {
+    sendErrors[key] = body;
+    return false;
+  } finally { delete sending[key]; }
+}
+function showStatus(button, msg, key, body, fallback, textBox){
+  if (sending[key]) { button.disabled = true; button.textContent = "Sending..."; msg.textContent = ""; }
+  else {
+    button.disabled = false;
+    button.textContent = sentState(key, body) === "changed" ? "Send the updated review" : key === "overall" ? "Submit whole site" : key === "everything" ? "Submit everything" : "Submit this review";
+    msg.textContent = sendErrors[key] ? failureMessage : sentMessage(key, body);
+  }
+  msg.classList.toggle("error", !!sendErrors[key]);
+  if (fallback) { fallback.hidden = !sendErrors[key]; if (sendErrors[key]) textBox.value = sendErrors[key]; }
+}
+
+/* ---------- render ---------- */
+function stepsDone(id){ const c = state.cases[id]; return CASES.find(k => k.id === id).steps.filter((_, j) => c.s[j]).length; }
+function renderVisitors(){
+  document.getElementById("visitors").innerHTML = CASES.map(k => { const n = stepsDone(k.id), t = k.steps.length, sent = sentState(k.id, reviewText(k.id)); return `<button type="button" class="vis" data-id="${k.id}" aria-pressed="${k.id===current}"><b>${esc(k.short)}</b><small>${esc(k.title)}</small><span class="prog ${sent==="sent"?"done":""}">${sent==="sent"?"Sent ✓":sent==="changed"?"Changed since sent":n?`In progress · ${n} of ${t} steps`:`${t} steps · about 5 min`}</span></button>`; }).join("");
+}
+function renderWalk(){
+  const k = CASES.find(x => x.id === current), c = state.cases[k.id], i = CASES.indexOf(k);
+  const steps = k.steps.map((s, j) => `
+    <li>
+      <div class="sline"><span class="sn">${j+1}</span><a class="open" href="${B}${s[0]}" target="_blank" rel="noopener">${esc(s[1])} ↗</a></div>
+      <div class="see">You should see: ${esc(s[2])}</div>
+      <div class="rate" role="group" aria-label="Step ${j+1}">${RATES.map(r => `<button type="button" class="${r[0]}" data-step="${j}" data-rate="${r[0]}" aria-pressed="${c.s[j]===r[0]}">${r[1]}</button>`).join("")}</div>
+      <div class="snote" ${c.s[j]==="meh"||c.s[j]==="bad"?"":"hidden"}><input type="text" data-snote="${j}" value="${esc(c.sn[j]||"")}" placeholder="What happened? (one line is plenty)" aria-label="Step ${j+1} note"></div>
+    </li>`).join("");
+  document.getElementById("walk").innerHTML = `
+    <div class="imagine"><span class="label">Imagine you are</span><p>${esc(k.imagine)}</p></div>
+    <ol class="steps">${steps}</ol>
+    <p class="end">This path ends at ${esc(k.ends)}.</p>
+    <div class="q"><span>Did you get where this person wanted to go?</span>
+      <div class="choices" role="group">${["Yes","Partly","No"].map(v => `<button type="button" data-reached="${v}" aria-pressed="${c.reached===v}">${v}</button>`).join("")}</div></div>
+    <label class="q"><span>What was confusing or missing for them?</span><textarea data-field="confusing">${esc(c.confusing)}</textarea></label>
+    <label class="q"><span>What one change would help them most?</span><textarea data-field="change">${esc(c.change)}</textarea></label>
+    <div class="submitbox">
+      <p class="small">${(() => { const left = k.steps.length - stepsDone(k.id); return left ? `${left} step${left===1?"":"s"} not marked yet. You can still submit.` : "All steps marked."; })()}</p>
+      <div class="row"><button type="button" class="btn" id="submitVis">Submit this review</button><button type="button" class="btn secondary" id="copyVis">Copy as text</button><span class="msg" id="submitMsg" role="status"></span><span class="msg" id="copyVisMsg" role="status"></span></div>
+      <div class="copy-fallback" id="visFallback" hidden><textarea readonly aria-label="This review as text"></textarea><div class="row"><button type="button" class="btn secondary" id="copyVisFallback">Copy</button><span class="msg" id="copyVisFallbackMsg" role="status"></span></div></div>
+      ${i < CASES.length-1 ? `<button type="button" class="btn secondary" id="nextVis">Next review: ${esc(CASES[i+1].short)}</button>` : `<a class="btn secondary" href="#overall" style="text-decoration:none">Last step: the whole site</a>`}
+    </div>`;
+  updateReviewSubmit();
+}
+function reviewText(id){
+  const k = CASES.find(x => x.id === id);
+  const one = { cases: { [id]: state.cases[id] } };
+  return [`RMA website review: ${k.title}`, `From: ${state.label.trim() || "(no name)"}`, "", ...summary(one)].join("\n").trim();
+}
+async function submitReview(){
+  const k = CASES.find(x => x.id === current), key = k.id;
+  if (sending[key] || !requireName(document.getElementById("submitMsg"))) return;
+  const body = reviewText(key);
+  const request = postReview(key, k.short, body);
+  updateReviewSubmit();
+  await request;
+  renderVisitors();
+  if (current === key) updateReviewSubmit();
+}
+function updateReviewSubmit(){
+  const box = document.querySelector(".submitbox"); if (!box) return;
+  const key = current;
+  showStatus(box.querySelector("#submitVis"), box.querySelector("#submitMsg"), key, reviewText(key), box.querySelector("#visFallback"), box.querySelector("#visFallback textarea"));
+}
+document.getElementById("visitors").addEventListener("click", e => { const b = e.target.closest(".vis"); if (!b) return; current = b.dataset.id; try { localStorage.setItem(LS+":cur", current); } catch(_) {} renderVisitors(); renderWalk(); document.getElementById("walk").scrollIntoView({ block:"start" }); });
+document.getElementById("walk").addEventListener("click", e => {
+  const c = state.cases[current];
+  const r = e.target.closest("[data-rate]");
+  if (r) { const j = +r.dataset.step; c.s[j] = c.s[j] === r.dataset.rate ? null : r.dataset.rate; renderWalk(); changed(); const inp = document.querySelector(`[data-snote="${j}"]`); if (inp && !inp.closest(".snote").hidden) inp.focus(); return; }
+  const q = e.target.closest("[data-reached]");
+  if (q) { c.reached = c.reached === q.dataset.reached ? "" : q.dataset.reached; renderWalk(); changed(); return; }
+  if (e.target.id === "submitVis") { submitReview(); return; }
+  if (e.target.id === "copyVis" || e.target.id === "copyVisFallback") { const box = document.getElementById("visFallback"); copyText(reviewText(current), document.getElementById(e.target.id === "copyVis" ? "copyVisMsg" : "copyVisFallbackMsg"), box, box.querySelector("textarea")); return; }
+  if (e.target.id === "nextVis") { const i = CASES.findIndex(k => k.id === current); current = CASES[i+1].id; try { localStorage.setItem(LS+":cur", current); } catch(_) {} renderVisitors(); renderWalk(); document.getElementById("pick").scrollIntoView({ block:"start" }); }
+});
+document.getElementById("walk").addEventListener("input", e => {
+  const c = state.cases[current];
+  if (e.target.dataset.snote !== undefined) { c.sn[+e.target.dataset.snote] = e.target.value; changed(); }
+  else if (e.target.dataset.field) { c[e.target.dataset.field] = e.target.value; changed(); }
+});
+["feel","remove","missing"].forEach(f => { const el = document.getElementById("ov-"+f); el.value = state.overall[f] || ""; el.addEventListener("input", () => { state.overall[f] = el.value; changed(); }); });
+const tester = document.getElementById("tester"); tester.value = state.label || "";
+tester.addEventListener("input", () => { state.label = tester.value; document.getElementById("nameMsg").textContent = ""; changed(); });
+
+/* ---------- portable text ---------- */
+const out = document.getElementById("out");
+function summary(s){
+  const L = [];
+  CASES.forEach((k, i) => { const c = (s.cases||{})[k.id] || {}; const rated = k.steps.filter((_, j) => (c.s||[])[j]).length;
+    if (!rated && !c.reached && !c.confusing && !c.change) return;
+    L.push(`${i+1}. ${k.title}${c.reached ? ` (got there: ${c.reached})` : ""}`);
+    k.steps.forEach((st, j) => { const r = (c.s||[])[j]; if (!r) return; const word = { ok:"Worked", meh:"Confusing", bad:"Broken" }[r] || r; L.push(`   Step ${j+1} ${st[1]}: ${word}${(c.sn||[])[j] ? ` (${String(c.sn[j]).trim()})` : ""}`); });
+    if (c.confusing) L.push(`   Confusing or missing: ${String(c.confusing).trim().replace(/\n+/g," / ")}`);
+    if (c.change) L.push(`   One change: ${String(c.change).trim().replace(/\n+/g," / ")}`);
+    L.push(""); });
+  const o = s.overall || {};
+  if (o.feel) L.push(`Feels like RMA? ${String(o.feel).trim().replace(/\n+/g," / ")}`);
+  if (o.remove) L.push(`Shouldn't be public: ${String(o.remove).trim().replace(/\n+/g," / ")}`);
+  if (o.missing) L.push(`Missing: ${String(o.missing).trim().replace(/\n+/g," / ")}`);
+  return L;
+}
+function buildOut(){
+  const name = state.label.trim() || "(no name)";
+  const body = summary(state);
+  const lines = [`RMA website test results from ${name}`, `Mockup: ${B}`, "", ...(body.length ? body : ["(nothing rated yet)"])];
+  let code = ""; try { code = btoa(unescape(encodeURIComponent(JSON.stringify({ v:2, label: state.label, cases: state.cases, overall: state.overall })))); } catch(e) {}
+  if (code) lines.push("", "RMA-PATHS-v1:" + code);
+  out.value = lines.join("\n");
+}
+function overallText(){ return [`RMA website review: Whole site`, `From: ${state.label.trim() || "(no name)"}`, "", ...summary({ overall:state.overall })].join("\n").trim(); }
+async function copyText(value, msg, fallback, box){
+  try { await navigator.clipboard.writeText(value); msg.textContent = "Copied."; }
+  catch(e) { fallback.hidden = false; box.value = value; box.focus(); box.select(); msg.textContent = "Selected. Press Ctrl+C (or Cmd+C) to copy."; }
+}
+function updateOverallSubmit(){ showStatus(document.getElementById("submitOverall"), document.getElementById("overallMsg"), "overall", overallText(), document.getElementById("overallFallback"), document.getElementById("overallText")); }
+function updateAllSubmit(){ showStatus(document.getElementById("submitAll"), document.getElementById("allMsg"), "everything", out.value, document.getElementById("allFallback"), document.getElementById("allText")); }
+document.getElementById("submitOverall").onclick = async () => {
+  if (sending.overall || !requireName(document.getElementById("overallMsg"))) return;
+  const request = postReview("overall", "Whole site", overallText());
+  updateOverallSubmit(); await request; updateOverallSubmit();
+};
+document.getElementById("submitAll").onclick = async () => {
+  if (sending.everything || !requireName(document.getElementById("allMsg"))) return;
+  buildOut();
+  const request = postReview("everything", "Everything", out.value);
+  updateAllSubmit(); await request; updateAllSubmit();
+};
+document.getElementById("copyOverall").onclick = () => copyText(overallText(), document.getElementById("overallCopyMsg"), document.getElementById("overallFallback"), document.getElementById("overallText"));
+document.getElementById("copyOverallFallback").onclick = () => copyText(document.getElementById("overallText").value, document.getElementById("overallCopyMsg"), document.getElementById("overallFallback"), document.getElementById("overallText"));
+document.getElementById("copyOut").onclick = () => { buildOut(); copyText(out.value, document.getElementById("copyMsg"), document.getElementById("allFallback"), document.getElementById("allText")); };
+document.getElementById("copyAllFallback").onclick = () => copyText(document.getElementById("allText").value, document.getElementById("allCopyMsg"), document.getElementById("allFallback"), document.getElementById("allText"));
+document.getElementById("readIn").onclick = () => {
+  const box = document.getElementById("theirs"), msg = document.getElementById("readMsg");
+  const m = document.getElementById("paste").value.match(/RMA-PATHS-v1:([A-Za-z0-9+/=]+)/); box.innerHTML = "";
+  if (!m) { msg.textContent = "No results code found. Paste the whole message, including the RMA-PATHS-v1 line."; return; }
+  let d; try { d = JSON.parse(decodeURIComponent(escape(atob(m[1])))); } catch(e) { msg.textContent = "That code couldn't be read. Ask them to copy it again."; return; }
+  msg.textContent = `Showing results from ${d.label || "someone"}.`;
+  const div = document.createElement("div"); div.className = "person";
+  div.innerHTML = `<span></span><div><div class="pn"></div><div class="pd"></div></div>`;
+  div.querySelector(".pn").textContent = d.label || "Someone"; div.querySelector(".pd").textContent = summary(d).join("\n") || "(nothing rated)";
+  box.appendChild(div);
+};
+
+/* ---------- builders table ---------- */
+document.getElementById("pages").innerHTML = PAGES.map(p => `<tr><td><a href="${B}${p[1]}" target="_blank" rel="noopener">${esc(p[0])}</a><br><code>${p[1]}</code></td><td>${esc(p[2])}</td><td>${esc(p[3])}</td><td>${esc(p[4])}</td></tr>`).join("");
+
+buildOut(); renderVisitors(); renderWalk(); updateOverallSubmit(); updateAllSubmit();
+if (location.hash === "#builders") document.getElementById("builders").open = true;
+</script>
+</body>
+</html>
