@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>RMA — Meeting Pack · October 12</title>
+<style>
+  :root{--green:#34d399;--green2:#10b981;--deep:#5eead4;--clay:#e0996a;--bg:#0b0e11;--card:#161b22;--ink:#eef2f0;--muted:#9aa6ad;--line:#2a323b;--done:#6b7d74;--amber:#fbbf24;--note-bg:#d9dde2;--note-ink:#1a1d21}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:0 0 90px}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+  header{background:#0c2a20;color:#fff;padding:28px 0 24px;position:sticky;top:0;z-index:30;box-shadow:0 6px 22px rgba(0,0,0,.65);border-bottom:1px solid #1d4a3c}
+  header h1{font-size:23px;font-weight:600;margin-bottom:4px;color:#fff}
+  header .sub{color:#a9d8c6;font-size:13.5px}
+  .progresswrap{margin-top:14px;background:rgba(255,255,255,.12);border-radius:99px;height:10px;overflow:hidden}
+  .progressbar{height:100%;width:0;background:var(--green2);transition:width .3s ease}
+  .progresstxt{font-size:12px;color:#a9d8c6;margin-top:6px;display:flex;justify-content:space-between}
+  .tabs{display:flex;gap:8px;margin:22px 0 4px}
+  .tab{flex:1;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:9px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none}
+  .tab.active{background:var(--green2);color:#06251c;border-color:var(--green2)}
+  .secthead{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--clay);font-weight:700;margin:30px 0 4px}
+  .frame{background:rgba(224,153,106,.1);border-left:4px solid var(--clay);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:15px;color:var(--ink)}
+  .roles{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0}
+  .role{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+  .role label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+  .seg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0}
+  .seg h2{font-size:17px;color:var(--deep);display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .seg h2 .time{font-size:12px;font-weight:600;color:#06251c;background:var(--green2);border-radius:99px;padding:3px 9px;white-space:nowrap}
+  .seg .who{font-size:13px;color:var(--clay);font-weight:600;margin-bottom:10px}
+  .seg .lead{font-size:14px;color:var(--muted);margin-bottom:10px}
+  ul.checks{list-style:none}
+  ul.checks li{display:flex;align-items:flex-start;gap:11px;padding:8px 0;border-top:1px dashed var(--line);font-size:15px}
+  ul.checks li:first-child{border-top:none}
+  ul.checks input[type=checkbox]{margin-top:3px;width:19px;height:19px;accent-color:var(--green2);cursor:pointer;flex-shrink:0}
+  ul.checks li.done span.txt{color:var(--done);text-decoration:line-through}
+  .fill{border:none;border-bottom:1.5px dotted var(--green);background:transparent;font:inherit;color:var(--green);font-weight:600;min-width:90px;padding:0 4px}
+  .fill:focus{outline:none;border-bottom-style:solid;background:rgba(52,211,153,.16)}
+  .fill::placeholder{color:#6b7d74}
+  .warn{color:var(--amber);font-weight:600}
+  .done-pill{display:inline-block;font-size:11px;font-weight:700;color:#06251c;background:var(--done);border-radius:99px;padding:1px 8px;margin-left:4px;vertical-align:middle}
+  .notebox{margin-top:10px}
+  .notebox label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:4px}
+  textarea.note{width:100%;min-height:60px;border:1px solid #aeb6bd;border-radius:8px;padding:9px 11px;font:inherit;line-height:1.5;resize:vertical;background:var(--note-bg);color:var(--note-ink)}
+  textarea.note:focus{outline:none;border-color:var(--green2);background:#fff}
+  textarea.note::placeholder{color:#5d666d}
+  /* minutes (read-only recap) */
+  .min{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0}
+  .min h3{font-size:16px;color:var(--deep);margin-bottom:8px}
+  .min ul{margin:0 0 0 20px;font-size:14.5px}
+  .min li{margin:5px 0}
+  .min .meta{font-size:13px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  table.act{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  table.act th,table.act td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.act th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+  table.act td.o{color:var(--clay);font-weight:600;white-space:nowrap}
+  .notes{background:#10201a;border:1px solid #1d3a30;color:#cdeede;border-radius:14px;padding:20px 22px;margin:24px 0;font-size:14px}
+  .notes h2{color:#fff;font-size:16px;margin-bottom:10px}
+  .notes li{margin:7px 0 7px 18px}
+  .bar{position:fixed;bottom:0;left:0;right:0;background:#10151b;border-top:1px solid var(--line);padding:10px 0;z-index:20;box-shadow:0 -2px 14px rgba(0,0,0,.5)}
+  .bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .bar button{font:inherit;font-weight:600;font-size:14px;padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  .bar button.reset:hover{border-color:var(--clay);color:var(--clay)}
+  .bar .stat{font-size:14px;color:var(--green);font-weight:600}
+  .pre{font-size:13px;color:var(--muted);margin-top:10px}
+  a{color:var(--green)}
+  .hide{display:none}
+
+  .ask{color:var(--muted);font-size:14px}
+  .verdict{display:inline-flex;gap:12px;margin:5px 10px 2px 0;font-size:13.5px;color:var(--ink);flex-wrap:wrap}
+  .verdict label{display:inline-flex;gap:5px;align-items:center;cursor:pointer}
+  .verdict input{accent-color:var(--green2)}
+  ul.checks li span.txt{flex:1}
+  ul.checks li.done span.txt .ask, ul.checks li.done span.txt .verdict{text-decoration:none}
+  table.act .fill{min-width:60px}
+  @media (max-width:640px){.tabs{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🌀 RMA — Meeting Pack</h1>
+    <div class="sub">Monday, October 12, 2026 · 5:00 PM ET · 60 min · agenda + live website review. We decide things in the room.</div>
+    <div class="progresswrap"><div class="progressbar" id="pbar"></div></div>
+    <div class="progresstxt"><span id="ptxt">0 of 0 done</span><span>checks + notes auto-save on this device</span></div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="tabs">
+    <a class="tab active" id="tab-ag" href="#agenda" onclick="show('ag');return false">✅ Agenda — Oct 12</a>
+    <a class="tab" id="tab-rev" href="#review" onclick="show('rev');return false">🌐 Website review</a>
+  </div>
+  <section id="view-ag"><div class="secthead">This meeting · Monday, October 12 · 5:00 PM ET</div><div class="frame"><strong>What we leave with:</strong> (1) the website mockup <strong>approved, or a short list of exact edits</strong>, so the real build can start; (2) <strong>funding meeting 1 of 3</strong> done, with the five first-funder questions answered.<div class="pre">No website reviews came in before today (review page, Discord thread and email were all checked this morning), so the review happens here, live. Use the <strong>Website review</strong> tab.</div></div><div class="roles"><div class="role"><label>Facilitator</label><input class="fill" data-k="fac" style="width:100%" value="Sage Harper"></div><div class="role"><label>Timekeeper</label><input class="fill" data-k="time" style="width:100%"></div><div class="role"><label>Scribe</label><input class="fill" data-k="scribe" style="width:100%"></div></div><div class="seg"><h2><span class="time">20 min</span> 1 · Website mockup: approve or edit</h2><div class="who">Sage shares the screen</div><div class="lead">Walk two visitor paths on the Website review tab. For each step: did it work, was it confusing, or is it broken? Edits are replacement wording, not why.</div><ul class="checks"><li><input type="checkbox" data-k="c1"><span class="txt">Path A walked: a newcomer who has never heard of RMA</span></li><li><input type="checkbox" data-k="c2"><span class="txt">Path B walked: someone with a story to bring</span></li><li><input type="checkbox" data-k="c3"><span class="txt">New logo shown in the header and at small size. Decision: <input class="fill" data-k="logo" style="min-width:160px"></span></li><li><input type="checkbox" data-k="c4"><span class="txt">People page: lines still pending collected. Ed's line: <input class="fill" data-k="edline" style="min-width:220px"></span></li><li><input type="checkbox" data-k="c5"><span class="txt"><strong>Decision:</strong> mockup approved as is / approved with the edits listed / another round: <input class="fill" data-k="webdecision" style="min-width:200px"></span></li></ul><div class="notebox"><label>Notes — website</label><textarea class="note" data-k="n1"></textarea></div></div><div class="seg"><h2><span class="time">30 min</span> 2 · Funding meeting 1 of 3</h2><div class="who">Everyone; Nikki on the funder</div><div class="lead">An answer to each, even a rough one. Reminders from the Funding Model thread: promise only what the first gift pays for; "seed funding" reads as investment; the amount and any tax line depend on the cost list and Q1's status.</div><ul class="checks"><li><input type="checkbox" data-k="c6"><span class="txt">What is the money for, and who benefits? <input class="fill" data-k="f1" style="min-width:300px"></span></li><li><input type="checkbox" data-k="c7"><span class="txt">How much is the first ask? ($100 / $1k / $5k / $10k) <input class="fill" data-k="f2" style="min-width:120px"></span></li><li><input type="checkbox" data-k="c8"><span class="txt">Who is the funder, and what do they care about? <input class="fill" data-k="f3" style="min-width:300px"></span></li><li><input type="checkbox" data-k="c9"><span class="txt">Who tracks every dollar from day one, and where can everyone see it? <input class="fill" data-k="f4" style="min-width:240px"></span></li><li><input type="checkbox" data-k="c10"><span class="txt">What do we report back to the funder, and when? <input class="fill" data-k="f5" style="min-width:300px"></span></li><li><input type="checkbox" data-k="c11"><span class="txt">Funding meeting 2 covers: <input class="fill" data-k="fm2" style="min-width:240px"> on <input class="fill" data-k="fm2d" style="min-width:100px"></span></li><li><input type="checkbox" data-k="c12"><span class="txt">Funding meeting 3 covers: <input class="fill" data-k="fm3" style="min-width:240px"> on <input class="fill" data-k="fm3d" style="min-width:100px"></span></li></ul><div class="notebox"><label>Notes — funding</label><textarea class="note" data-k="n2"></textarea></div></div><div class="seg"><h2><span class="time">10 min</span> 3 · Quick checks</h2><ul class="checks"><li><input type="checkbox" data-k="c13"><span class="txt">Wednesday recording: emcee <input class="fill" data-k="emcee" style="min-width:140px"> · topic 1 <input class="fill" data-k="t1" style="min-width:180px"> · topic 2 <input class="fill" data-k="t2" style="min-width:180px"> · backup <input class="fill" data-k="t3" style="min-width:160px"></span></li><li><input type="checkbox" data-k="c14"><span class="txt">RMA YouTube channel: who creates it <input class="fill" data-k="yt" style="min-width:140px"> · name <input class="fill" data-k="ytname" style="min-width:180px"> · who holds the login <input class="fill" data-k="ytlogin" style="min-width:140px"></span></li><li><input type="checkbox" data-k="c15"><span class="txt">Finance and legal call with Ed and John: time <input class="fill" data-k="fin" style="min-width:160px"></span></li><li><input type="checkbox" data-k="c16"><span class="txt">Jon VanDeventer's onboarding meeting: who joins <input class="fill" data-k="jon" style="min-width:200px"></span></li><li><input type="checkbox" data-k="c17"><span class="txt">Nikki's Riverside producer access: resolved? <input class="fill" data-k="riv" style="min-width:120px"></span></li></ul><div class="notebox"><label>Notes — quick checks</label><textarea class="note" data-k="n3"></textarea></div></div><div class="min"><h3>Action items (fill in on the call)</h3><table class="act"><tr><th>Who</th><th>What</th><th>By</th></tr><tr><td class="o">Sage</td><td>Build the real site from the approved mockup, or apply the edits and reshare</td><td>this week</td></tr><tr><td class="o">Sage</td><td>One-page first-funder ask from tonight's five answers</td><td>before funding meeting 2</td></tr><tr><td class="o"><input class="fill" data-k="a3w" style="min-width:110px"></td><td>Funds tracker owner</td><td><input class="fill" data-k="a3b" style="min-width:90px"></td></tr><tr><td class="o"><input class="fill" data-k="a4w" style="min-width:110px"></td><td>RMA YouTube channel created</td><td><input class="fill" data-k="a4b" style="min-width:90px"></td></tr><tr><td class="o"><input class="fill" data-k="a5w" style="min-width:110px"></td><td>Wednesday emcee and topic owners</td><td>Wed</td></tr><tr><td class="o"><input class="fill" data-k="a6w" style="min-width:110px"></td><td><input class="fill" data-k="a6t" style="min-width:320px"></td><td><input class="fill" data-k="a6b" style="min-width:90px"></td></tr></table></div></section>
+  <section id="view-rev" class="hide"><div class="secthead">Website review · live, on the call</div><div class="frame"><strong>How this works:</strong> open each page from the link, look at it as the person named, and mark <strong>Worked</strong>, <strong>Confusing</strong> or <strong>Broken</strong>. If something should read differently, type the wording you would use. Tick the box when the group has looked at the step.<div class="pre">The mockup: <a href="https://regenmedia.studio/mockup-v1/" target="_blank" rel="noopener">regenmedia.studio/mockup-v1</a> · It is a preview: gray boxes are planned features, forms do not send yet, and it is not linked from the current home page. Want to review more paths on your own afterward? <a href="https://claude.ai/artifact/MXhJmeHbt7Z8AhwjBpmUkr" target="_blank" rel="noopener">The guided review page</a> has all eight.</div></div><div class="seg"><h2><span class="time">7 min</span> Path A · A newcomer who has never heard of RMA</h2><div class="who">Ask: would this person understand what RMA is and what to do next?</div><ul class="checks"><li><input type="checkbox" data-k="c18"><span class="txt"><strong>Home</strong> · <a href="https://regenmedia.studio/mockup-v1/home.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">In ten seconds, can you tell what RMA is and who it is for?</span><br><span class="verdict"><label><input type="radio" name="v18" data-k="v18" value="Worked"> Worked</label><label><input type="radio" name="v18" data-k="v18" value="Confusing"> Confusing</label><label><input type="radio" name="v18" data-k="v18" value="Broken"> Broken</label></span> <input class="fill" data-k="e18" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c19"><span class="txt"><strong>Find your way in (on Home)</strong> · <a href="https://regenmedia.studio/mockup-v1/home.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Four paths: bring a story, join the panel, help produce or edit, follow and support. Does each one make sense, and is yours there?</span><br><span class="verdict"><label><input type="radio" name="v19" data-k="v19" value="Worked"> Worked</label><label><input type="radio" name="v19" data-k="v19" value="Confusing"> Confusing</label><label><input type="radio" name="v19" data-k="v19" value="Broken"> Broken</label></span> <input class="fill" data-k="e19" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c20"><span class="txt"><strong>Our week</strong> · <a href="https://regenmedia.studio/mockup-v1/our-week.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Monday plan, Wednesday record, Friday review. Is it clear where the finished pieces are released, and by whom?</span><br><span class="verdict"><label><input type="radio" name="v20" data-k="v20" value="Worked"> Worked</label><label><input type="radio" name="v20" data-k="v20" value="Confusing"> Confusing</label><label><input type="radio" name="v20" data-k="v20" value="Broken"> Broken</label></span> <input class="fill" data-k="e20" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c21"><span class="txt"><strong>People</strong> · <a href="https://regenmedia.studio/mockup-v1/people.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Is your name and line right? Does the page lead anywhere, or is it a dead end?</span><br><span class="verdict"><label><input type="radio" name="v21" data-k="v21" value="Worked"> Worked</label><label><input type="radio" name="v21" data-k="v21" value="Confusing"> Confusing</label><label><input type="radio" name="v21" data-k="v21" value="Broken"> Broken</label></span> <input class="fill" data-k="e21" style="min-width:260px" placeholder="replacement wording or note"></span></li></ul><div class="notebox"><label>Notes — path A</label><textarea class="note" data-k="nA"></textarea></div></div><div class="seg"><h2><span class="time">7 min</span> Path B · Someone with a story to bring</h2><div class="who">Ask: would this person know how to offer a topic and what happens after?</div><ul class="checks"><li><input type="checkbox" data-k="c22"><span class="txt"><strong>Home → Bring your topic</strong> · <a href="https://regenmedia.studio/mockup-v1/bring-your-topic.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Is it clear what to send and how long it should be?</span><br><span class="verdict"><label><input type="radio" name="v22" data-k="v22" value="Worked"> Worked</label><label><input type="radio" name="v22" data-k="v22" value="Confusing"> Confusing</label><label><input type="radio" name="v22" data-k="v22" value="Broken"> Broken</label></span> <input class="fill" data-k="e22" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c23"><span class="txt"><strong>The topic form</strong> · <a href="https://regenmedia.studio/mockup-v1/bring-your-topic.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Are the questions the right ones? Anything missing, or anything we should not ask? (The form does not send yet.)</span><br><span class="verdict"><label><input type="radio" name="v23" data-k="v23" value="Worked"> Worked</label><label><input type="radio" name="v23" data-k="v23" value="Confusing"> Confusing</label><label><input type="radio" name="v23" data-k="v23" value="Broken"> Broken</label></span> <input class="fill" data-k="e23" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c24"><span class="txt"><strong>What happens after you submit</strong> · <a href="https://regenmedia.studio/mockup-v1/bring-your-topic.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Does it say plainly what happens next and when you will hear back?</span><br><span class="verdict"><label><input type="radio" name="v24" data-k="v24" value="Worked"> Worked</label><label><input type="radio" name="v24" data-k="v24" value="Confusing"> Confusing</label><label><input type="radio" name="v24" data-k="v24" value="Broken"> Broken</label></span> <input class="fill" data-k="e24" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c25"><span class="txt"><strong>Topics in progress</strong> · <a href="https://regenmedia.studio/mockup-v1/topics-in-progress.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Our topic pipeline, shown in the open (example cards are placeholders). Are we comfortable showing this publicly?</span><br><span class="verdict"><label><input type="radio" name="v25" data-k="v25" value="Worked"> Worked</label><label><input type="radio" name="v25" data-k="v25" value="Confusing"> Confusing</label><label><input type="radio" name="v25" data-k="v25" value="Broken"> Broken</label></span> <input class="fill" data-k="e25" style="min-width:260px" placeholder="replacement wording or note"></span></li></ul><div class="notebox"><label>Notes — path B</label><textarea class="note" data-k="nB"></textarea></div></div><div class="seg"><h2><span class="time">if time</span> Path C · An invited guest</h2><div class="who">Ask: would a guest feel prepared and know what they are agreeing to?</div><ul class="checks"><li><input type="checkbox" data-k="c26"><span class="txt"><strong>Guest page: the invitation</strong> · <a href="https://regenmedia.studio/mockup-v1/guest.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Does it tell a guest enough ahead of time?</span><br><span class="verdict"><label><input type="radio" name="v26" data-k="v26" value="Worked"> Worked</label><label><input type="radio" name="v26" data-k="v26" value="Confusing"> Confusing</label><label><input type="radio" name="v26" data-k="v26" value="Broken"> Broken</label></span> <input class="fill" data-k="e26" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c27"><span class="txt"><strong>Recording and sharing terms</strong> · <a href="https://regenmedia.studio/mockup-v1/guest.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Do we support these terms as written? Our wording for now, or Ed's template?</span><br><span class="verdict"><label><input type="radio" name="v27" data-k="v27" value="Worked"> Worked</label><label><input type="radio" name="v27" data-k="v27" value="Confusing"> Confusing</label><label><input type="radio" name="v27" data-k="v27" value="Broken"> Broken</label></span> <input class="fill" data-k="e27" style="min-width:260px" placeholder="replacement wording or note"></span></li><li><input type="checkbox" data-k="c28"><span class="txt"><strong>Before you join</strong> · <a href="https://regenmedia.studio/mockup-v1/guest.html" target="_blank" rel="noopener">open this page</a><br><span class="ask">Quiet spot, headphones, how to leave. Clear enough?</span><br><span class="verdict"><label><input type="radio" name="v28" data-k="v28" value="Worked"> Worked</label><label><input type="radio" name="v28" data-k="v28" value="Confusing"> Confusing</label><label><input type="radio" name="v28" data-k="v28" value="Broken"> Broken</label></span> <input class="fill" data-k="e28" style="min-width:260px" placeholder="replacement wording or note"></span></li></ul><div class="notebox"><label>Notes — path C</label><textarea class="note" data-k="nC"></textarea></div></div><div class="seg"><h2><span class="time">3 min</span> The whole site</h2><div class="lead">Three questions for the group, same as the review page asks.</div><ul class="checks"><li><input type="checkbox" data-k="c29"><span class="txt">How does it feel overall? <input class="fill" data-k="feel" style="min-width:320px"></span></li><li><input type="checkbox" data-k="c30"><span class="txt">What is missing? <input class="fill" data-k="missing" style="min-width:320px"></span></li><li><input type="checkbox" data-k="c31"><span class="txt">What should come out? <input class="fill" data-k="remove" style="min-width:320px"></span></li><li><input type="checkbox" data-k="c32"><span class="txt">Pages nobody has commented on yet: <a href="https://regenmedia.studio/mockup-v1/how-we-decide.html" target="_blank" rel="noopener">How we decide</a> · <a href="https://regenmedia.studio/mockup-v1/code-of-conduct.html" target="_blank" rel="noopener">Code of conduct</a> · <a href="https://regenmedia.studio/mockup-v1/projects.html" target="_blank" rel="noopener">Projects</a>. Who reads each this week? <input class="fill" data-k="readers" style="min-width:240px"></span></li></ul><div class="notebox"><label>Notes — whole site</label><textarea class="note" data-k="nW"></textarea></div></div></section>
+</div>
+<div class="bar"><div class="wrap">
+  <span class="stat" id="stat">0 of 0 complete</span>
+  <div style="display:flex;gap:8px">
+    <button class="reset" onclick="exportNotes()">📋 Export notes</button>
+    <button class="reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div></div>
+<div id="exportbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:30;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#161b22;color:#eef2f0;border:1px solid #2a323b;border-radius:12px;padding:20px;max-width:700px;width:100%;max-height:82vh;overflow:auto">
+    <div style="font-weight:600;margin-bottom:4px">Your notes — copied to clipboard.</div>
+    <div style="font-size:12px;color:#9aa6ad;margin-bottom:10px">Paste into Discord or Notion, or keep for your records. (If copy didn't fire, select all below and copy manually.)</div>
+    <textarea id="exporttext" style="width:100%;height:340px;font:13px ui-monospace,monospace;border:1px solid #aeb6bd;border-radius:8px;padding:10px;background:#d9dde2;color:#1a1d21"></textarea>
+    <div style="margin-top:10px;text-align:right"><button class="reset" onclick="document.getElementById('exportbox').style.display='none'">Close</button></div>
+  </div>
+</div>
+<script>
+  const KEY='rma-pack-1012-v1';
+  let state={}; try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  const boxes=[...document.querySelectorAll('input[type=checkbox]')];
+  const fills=[...document.querySelectorAll('.fill, textarea.note')];
+  const radios=[...document.querySelectorAll('input[type=radio]')];
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function render(){
+    boxes.forEach(b=>{const on=!!state[b.dataset.k];b.checked=on;b.closest('li').classList.toggle('done',on)});
+    radios.forEach(r=>{r.checked=state[r.dataset.k]===r.value});
+    const done=boxes.filter(b=>state[b.dataset.k]).length, tot=boxes.length;
+    document.getElementById('pbar').style.width=(tot?Math.round(done/tot*100):0)+'%';
+    document.getElementById('ptxt').textContent=done+' of '+tot+' done';
+    document.getElementById('stat').textContent=done+' of '+tot+' complete';
+  }
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.dataset.k]=b.checked;save();render()}));
+  radios.forEach(r=>r.addEventListener('change',()=>{state[r.dataset.k]=r.value;save()}));
+  fills.forEach(f=>{if(state[f.dataset.k]!==undefined)f.value=state[f.dataset.k];else if(f.value)state[f.dataset.k]=f.value;f.addEventListener('input',()=>{state[f.dataset.k]=f.value;save()})});
+  function show(which){
+    document.getElementById('view-ag').classList.toggle('hide',which!=='ag');
+    document.getElementById('view-rev').classList.toggle('hide',which!=='rev');
+    document.getElementById('tab-ag').classList.toggle('active',which==='ag');
+    document.getElementById('tab-rev').classList.toggle('active',which==='rev');
+    history.replaceState(null,'',which==='rev'?'#review':'#agenda');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function resetAll(){if(confirm('Clear all checks and notes for a fresh meeting?')){try{localStorage.removeItem(KEY)}catch(e){}for(const k in state)delete state[k];fills.forEach(f=>{if(f.dataset.k==='fac'){f.value='Sage Harper';state.fac='Sage Harper'}else f.value=''});render();save()}}
+  function exportNotes(){
+    const out=['RMA Meeting Pack, October 12, 2026: notes ('+new Date().toLocaleString()+')',''];
+    const roles=[...document.querySelectorAll('.role')].map(r=>r.querySelector('label').textContent.trim()+': '+(r.querySelector('input.fill').value||'-'));
+    out.push('ROLES: '+roles.join(' | '),'');
+    [['view-ag','AGENDA'],['view-rev','WEBSITE REVIEW']].forEach(([id,name])=>{
+      out.push('==== '+name+' ====','');
+      document.querySelectorAll('#'+id+' .seg').forEach(seg=>{
+        const h=seg.querySelector('h2').textContent.replace(/\s+/g,' ').trim(); const lines=[];
+        seg.querySelectorAll('ul.checks li').forEach(li=>{
+          const cb=li.querySelector('input[type=checkbox]'); const mark=cb&&cb.checked?'[x]':'[ ]';
+          const clone=li.querySelector('.txt').cloneNode(true);
+          const v=li.querySelector('input[type=radio]:checked');
+          clone.querySelectorAll('.verdict,.ask').forEach(x=>x.remove());
+          clone.querySelectorAll('input').forEach(inp=>{const s=document.createElement('span');s.textContent=inp.value?(' ['+inp.value+'] '):'';inp.replaceWith(s)});
+          lines.push(mark+' '+clone.textContent.replace(/open this page/g,'').replace(/\s+/g,' ').replace(/ · $/,'').trim()+(v?'  => '+v.value:''));
+        });
+        const segnote=seg.querySelector('textarea.note'); if(segnote&&segnote.value.trim())lines.push('  notes: '+segnote.value.trim());
+        if(lines.length){out.push('## '+h,...lines,'')}
+      });
+    });
+    const acts=[...document.querySelectorAll('table.act tr')].slice(1).map(tr=>[...tr.children].map(td=>{const i=td.querySelector('input');return (td.textContent.trim()+(i&&i.value?' '+i.value:'')).trim()||'-'}).join(' | '));
+    out.push('==== ACTION ITEMS ====',...acts);
+    const txt=out.join('\n');
+    document.getElementById('exporttext').value=txt; document.getElementById('exportbox').style.display='flex';
+    try{navigator.clipboard.writeText(txt)}catch(e){}
+  }
+  if(location.hash==='#review')show('rev');
+  render();
+</script>
+</body>
+</html>
